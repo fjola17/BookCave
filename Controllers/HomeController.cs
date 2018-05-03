@@ -13,9 +13,7 @@ namespace BookCave.Controllers
         public IActionResult FrontPage()
         {
             return View();
-        }
-
-        
+        }     
 
         public IActionResult Error()
         {

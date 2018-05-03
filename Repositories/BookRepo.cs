@@ -10,14 +10,14 @@ namespace BookCave.Repositories
     public class BookRepo
     {
 
-        private DataContext _db ;
+        private DataContext _db;
 
         public BookRepo() 
         {
             _db = new DataContext();
         }
 
-        public List<BookViewModel> getIndex()
+        public List<BookViewModel> GetIndex()
         {
             var bookList = (from bo in _db.Books
                             select new BookViewModel
@@ -36,7 +36,7 @@ namespace BookCave.Repositories
             return bookList;
         }
 
-        public List<BookViewModel> getBySearchString(string searchString)
+        public List<BookViewModel> GetBySearchString(string searchString)
         {
             var bookList = (from bo in _db.Books
                             where bo.Title == searchString

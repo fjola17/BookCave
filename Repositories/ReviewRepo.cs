@@ -2,23 +2,33 @@ using System.Collections.Generic;
 using BookCave.Data.EntityModels;
 using System.Linq;
 using System.Diagnostics;
+using BookCave.Data;
+using BookCave.Models.ViewModels;
 
 namespace BookCave.Repositories
 {
     public class ReviewRepo
     {
-        public List<Review> GetOwnerId(int reviewId)
+        private DataContext _db;
+        public ReviewRepo() 
+        {
+            _db = new DataContext();
+        }
+        public List<ReviewViewModel> GetOwnerId(int reviewId)
         {
             //þarf að útfæra
-            var owner = (from rv in Review
-                        select rv).ToList();
+            var owner = (from rv in _db.Reviews
+                        select new ReviewViewModel
+                        {
+
+                        }).ToList();
             
             return owner;
         }
-        public Review GetById(int reviewId)
+        public ReviewViewModel GetById(int reviewId)
         {
             //þarf að útfæra
-            var review = (from rv in Review
+            var review = (from rv in _db.Reviews
                         select rv).SingleOrDefault();
             
             return review;

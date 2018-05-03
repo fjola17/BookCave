@@ -1,0 +1,147 @@
+
+.background
+{
+  background-color: rgba(234, 105, 131, 0.29);
+  border: 1px solid black;
+}
+.banner
+{
+  border-bottom: 1px solid black;
+  margin: 0 auto;
+  margin-left: 220px;
+  margin-right: 260px;
+  padding: 0 auto;
+  background-color: rgba(255, 0, 0, 0.3);
+}
+#logo
+{
+  float: left;
+}
+.content
+{
+  margin-top: 10px;
+}
+.cover
+{
+  margin: -5px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+.ulList
+{
+  list-style-type: none;
+  padding-top: 50px;
+}
+.liList
+{
+  display: inline;
+  padding: 100px;
+}
+.titleBook
+{
+  margin: 0 auto;
+  margin-left: 251px;
+  margin-right: auto;
+  margin-top: 20px;
+  width: 50px;
+}
+.priceBook
+{
+  margin: 0 auto;
+  margin-left: 247px;
+  margin-right: auto;
+  margin-top: -30px;
+  padding: auto;
+  width: 50px;
+}
+.footer
+{
+  margin-left: 220px;
+  margin-right: 260px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: rgba(234, 105, 131, 0.29);
+}
+#newBooks
+{
+  display: inline;
+  margin: 0 auto;
+  margin-left: 120px;
+  margin-right: 120px;
+  padding: 0 auto;
+}
+#ratedBooks1
+{
+  display: inline;
+  margin: 0 auto;
+  margin-left: 120px;
+  margin-right: 120px;
+  padding: 0 auto;
+}
+#ratedBooks2
+{
+  display: inline;
+  margin: 0 auto;
+  margin-left: 120px;
+  margin-right: 120px;
+  padding: 0 auto;
+}
+#sellOut1
+{
+  display: inline;
+  margin: 0 auto;
+  margin-left: 120px;
+  margin-right: 120px;
+  padding: 0 auto;
+}
+#sellOut2
+{
+  display: inline;
+  margin: 0 auto;
+  margin-left: 120px;
+  margin-right: 120px;
+  padding: 0 auto;
+}
+#littleBit
+{
+  margin-left: 864px;
+}
+#littleBit2
+{
+  margin-left: 860px;
+}
+#footCon{
+  text-indent: 100px;
+  padding-right: 30px;
+  float: right;
+}
+#footAbo{
+  text-indent: 100px;
+  padding-right: 30px;
+  float: right;
+}
+#footAgg{
+  text-indent: 100px;
+  padding-right: 30px;
+  float: right;
+}
+th
+{
+  margin-top: 60px;
+  display: inline;
+  margin-left: 848px;
+}
+table
+{
+  margin-left: 15px;
+  margin-right: 230px;
+}
+td
+{
+  display: inline;
+  padding-bottom: 100px;
+  margin-left: 100px;
+  margin-right: 100px;
+  padding-top: 100px;
+
+}

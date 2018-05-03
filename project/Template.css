@@ -1,0 +1,48 @@
+.banner
+{
+  border-bottom: 1px solid black;
+  margin: 0 auto;
+  margin-left: 220px;
+  margin-right: 260px;
+  padding: 0 auto;
+  background-color: rgba(255, 0, 0, 0.3);
+}
+.ulList
+{
+  list-style-type: none;
+  padding-top: 50px;
+}
+.liList
+{
+  display: inline;
+  padding: 100px;
+}
+.background
+{
+  background-color: rgba(234, 105, 131, 0.29);
+  border: 1px solid black;
+}
+.footer
+{
+  margin-left: 220px;
+  margin-right: 260px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: rgba(234, 105, 131, 0.29);
+}
+
+#footCon{
+  text-indent: 100px;
+  padding-right: 30px;
+  float: right;
+}
+#footAbo{
+  text-indent: 100px;
+  padding-right: 30px;
+  float: right;
+}
+#footAgg{
+  text-indent: 100px;
+  padding-right: 30px;
+  float: right;
+}

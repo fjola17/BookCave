@@ -1,0 +1,75 @@
+.banner
+{
+  border-bottom: 1px solid black;
+  margin: 0 auto;
+  margin-left: 210px;
+  margin-right: 250px;
+  padding: 0 auto;
+  background-color: rgba(255, 0, 0, 0.3);
+}
+.background
+{
+  background-color: rgba(234, 105, 131, 0.29);
+  border: 1px solid black;
+}
+.ulList
+{
+  list-style-type: none;
+  padding-top: 50px;
+}
+.liList
+{
+  display: inline;
+  padding: 100px;
+}
+.footer
+{
+  clear: both;
+  margin-left: 220px;
+  margin-right: 260px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: rgba(234, 105, 131, 0.29);
+}
+#footCon{
+  text-indent: 100px;
+  padding-right: 30px;
+  float: right;
+}
+#footAbo{
+  text-indent: 100px;
+  padding-right: 30px;
+  float: right;
+}
+#footAgg{
+  text-indent: 100px;
+  padding-right: 30px;
+  float: right;
+}
+.Aggremento
+{
+  margin-left: 220px;
+  margin-right: auto;
+  float: left;
+}
+fieldset
+{
+  text-align: justify;
+}
+p
+{
+  text-align: justify;
+}
+legend
+{
+  padding-left: 2px;
+  padding-right: 2px;
+  border: 1px solid black;
+  width: auto;
+}
+#appl
+{
+  margin-top: 50px;
+  float: right;
+  margin-right: 400px;
+}

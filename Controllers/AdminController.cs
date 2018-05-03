@@ -24,6 +24,7 @@ namespace BookCave.Controllers
         public IActionResult UpdateBook(BookViewModel updatedBook)
         {
             //Þarf að útfæra betur
+            return View();
         }
     }
 }

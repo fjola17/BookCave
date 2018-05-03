@@ -17,6 +17,25 @@ namespace BookCave.Repositories
             _db = new DataContext();
         }
 
+        public List<BookViewModel> getIndex()
+        {
+            var bookList = (from bo in _db.Books
+                            select new BookViewModel
+                            {
+                                Id = bo.Id,
+                                Title = bo.Title,
+                                PublishingYear = bo.PublishingYear,
+                                Description = bo.Description,
+                                Genre = bo.Genre,
+                                Rating = bo.Rating,
+                                Price = bo.Price,
+                                Formats = bo.Formats,
+                                AudioSample = bo.AudioSample,
+                                CoverImage = bo.CoverImage
+                            }).ToList();
+            return bookList;
+        }
+
         public List<BookViewModel> getBySearchString(string searchString)
         {
             var bookList = (from bo in _db.Books

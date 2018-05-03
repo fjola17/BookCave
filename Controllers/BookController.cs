@@ -4,40 +4,35 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using BookCave.Models.EntityModels; //Breyta þessu
-//using BookCave.Services
+using BookCave.Data.EntityModels;
+using BookCave.Repositories;
 
 namespace BookCave.Controllers
 {
     public class BookController : Controller
     {
-//        private BookServices _bookServices { get; set; }
-/*
-        public BookController(BookServices bookServices)
-        {
-            _bookServices = bookServices;
-        }
 
-        */
-        public IActionResult Index()
+        private BookRepo _bookServices; 
+        public IActionResult Index() //Nær í lista af öllum bókum.
         {
-            return View();
+            var books = _bookServices.getIndex();
+            return View(books);
         }
-        public IActionResult Details(int id)
+        public IActionResult Details(int id) //Nær í details fyrir eina bók með id
         {
-            //Þarf að útfæra
-            return View();
+            var book = _bookServices.GetById(id);
+            return View(book);
         }
         public IActionResult Review(Review newReview)
         {
             //Þarf að útfæra
             return View();
         }
-        public IActionResult Search(string searchString)
+        public IActionResult Search(string searchString) //Nær í bækur eftir searchstring en bara eftir titli núna
+                                                        ///þarf að útfæra með fleiri eigindi
         {
-
-            //þarf að útfæra inn í book repo
-            return View();
+            var booksFound = _bookServices.getBySearchString(searchString);
+            return View(booksFound);
         }
     }
 }

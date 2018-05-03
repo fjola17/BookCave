@@ -1,5 +1,4 @@
-
-namespace BookCave.Models.EntityModels
+namespace BookCave.Data.EntityModels
 {
     public class Book
     {

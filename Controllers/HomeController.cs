@@ -10,7 +10,7 @@ namespace BookCave.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public IActionResult FrontPage()
         {
             return View();
         }

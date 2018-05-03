@@ -3,18 +3,46 @@ using BookCave.Data.EntityModels;
 using System.Linq;
 using System.Diagnostics;
 using BookCave.Models.ViewModels;
+using BookCave.Data;
 
 namespace BookCave.Repositories
 {
     public class OrderRepo
     {
-        public List<Order> GetByOwnerId(int ownerId)
+        private DataContext _db ;
+
+        public OrderRepo() 
         {
-            //Útfæra
+            _db = new DataContext();
         }
-        public OrderViewModel GetbyId(int orderId)
+        public List<OrderViewModel> GetByOwnerId(int ownerId)
         {
-            //útfæra
+            //Ath hvernig á að birta bækur??
+            var ordersFromOwner = (from ord in _db.Orders
+                                where ownerId == ord.OwnerId
+                                select new OrderViewModel{
+                                    OwnerId = ord.OwnerId,
+                                    OrderId = ord.OrderId,
+                                    Paid = ord.Paid,
+                                    TotalPrice = ord.TotalPrice
+
+            }).ToList();
+            return ordersFromOwner;
+        }
+        public OrderViewModel GetById(int orderId)
+        {
+            var aOrder = (from ord in _db.Orders
+                        where ord.OrderId == orderId
+                        //líkleg join hér sem á eftir að útfæra
+                        select new OrderDetailsViewModel //Hér eiga allar bækurnar að koma upp
+                        {
+                            OwnerId = ord.OwnerId,
+                            OrderId = ord.OrderId,
+                            Paid = ord.Paid,
+                            TotalPrice = ord.TotalPrice
+                        }).SingleOrDefault();
+            
+            return aOrder;
         }
         public bool Create(OrderViewModel ovm)
         {

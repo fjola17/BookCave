@@ -1,6 +1,7 @@
-namespace BookCave.Data.EntityModels
+namespace BookCave.Models.ViewModels
 {
-    public class Order
+    //Þarf kanski að skoða pínu betur
+    public class OrderViewModel
     {
         public int OwnerId { get; set; }
         public int OrderId { get; set; }

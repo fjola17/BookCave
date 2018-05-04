@@ -13,9 +13,9 @@ namespace BookCave.Controllers
     {
 
         private BookRepo _bookServices; 
-        public IActionResult Index() //Nær í lista af öllum bókum.
+        public IActionResult BookIndex() //Nær í lista af öllum bókum.
         {
-            var books = _bookServices.GetIndex();
+            var books = _bookServices.GetBookIndex();
             return View(books);
         }
         public IActionResult Details(int id) //Nær í details fyrir eina bók með id
@@ -23,7 +23,7 @@ namespace BookCave.Controllers
             var book = _bookServices.GetById(id);
             return View(book);
         }
-        public IActionResult Search(string searchString) //Nær í bækur eftir searchstring en bara eftir titli núna
+        public IActionResult SearchBooks(string searchString) //Nær í bækur eftir searchstring en bara eftir titli núna
                                                         ///þarf að útfæra með fleiri eigindi
         {
             var booksFound = _bookServices.GetBySearchString(searchString);

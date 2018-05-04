@@ -14,22 +14,48 @@ namespace BookCave.Repositories
         {
             _db = new DataContext();
         }
-        public List<ReviewViewModel> GetOwnerId(int reviewId)
+        public List<ReviewViewModel> GetByBookId(int bookId) //Nær í review tengd þessarri bók
         {
-            //þarf að útfæra
-            var owner = (from rv in _db.Reviews
-                        select new ReviewViewModel
+            var bookReviews = (from rv in _db.Reviews
+                         where rv.BookId == bookId
+                         select new ReviewViewModel
                         {
-
+                            Id = rv.Id,
+                            OwnerId = rv.OwnerId,
+                            BookId = rv.BookId,
+                            ActualReview = rv.ActualReview,
+                            Rating = rv.Rating
                         }).ToList();
             
-            return owner;
+            return bookReviews;
         }
-        public ReviewViewModel GetById(int reviewId)
+        public List<ReviewViewModel> GetByOwnerId(int ownerId) //Nær í review tengd þessum notanda
         {
-            //þarf að útfæra
+            var ownerReviews = (from rv in _db.Reviews
+                         where rv.OwnerId == ownerId
+                         select new ReviewViewModel
+                        {
+                            Id = rv.Id,
+                            OwnerId = rv.OwnerId,
+                            BookId = rv.BookId,
+                            ActualReview = rv.ActualReview,
+                            Rating = rv.Rating
+                        }).ToList();
+            
+            return ownerReviews;
+        }
+        public ReviewViewModel GetByReviewId(int reviewId) //Nær í ákveðið review
+        {
             var review = (from rv in _db.Reviews
-                        select rv).SingleOrDefault();
+                          where rv.Id == reviewId
+                          select new ReviewViewModel
+                          {
+                            Id = rv.Id,
+                            OwnerId = rv.OwnerId,
+                            BookId = rv.BookId,
+                            ActualReview = rv.ActualReview,
+                            Rating = rv.Rating
+                          }).SingleOrDefault();
             
             return review;
         }

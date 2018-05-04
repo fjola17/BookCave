@@ -1,0 +1,15 @@
+@model BookCave.Models.ViewModels.OderDetailsViewModel
+
+<h2 class="head-color">Order number: @Model.OrderId</h2>
+<
+@foreach(var books in Model.Books)
+{
+    <li>
+        <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">@books.Title</a>
+         <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">@books.Price</a>
+    </li>
+}
+<div id="checkout">
+    <p><strong>Total price: </strong>@Model.TotalPrice</p>
+    <button type="submit">Checkout</button>
+</div>

@@ -24,6 +24,7 @@ namespace BookCave.Repositories
                             {
                                 Id = bo.Id,
                                 Title = bo.Title,
+                                Author = bo.Author,
                                 PublishingYear = bo.PublishingYear,
                                 Description = bo.Description,
                                 Genre = bo.Genre,

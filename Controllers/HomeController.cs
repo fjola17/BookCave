@@ -12,9 +12,9 @@ namespace BookCave.Controllers
     public class HomeController : Controller
     {
         private BookRepo _bookServices;
-        public HomeController(BookRepo bookServices)
+        public HomeController()
         {
-            _bookServices = bookServices;
+            _bookServices = new BookRepo();
         }
         public IActionResult FrontPage()
         {

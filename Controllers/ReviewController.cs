@@ -13,9 +13,9 @@ namespace BookCave.Controllers
     public class ReviewController : Controller
     {
         private ReviewRepo _reviewServices;
-        ReviewController(ReviewRepo reviewServices)
+        ReviewController()
         {
-            _reviewServices = reviewServices;
+            _reviewServices = new ReviewRepo();
         }
 
         public IActionResult BookReviews(int bookId) //Nær í reviews fyrir bók

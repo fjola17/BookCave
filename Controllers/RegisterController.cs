@@ -13,9 +13,9 @@ namespace BookCave.Controllers
     public class RegisterController : Controller
     {
         private UserRepo _newUser;
-        RegisterController(UserRepo newUser)
+        RegisterController()
         {
-            _newUser = newUser;
+            _newUser = new UserRepo();
         }
         public IActionResult Create(UserViewModel newUser)
         {

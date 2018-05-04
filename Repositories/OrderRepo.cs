@@ -34,7 +34,7 @@ namespace BookCave.Repositories
             var aOrder = (from ord in _db.Orders
                         where ord.OrderId == orderId
                         //líkleg join hér sem á eftir að útfæra
-                        select new OrderDetailsViewModel //Hér eiga allar bækurnar að koma upp
+                        select new OrderViewModel() //Hér eiga allar bækurnar að koma upp
                         {
                             OwnerId = ord.OwnerId,
                             OrderId = ord.OrderId,

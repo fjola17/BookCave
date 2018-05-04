@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using BookCave.Data.EntityModels;
 using System.Linq;
 using System.Diagnostics;
+using BookCave.Models.ViewModels;
 
 namespace BookCave.Repositories
 {
@@ -19,7 +20,9 @@ namespace BookCave.Repositories
         }
         public UserViewModel GetByUserId(int userId)
         {
-            //ToDO
+            var user = new UserViewModel();
+            //ToDo
+            return user;
         }
     }
 }

@@ -43,8 +43,8 @@ namespace BookCave.Repositories
                         }).SingleOrDefault();
             //virkar öruglega ekki því það vantar tengingu við gagnagrunn
             var books = (from bks in _db.Books
-                //        join obc in _db.OrderBookConnections on bks.Id equals obc.BookId
-                 //       join orde in _db.Orders on obc.OrderId equals orde.OrderId
+                        join obc in _db.OrderBookConnections on bks.Id equals obc.BookId
+                        join orde in _db.Orders on obc.OrderId equals orde.OrderId
                         select new BookViewModel{
                             Title = bks.Title,
                             PublishingYear = bks.PublishingYear,

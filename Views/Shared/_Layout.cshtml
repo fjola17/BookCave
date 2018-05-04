@@ -17,26 +17,46 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">BookCave</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    
+
+<link href="@Url.Content("~/css/base.css")" rel="stylesheet" type="text/css" />
+
+<body>
+  <div class="background">
+    <div class="banner">
+      <a href="#home"><img src="@Url.Content("~/images/logo.png")" /></a>
+      <ul class="ulList">
+        <form action="index.html" method="post">
+          <li class="liList"><select name="menu">
+            <option value="menu"> Menu </option>
+            <option value="2"> 2 </option>
+          <option value="3"> 3 </option>
+          <option value="4"> 4 </option>
+        </select>
+          </li>
+          <li class="liList">
+            <label for="search">
+          <input id="search" type="text" placeholder="Search">
+          <button class="btn btn-default btn-sm" type="submit">Search</button>
+        </li>
+        <li class="liList"><a class="login" href="#">Login</a></li>
+        <li class="liList"><a href="#" class="btn btn-default btn-sm">
+          <span class="glyphicon">&#xe116;</span> Shopping Cart
+        </a></li>
+      </form>
+    </ul>
+  </div>
+  
+  <div>
+    <footer class="footer">
+      <a id="footCon" href="#contact">Contact</a><br>
+      <a id="footAbo" href="#about">About us</a><br>
+      <a id="footAgg" href="#aggrement">User agreement</a><br>
+    </footer>
+  </div>
+</div>
+</body>
+
     <div class="container body-content">
         @RenderBody()
         <hr />

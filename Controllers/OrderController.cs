@@ -17,10 +17,17 @@ namespace BookCave.Controllers
         {
             _orderServices = orderServices;
         }
-        public IActionResult Details(int id)
+        public IActionResult Details(int? id)
         {
-            
+            if(id == null)
+            {
+                return View("Error");
+            }
             var orders = _orderServices.GetById(id);
+            if(orders == null)
+            {
+                return View("Error");
+            }
             return View(orders);
         }
         [HttpGet]

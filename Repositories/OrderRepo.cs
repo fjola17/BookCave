@@ -28,19 +28,35 @@ namespace BookCave.Repositories
                                     }).ToList();
             return ordersFromOwner;
         }
-        public OrderViewModel GetById(int orderId)
+        public OrderDetailsViewModel GetById(int? orderId)
         {
             var aOrder = (from ord in _db.Orders
                         where ord.OrderId == orderId
+             
                         //líkleg join hér sem á eftir að útfæra
-                        select new OrderViewModel() //Hér eiga allar bækurnar að koma upp
+                        select new OrderDetailsViewModel() //Hér eiga allar bækurnar að koma upp
                         {
                             OwnerId = ord.OwnerId,
                             OrderId = ord.OrderId,
                             Paid = ord.Paid,
                             TotalPrice = ord.TotalPrice
                         }).SingleOrDefault();
-            
+            //virkar öruglega ekki því það vantar tengingu við gagnagrunn
+            var books = (from bks in _db.Books
+                //        join obc in _db.OrderBookConnections on bks.Id equals obc.BookId
+                 //       join orde in _db.Orders on obc.OrderId equals orde.OrderId
+                        select new BookViewModel{
+                            Title = bks.Title,
+                            PublishingYear = bks.PublishingYear,
+                            Description = bks.Description,
+                            Genre = bks.Genre,
+                            Rating = bks.Rating,
+                            Price = bks.Price,
+                            Formats = bks.Formats,
+                            AudioSample = bks.AudioSample,
+                            CoverImage = bks.CoverImage
+                        }).ToList();
+            aOrder.Books = books;
             return aOrder;
         }
         public bool Create(OrderViewModel ovm)

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace BookCave.Models.ViewModels
 {
     //Þarf kanski að skoða pínu betur
@@ -7,5 +9,6 @@ namespace BookCave.Models.ViewModels
         public int OrderId { get; set; }
         public bool Paid { get; set; }
         public double TotalPrice { get; set; }
+        public List<BookViewModel> Books { get; set; }
     }
 }

@@ -1,11 +1,16 @@
 @model BookCave.Models.ViewModels.BookViewModel
 
+<!-- Þarf að útfæra klasa og virkni hér -->
+
 <h2>@Model.Title</h2>
-<img src="@Model.CoverImage" alt="Book Image">
-<p>@Model.Author</p>
+<p class="book-details-image"><img src="@Model.CoverImage" alt="Book Image"></p>
+<p><a href="#">@Model.Author</a></p>
 <p>@Model.PublishingYear</p>
 <p>@Model.Genre</p>
 <p>@Model.Description</p>
 <p>@Model.Formats</p>
 <p>@Model.AudioSample</p>
 <p>@Model.Price</p>
+<button class="btn cart">Add to Cart</button>
+
+<!-- TODO Bæta við Review einhverstaðar fyrir þessa bók -->

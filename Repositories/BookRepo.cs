@@ -46,6 +46,7 @@ namespace BookCave.Repositories
                             {
                                 Id = bo.Id,
                                 Title = bo.Title,
+                                Author = bo.Author,
                                 PublishingYear = bo.PublishingYear,
                                 Description = bo.Description,
                                 Genre = bo.Genre,
@@ -58,7 +59,7 @@ namespace BookCave.Repositories
 
             return bookList;
         }
-        public BookViewModel GetById(int bookId)
+        public BookViewModel GetById(int? bookId)
         {
             //eftir að útfæra
             var book = (from bo in _db.Books
@@ -67,6 +68,7 @@ namespace BookCave.Repositories
                     {
                         Id = bo.Id,
                         Title = bo.Title,
+                        Author = bo.Author,
                         PublishingYear = bo.PublishingYear,
                         Description = bo.Description,
                         Genre = bo.Genre,

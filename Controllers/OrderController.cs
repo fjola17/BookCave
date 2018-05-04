@@ -6,17 +6,32 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BookCave.Models.ViewModels;
 using BookCave.Repositories;
+using BookCave.Models;
 //using BookCave.Services
 
 namespace BookCave.Controllers
 {
     public class OrderController : Controller
     {
-        private OrderRepo _orderServices; 
-        OrderController(OrderRepo orderServices)
+        public OrderRepo _orderServices; 
+        public OrderController(OrderRepo orderServices)
         {
-            _orderServices = orderServices;
+            _orderServices = new OrderRepo();
         }
+        public IActionResult Index() //Displays all orders for the certain user
+        {/* 
+            if(id == null)
+            {
+                return View("Error");
+            }
+            var allOrderFromusers = _orderServices.GetByOwnerId(id).ToList();
+            if(allOrderFromusers == null)
+            {
+                return View("Error");
+            }
+            return View(allOrderFromusers);*/
+            return View();
+        }/* 
         public IActionResult Details(int? id)
         {
             if(id == null)
@@ -29,7 +44,7 @@ namespace BookCave.Controllers
                 return View("Error");
             }
             return View(orders);
-        }
+        }*/
         [HttpGet]
         public IActionResult Create()
         {
@@ -59,6 +74,10 @@ namespace BookCave.Controllers
         {
             //Þarf að útfæra betur
             return View();
+        }
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

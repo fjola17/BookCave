@@ -15,7 +15,7 @@ namespace BookCave.Repositories
         {
             _db = new DataContext();
         }
-        public List<OrderViewModel> GetByOwnerId(int ownerId)
+        public List<OrderViewModel> GetByOwnerId(int? ownerId)
         {
             //Ath hvernig á að birta bækur??
             var ordersFromOwner = (from ord in _db.Orders
@@ -28,7 +28,7 @@ namespace BookCave.Repositories
                                     }).ToList();
             return ordersFromOwner;
         }
-        public OrderDetailsViewModel GetById(int? orderId)
+        /* public OrderDetailsViewModel GetById(int? orderId)
         {
             var aOrder = (from ord in _db.Orders
                         where ord.OrderId == orderId
@@ -58,7 +58,7 @@ namespace BookCave.Repositories
                         }).ToList();
             aOrder.Books = books;
             return aOrder;
-        }
+        }*/
         public bool Create(OrderViewModel ovm)
         {
             return true;

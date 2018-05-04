@@ -58,15 +58,17 @@ artifacts/
 StyleCopReport.xml
 
 # Files built by Visual Studio
+bin/
+obj/
 *_i.c
 *_p.c
 *_i.h
 *.ilk
 *.meta
-*.obj
+.obj/
 *.iobj
 *.pch
-*.pdb
+.pdb
 *.ipdb
 *.pgc
 *.pgd
@@ -76,7 +78,7 @@ StyleCopReport.xml
 *.tli
 *.tlh
 *.tmp
-*.tmp_proj
+.tmp_proj
 *.log
 *.vspscc
 *.vssscc

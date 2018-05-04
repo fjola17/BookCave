@@ -26,7 +26,7 @@ namespace BookCave
                 .UseStartup<Startup>()
                 .Build();
 
-        public static void SeedData()
+        public static void SeedData()//Sendir gögn inn í gagnagrunninn
         {
             var db = new DataContext();
 

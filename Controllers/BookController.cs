@@ -13,6 +13,10 @@ namespace BookCave.Controllers
     {
 
         private BookRepo _bookServices; 
+        BookController(BookRepo bookServices)
+        {
+            _bookServices = bookServices;
+        }
         public IActionResult BookIndex() //Nær í lista af öllum bókum.
         {
             var books = _bookServices.GetBookIndex();

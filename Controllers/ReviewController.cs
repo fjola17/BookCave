@@ -13,6 +13,10 @@ namespace BookCave.Controllers
     public class ReviewController : Controller
     {
         private ReviewRepo _reviewServices;
+        ReviewController(ReviewRepo reviewServices)
+        {
+            _reviewServices = reviewServices;
+        }
 
         public IActionResult BookReviews(int bookId) //Nær í reviews fyrir bók
         {

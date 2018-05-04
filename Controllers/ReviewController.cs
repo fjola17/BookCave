@@ -11,7 +11,7 @@ namespace BookCave.Controllers
 {
     public class ReviewController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Front()
         {
             //Þarf að útfæra
             return View();

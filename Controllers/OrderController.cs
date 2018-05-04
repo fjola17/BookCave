@@ -13,7 +13,7 @@ namespace BookCave.Controllers
     public class OrderController : Controller
     {
         private OrderRepo _orderServices; 
-        OrderController(OrderRepo orderServices)
+        public OrderController(OrderRepo orderServices)
         {
             _orderServices = orderServices;
         }
@@ -26,7 +26,7 @@ namespace BookCave.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            
+            //vantar útfærslu
             return View();
         }
         [HttpPost]

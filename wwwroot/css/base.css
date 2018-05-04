@@ -54,8 +54,7 @@
 }
 .footer
 {
-  margin-left: 220px;
-  margin-right: 260px;
+  margin: auto;
   padding-top: 30px;
   padding-bottom: 30px;
   background-color: rgba(234, 105, 131, 0.29);

@@ -1,3 +1,5 @@
+@model List<BookCave.Models.ViewModels.BookViewModel>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,25 +25,22 @@
         <th id="littleBit2">New Releases</th>
       </tr>
       <tr id="newBooks">
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
+      @foreach(var b in Model)
+      {
+        <td>@b.CoverImage</td>
+      }
       </tr>
       <tr>
-        <td class="titleBook">Book Title</td>
-        <td class="titleBook">Book Title</td>
-        <td class="titleBook">Book Title</td>
-        <td class="titleBook">Book Title</td>
-        <td class="titleBook">Book Title</td>
+      @foreach(var b in Model)
+      {
+        <td>@b.Title</td>
+      }
       </tr>
       <tr>
-        <td class="priceBook">Book price</td>
-        <td class="priceBook">Book price</td>
-        <td class="priceBook">Book price</td>
-        <td class="priceBook">Book price</td>
-        <td class="priceBook">Book price</td>
+      @foreach(var b in Model)
+      {
+        <td>@b.Price</td>
+      }
       </tr>
     </table>
     <table class="topRated">
@@ -49,11 +48,7 @@
         <th>Top Rated Books</th>
       </tr>
       <tr id="ratedBooks1">
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
+       
       </tr>
       <tr>
         <td class="titleBook">Book Title</td>
@@ -70,11 +65,7 @@
         <td class="priceBook">Book price</td>
       </tr>
       <tr id="ratedBooks2">
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
+       
       </tr>
       <tr>
         <td class="titleBook">Book Title</td>
@@ -96,11 +87,7 @@
         <th id="littleBit">Top Sellers</th>
       </tr>
       <tr id="sellOut1">
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
+       
       </tr>
       <tr>
         <td class="titleBook">Book Title</td>
@@ -117,11 +104,7 @@
         <td class="priceBook">Book price</td>
       </tr>
       <tr id="sellOut2">
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
-        <td><img class="cover" src="bookcover.jpg" alt="bookcover"/></td>
+      
       </tr>
       <tr>
         <td class="titleBook">Book Title</td>

@@ -5,14 +5,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BookCave.Models;
+using BookCave.Repositories;
 
 namespace BookCave.Controllers
 {
     public class HomeController : Controller
     {
+        private BookRepo _bookServices;
+        public HomeController(BookRepo bookServices)
+        {
+            _bookServices = bookServices;
+        }
         public IActionResult FrontPage()
         {
-            return View();
+            var books = _bookServices.GetBookIndex();
+            return View(books);
         }     
 
         public IActionResult Error()

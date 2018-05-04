@@ -19,14 +19,13 @@ namespace BookCave.Repositories
         {
             //Ath hvernig á að birta bækur??
             var ordersFromOwner = (from ord in _db.Orders
-                                where ownerId == ord.OwnerId
-                                select new OrderViewModel{
-                                    OwnerId = ord.OwnerId,
-                                    OrderId = ord.OrderId,
-                                    Paid = ord.Paid,
-                                    TotalPrice = ord.TotalPrice
-
-            }).ToList();
+                                   where ownerId == ord.OwnerId
+                                   select new OrderViewModel{
+                                      OwnerId = ord.OwnerId,
+                                      OrderId = ord.OrderId,
+                                      Paid = ord.Paid,
+                                      TotalPrice = ord.TotalPrice
+                                    }).ToList();
             return ordersFromOwner;
         }
         public OrderViewModel GetById(int orderId)

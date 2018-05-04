@@ -18,11 +18,17 @@ namespace BookCave.Repositories
             //ToDO
             return false;
         }
-        public UserViewModel GetByUserId(int userId)
+        /*public UserViewModel GetByUserId(int userId)
         {
+<<<<<<< HEAD
             var user = new UserViewModel();
             //ToDo
             return user;
         }
+=======
+            //ToDO
+            return View(userId);
+        }*/
+>>>>>>> 134d68f0135cf4c5e618795bf2a2188e27e2863b
     }
 }

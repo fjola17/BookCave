@@ -1,10 +1,9 @@
 .banner
 {
   border-bottom: 1px solid black;
-  margin: 0 auto;
   margin-left: 210px;
   margin-right: 250px;
-  padding: 0 auto;
+
   background-color: rgba(255, 0, 0, 0.3);
 }
 .background
@@ -15,17 +14,17 @@
 .ulList
 {
   list-style-type: none;
-  padding-top: 50px;
+  padding-top: -40px
 }
 .liList
 {
   display: inline;
-  padding: 100px;
+  padding: 120px;
 }
 .footer
 {
   clear: both;
-  margin-left: 220px;
+  margin-left: 210px;
   margin-right: 260px;
   padding-top: 30px;
   padding-bottom: 30px;
@@ -48,9 +47,14 @@
 }
 .Aggremento
 {
-  margin-left: 220px;
+  margin-left: 210px;
   margin-right: auto;
   float: left;
+  border: 1px solid black;
+  padding-left: 23px;
+  padding-right: 23px;
+  margin-top: 90px;
+  margin-bottom: 90px;
 }
 fieldset
 {
@@ -65,11 +69,30 @@ legend
   padding-left: 2px;
   padding-right: 2px;
   border: 1px solid black;
-  width: auto;
+  padding-top: 180px;
+}
+input[type='checkbox'] {
+    -webkit-appearance:none;
+    width:30px;
+    height:25px;
+    background:white;
+    border-radius:5px;
+    border:2px solid #555;
+}
+input[type='submit']
+{
+  margin-top: 10px;
+}
+.content
+{
+  display: inline;
 }
 #appl
 {
-  margin-top: 50px;
   float: right;
-  margin-right: 400px;
+  margin-right: 250px;
+  border: 1px solid black;
+  padding: 5px 95px 16px 125px;
+  margin-top: 90px;
+  margin-bottom: 90px;
 }

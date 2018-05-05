@@ -26,7 +26,7 @@
     <div class="banner">
       <a href="#home"><img src="@Url.Content("~/images/logo.png")" /></a>
       <ul class="ulList">
-        <form action="index.html" method="post">
+        <form action="index.html" method="GET">
           <li class="liList"><select name="menu">
             <option value="menu"> Menu </option>
             <option value="2"> 2 </option>
@@ -39,7 +39,9 @@
           <input id="search" type="text" placeholder="Search">
           <button class="btn btn-default btn-sm" type="submit">Search</button>
         </li>
-        <li class="liList"><a class="login" href="#">Login</a></li>
+        <li class="liList">
+        @await Html.PartialAsync("_LoginPartial")
+        </li>
         <li class="liList"><a href="#" class="btn btn-default btn-sm">
           <span class="glyphicon">&#xe116;</span> Shopping Cart
         </a></li>

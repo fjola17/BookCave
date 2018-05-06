@@ -47,7 +47,7 @@ namespace BookCave.Controllers
             if(results.Succeeded)
             {
                 //Notandi er nýskráður
-                await _userManager.AddClaimAsync(user, new Claim("Name", "${model.FirstName} {model.LastName}"));
+                await _userManager.AddClaimAsync(user, new Claim("Name", $"{register.FirstName} {register.LastName}"));
                 await _signinManager.SignInAsync(user, false);
                 return RedirectToAction("FrontPage", "Home");
             }

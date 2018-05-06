@@ -44,7 +44,8 @@ namespace BookCave.Controllers
         {
             if(searchString == null)
             {
-                return View("Index"); //birtir allar bækurnar ef ítt er á search án þess að skrifa neitt
+                var books = _bookServices.GetBookIndex();
+                return View(books); //birtir allar bækurnar ef ítt er á search án þess að skrifa neitt
             }
             var booksFound = _bookServices.GetBySearchString(searchString);
             return View(booksFound);

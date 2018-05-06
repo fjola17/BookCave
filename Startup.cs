@@ -32,8 +32,12 @@ namespace BookCave
 
             services.Configure<IdentityOptions>(config =>
             {
-                //SETTINGS HERE
+                //stillingar hér fyrir notanda (má breyta)
                 config.User.RequireUniqueEmail = true;
+                config.Password.RequiredLength = 8;
+                config.Password.RequireUppercase = true;
+                config.Password.RequireLowercase = true;
+                config.Password.RequireNonAlphanumeric = true;
             });
 
             services.ConfigureApplicationCookie(options => {

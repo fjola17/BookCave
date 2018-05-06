@@ -40,25 +40,27 @@ namespace BookCave.Repositories
 
         public List<BookViewModel> GetBySearchString(string searchString)
         {
+
             var bookList = (from bo in _db.Books
-                            where bo.Title == searchString
-                            orderby bo.Title
-                            select new BookViewModel
-                            {
-                                Id = bo.Id,
-                                Title = bo.Title,
-                                Author = bo.Author,
-                                PublishingYear = bo.PublishingYear,
-                                Description = bo.Description,
-                                Genre = bo.Genre,
-                                Rating = bo.Rating,
-                                Price = bo.Price,
-                                Formats = bo.Formats,
-                                AudioSample = bo.AudioSample,
-                                CoverImage = bo.CoverImage
-                            }).ToList();
+                        where bo.Title.Contains(searchString)
+                        orderby bo.Title
+                        select new BookViewModel
+                        {
+                            Id = bo.Id,
+                            Title = bo.Title,
+                            Author = bo.Author,
+                            PublishingYear = bo.PublishingYear,
+                            Description = bo.Description,
+                            Genre = bo.Genre,
+                            Rating = bo.Rating,
+                            Price = bo.Price,
+                            Formats = bo.Formats,
+                            AudioSample = bo.AudioSample,
+                            CoverImage = bo.CoverImage
+                        }).ToList();
 
             return bookList;
+            
         }
         public BookViewModel GetById(int? bookId)
         {

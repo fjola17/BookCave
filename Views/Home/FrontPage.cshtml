@@ -33,7 +33,7 @@
       <tr>
       @foreach(var b in Model)
       {
-        <td>@b.Title</td>
+        <td><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></td>
       }
       </tr>
       <tr>

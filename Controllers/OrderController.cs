@@ -14,7 +14,7 @@ namespace BookCave.Controllers
     public class OrderController : Controller
     {
         public OrderRepo _orderServices; 
-        public OrderController(OrderRepo orderServices)
+        public OrderController()
         {
             _orderServices = new OrderRepo();
         }
@@ -31,9 +31,9 @@ namespace BookCave.Controllers
             }
             return View(allOrderFromusers);*/
             return View();
-        }/* 
+        }
         public IActionResult Details(int? id)
-        {
+        {/* 
             if(id == null)
             {
                 return View("Error");
@@ -43,8 +43,9 @@ namespace BookCave.Controllers
             {
                 return View("Error");
             }
-            return View(orders);
-        }*/
+            return View(orders);*/
+            return View();
+        }
         [HttpGet]
         public IActionResult Create()
         {

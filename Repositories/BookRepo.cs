@@ -20,6 +20,7 @@ namespace BookCave.Repositories
         public List<BookViewModel> GetBookIndex()
         {
             var bookList = (from bo in _db.Books
+                            orderby bo.Title
                             select new BookViewModel
                             {
                                 Id = bo.Id,

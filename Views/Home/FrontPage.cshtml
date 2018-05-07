@@ -4,16 +4,14 @@
   <body class="background">
     <div class="content">
       <h2>New Releases</h2>
-        <table id="newBooks">
+        <ul id="newBooks">
         @foreach(var b in Model)
         {
-          <td><a href="#"><img src="@b.CoverImage" alt="CoverImage" height="170px" width="auto" /><a/></td>
-          <td><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></td>
-          <td>@b.Price</td>
+          <li><a href="#"><img src="@b.CoverImage" alt="CoverImage" height="170px" width="auto" /><a/></li>
+          <li><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></li>
+          <li>@b.Price</li>
         }
-        </tr>
-      
-      </table>
+        </ul>
       
     </div>
   </body>

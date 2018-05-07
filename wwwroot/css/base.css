@@ -1,16 +1,32 @@
-
 .background
 {
   background-color: rgba(234, 105, 131, 0.29);
-  border: 1px solid black;
-  margin-top: -50px;
+ 
 }
 .banner
 {
-  border-bottom: 1px solid black;
-  margin-left: 210px;
-  margin-right: 250px;
+  margin-bottom: 15px;
   background-color: rgba(255, 0, 0, 0.3);
+  margin: -10px -10px 0px -10px ;
+  padding-bottom: 20px;
+  border-bottom: 1px solid black;
+  
+}
+.banner ul
+{
+  padding-bottom: -125px;
+  padding-left: 60px;
+
+}
+#log
+{
+  padding: 20px 20px 5px 20px;
+  border: 2px solid black;
+  margin-bottom: 55px;
+}
+#log input
+{
+  margin-bottom: 15px;
 }
 #logo
 {
@@ -26,14 +42,14 @@
   padding-bottom: 15px;
   padding-top: 15px;
 }
-.ulList
+li
 {
   list-style-type: none;
 }
 .liList
 {
   display: inline;
-  padding: 110px;
+  padding: 60px;
 }
 .titleBook
 {
@@ -43,70 +59,67 @@
   margin-top: 20px;
   width: 50px;
 }
-.priceBook
-{
-  margin: 0 auto;
-  margin-left: 247px;
-  margin-right: auto;
-  margin-top: -30px;
-  padding: auto;
-  width: 50px;
-}
 .footer
 {
-  margin: auto;
+  margin: 30px -70px 0px -70px ;
   padding-top: 30px;
   padding-bottom: 30px;
   background-color: rgba(234, 105, 131, 0.29);
+}
+#terms-of-service
+{
+  padding-right: 700px;
+  margin-left: 100px;
+  padding-right: -200px;
+}
+#copy
+{
+  padding-left: 50px;
+  padding-top: 25px;
+}
+#Register
+{
+  padding: auto;
+  margin-left: 90px;
+  margin-right: 700px;
 }
 #newBooks
 {
   display: inline;
   margin: 0 auto;
-  margin-left: 120px;
-  margin-right: 120px;
   padding: 0 auto;
 }
 #ratedBooks1
 {
   display: inline;
   margin: 0 auto;
-  margin-left: 120px;
-  margin-right: 120px;
   padding: 0 auto;
 }
 #ratedBooks2
 {
   display: inline;
   margin: 0 auto;
-  margin-left: 120px;
-  margin-right: 120px;
   padding: 0 auto;
 }
 #sellOut1
 {
   display: inline;
   margin: 0 auto;
-  margin-left: 120px;
-  margin-right: 120px;
+
   padding: 0 auto;
 }
 #sellOut2
 {
   display: inline;
   margin: 0 auto;
-  margin-left: 120px;
-  margin-right: 120px;
+
   padding: 0 auto;
 }
 #littleBit
 {
   margin-left: 864px;
 }
-#littleBit2
-{
-  margin-left: 860px;
-}
+
 #footCon{
   text-indent: 100px;
   padding-right: 30px;
@@ -124,12 +137,11 @@
 }
 th
 {
-  margin-top: 60px;
-  display: inline;
-  margin-left: 848px;
+  margin: 0 auto;
 }
 table
 {
+  margin-top: 15px;
   margin-left: 15px;
   margin-right: 230px;
 }
@@ -140,5 +152,8 @@ td
   margin-left: 100px;
   margin-right: 100px;
   padding-top: 100px;
-
+}
+h1
+{
+  margin-left: 20px;
 }

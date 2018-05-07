@@ -34,3 +34,15 @@
 </div>
 
 <!-- TODO Bæta við Review einhverstaðar fyrir þessa bók -->
+
+<div id="BookReviews">
+<h2>Reviews</h2>
+<ul class="list-inline"></ul>
+@foreach(var b in Model.Reviews)
+{
+    <li>   
+    <p>@b.Rating</p>
+    <p>@b.ActualReview</p>
+    </li>
+} 
+</div>

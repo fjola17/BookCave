@@ -132,6 +132,10 @@ namespace BookCave.Repositories
                        Rating = rw.Rating
 
                    }).ToList();
+                   if(book == null)
+                   {
+                       return book;
+                   }
             book.Reviews = reviews;
 
             return book;

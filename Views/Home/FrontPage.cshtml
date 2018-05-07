@@ -20,63 +20,17 @@
   </head>
   <body class="background">
     <div class="content">
-      <table class="nytt">
-        <tr>
-          <th id="littleBit2">New Releases</th>
-        </tr>
-        <tr id="newBooks">
+      <h2>New Releases</h2>
+        <table id="newBooks">
         @foreach(var b in Model)
         {
-          <td>@b.CoverImage</td>
-          <td><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></td>
-          <td>@b.Price</td>
+          <tr><a href="#"><img src="@b.CoverImage" alt="CoverImage" height="170px" width="auto" /><a/></tr><br>
+          <tr><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></tr><br>
+          <tr>@b.Price</tr><br>
         }
-        </tr>
-      
-      </table>
-      <table class="topRated">
-        <tr>
-          <th>Top Rated Books</th>
-        </tr>
-        <tr id="ratedBooks1">
-        @foreach(var b in Model)
-        {
-          <td>@b.CoverImage</td>
-          <td><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></td>
-          <td>@b.Price</td>
-        }
-        </tr>
-        <tr id="ratedBooks2">
+        </table>
 
-        @foreach(var b in Model)
-        {
-          <td>@b.CoverImage</td>
-          <td><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></td>
-          <td>@b.Price</td>
-        }
-        </tr>
-      </table>
-      <table class="topRated">
-        <tr>
-          <th id="littleBit">Top Sellers</th>
-        </tr>
-        <tr id="sellOut1">
-        @foreach(var b in Model)
-        {
-          <td>@b.CoverImage</td>
-          <td><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></td>
-          <td>@b.Price</td>
-        }
-        </tr>
-        <tr id="sellOut2">
-        @foreach(var b in Model)
-        {
-          <td>@b.CoverImage</td>
-          <td><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></td>
-          <td>@b.Price</td>
-        }
-        </tr>
-      </table>
+  
     </div>
   </body>
 </html>

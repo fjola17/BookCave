@@ -35,7 +35,7 @@ namespace BookCave.Controllers
             var book = _bookServices.GetById(id);
             if(book == null) //bók finnst ekki, þarf að höndla villurnar
             {
-                return View("Error");
+                return View("NotFound");
             }
             return View(book);
         }
@@ -47,7 +47,11 @@ namespace BookCave.Controllers
                 var books = _bookServices.GetBookIndex();
                 return View(books); //birtir allar bækurnar ef ítt er á search án þess að skrifa neitt
             }
-            var booksFound = _bookServices.GetBySearchString(searchString);
+            var booksFound = _bookServices.GetBySearchString(searchString); //filterar bækur
+            if(booksFound == null)
+            {
+                return View("NotFound");
+            }
             return View(booksFound);
         }
 

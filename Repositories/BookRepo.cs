@@ -104,11 +104,11 @@ namespace BookCave.Repositories
             return booksfiltered;
             
         }
-        public BookViewModel GetById(int? bookId)
+        public BookDetailsViewModel GetById(int? bookId)
         {
             var book = (from bo in _db.Books
                     where bo.Id == bookId
-                    select new BookViewModel 
+                    select new BookDetailsViewModel
                     {
                         Id = bo.Id,
                         Title = bo.Title,
@@ -122,6 +122,17 @@ namespace BookCave.Repositories
                         AudioSample = bo.AudioSample,
                         CoverImage = bo.CoverImage
                     }).SingleOrDefault();
+                    var reviews = (from rw in _db.Reviews
+                   join bks in _db.Books on rw.BookId equals bks.Id
+                   select new ReviewViewModel
+                   {
+                       OwnerId = rw.OwnerId, //current user
+                       BookId = rw.BookId, //current bók
+                       ActualReview = rw.ActualReview,
+                       Rating = rw.Rating
+
+                   }).ToList();
+            book.Reviews = reviews;
 
             return book;
         }

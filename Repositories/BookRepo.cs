@@ -17,10 +17,31 @@ namespace BookCave.Repositories
             _db = new DataContext();
         }
 
-        public List<BookViewModel> GetBookIndex()
+        public List<BookViewModel> GetNewestBooks()
         {
             var bookList = (from bo in _db.Books
                             orderby bo.Id descending
+                            select new BookViewModel
+                            {
+                                Id = bo.Id,
+                                Title = bo.Title,
+                                Author = bo.Author,
+                                PublishingYear = bo.PublishingYear,
+                                Description = bo.Description,
+                                Genre = bo.Genre,
+                                Rating = bo.Rating,
+                                Price = bo.Price,
+                                Formats = bo.Formats,
+                                AudioSample = bo.AudioSample,
+                                CoverImage = bo.CoverImage
+                            }).Take(15).ToList();
+            return bookList;
+        }
+
+        public List<BookViewModel> GetBookIndex()
+        {
+            var bookList = (from bo in _db.Books
+                            orderby bo.Title
                             select new BookViewModel
                             {
                                 Id = bo.Id,

@@ -1,5 +1,8 @@
-﻿<link href="@Url.Content("~/css/base.css")" rel="stylesheet" type="text/css" />
-
+﻿
+<head>
+  <link href="~/css/base.css" rel="stylesheet" type="text/css"/>
+<!--<link href="@Url.Content("~/css/base.css")" rel="stylesheet" type="text/css" />-->
+</head>
 <body>
 
 <body>
@@ -9,15 +12,16 @@
       <ul class="ulList">
         <form action="index.html" method="GET">
           <li class="liList">
+            <label>Choose genre</label>
             <select name="menu">
               <option value="menu"> Menu </option>
-              <option value="2"> 2 </option>
-              <option value="3"> 3 </option>
-              <option value="4"> 4 </option>
+              <option value="2"> Crime </option>
+              <option value="3"> Sci-Fi </option>
+              <option value="4"> Thriller </option>
+              <option value="4"> Fantasy </option>
             </select>
           </li>
           <li class="liList">
-          <label for="search">
           <input id="search" type="text" placeholder="search..">
           <button class="btn btn-default btn-sm" type="submit">Search</button>
         </li>

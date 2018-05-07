@@ -1,13 +1,13 @@
 .background
 {
-  background-color: rgba(234, 105, 131, 0.29);
+  background-color: rgba(83, 133, 180, 0.473);
  
 }
 .banner
 {
-  margin-bottom: 15px;
-  background-color: rgba(255, 0, 0, 0.3);
-  margin: -10px -10px 0px -10px ;
+  margin-top: 100px;
+  background-color: rgba(5, 190, 5, 0.26);
+  margin: auto;
   padding-bottom: 20px;
   border-bottom: 1px solid black;
   
@@ -15,7 +15,7 @@
 .banner ul
 {
   padding-bottom: -125px;
-  padding-left: 60px;
+  padding-left: 20px;
 
 }
 #log
@@ -49,7 +49,7 @@ li
 .liList
 {
   display: inline;
-  padding: 60px;
+  padding: 80px;
 }
 .titleBook
 {
@@ -61,10 +61,8 @@ li
 }
 .footer
 {
-  margin: 30px -70px 0px -70px ;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  background-color: rgba(234, 105, 131, 0.29);
+  margin: 165px -378px 0px -378px ;
+  background-color: rgba(5, 190, 5, 0.26);
 }
 #terms-of-service
 {
@@ -89,32 +87,6 @@ li
   margin: 0 auto;
   padding: 0 auto;
 }
-#ratedBooks1
-{
-  display: inline;
-  margin: 0 auto;
-  padding: 0 auto;
-}
-#ratedBooks2
-{
-  display: inline;
-  margin: 0 auto;
-  padding: 0 auto;
-}
-#sellOut1
-{
-  display: inline;
-  margin: 0 auto;
-
-  padding: 0 auto;
-}
-#sellOut2
-{
-  display: inline;
-  margin: 0 auto;
-
-  padding: 0 auto;
-}
 #littleBit
 {
   margin-left: 864px;
@@ -137,20 +109,18 @@ li
 }
 th
 {
-  margin: 0 auto;
+  margin-right: 800px;
 }
 table
 {
-  margin-top: 15px;
-  margin-left: 15px;
-  margin-right: 230px;
+  padding: auto;
+  margin: auto;
 }
 td
 {
-  display: inline;
+  clear: both;
   padding-bottom: 100px;
-  margin-left: 100px;
-  margin-right: 100px;
+  
   padding-top: 100px;
 }
 h1

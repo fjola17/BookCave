@@ -81,9 +81,15 @@ namespace BookCave.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signinManager.SignOutAsync();
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("FrontPage", "Home");
         }
         public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
+        
+        public IActionResult Profile() 
         {
             return View();
         }

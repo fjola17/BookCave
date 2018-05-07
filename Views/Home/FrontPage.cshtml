@@ -18,110 +18,65 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
   </head>
-  <body>
-      <div class="content">
-    <table class="nytt">
-      <tr>
-        <th id="littleBit2">New Releases</th>
-      </tr>
-      <tr id="newBooks">
-      @foreach(var b in Model)
-      {
-        <td>@b.CoverImage</td>
-      }
-      </tr>
-      <tr>
-      @foreach(var b in Model)
-      {
-        <td><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></td>
-      }
-      </tr>
-      <tr>
-      @foreach(var b in Model)
-      {
-        <td>@b.Price</td>
-      }
-      </tr>
-    </table>
-    <table class="topRated">
-      <tr>
-        <th>Top Rated Books</th>
-      </tr>
-      <tr id="ratedBooks1">
-       
-      </tr>
-      <tr>
-        <td class="titleBook">Book Title</td>
-        <td class="titleBook">Book Title</td>
-        <td class="titleBook">Book Title</td>
-        <td class="titleBook">Book Title</td>
-        <td class="titleBook">Book Title</td>
-      </tr>
-      <tr>
-        <td class="priceBook">Book price</td>
-        <td class="priceBook">Book price</td>
-        <td class="priceBook">Book price</td>
-        <td class="priceBook">Book price</td>
-        <td class="priceBook">Book price</td>
-      </tr>
-      <tr id="ratedBooks2">
-       
-      </tr>
-      <tr>
-        <td class="titleBook">Book Title</td>
-        <td class="titleBook">Book Title</td>
-        <td class="titleBook">Book Title</td>
-        <td class="titleBook">Book Title</td>
-        <td class="titleBook">Book Title</td>
-      </tr>
-      <tr>
-        <td class="priceBook">Book price</td>
-        <td class="priceBook">Book price</td>
-        <td class="priceBook">Book price</td>
-        <td class="priceBook">Book price</td>
-        <td class="priceBook">Book price</td>
-      </tr>
-    </table>
-    <table class="topRated">
-      <tr>
-        <th id="littleBit">Top Sellers</th>
-      </tr>
-      <tr id="sellOut1">
-       
-      </tr>
-      <tr>
-        <td class="titleBook">Book Title</td>
-        <td class="titleBook">Book Title</td>
-        <td class="titleBook">Book Title</td>
-        <td class="titleBook">Book Title</td>
-        <td class="titleBook">Book Title</td>
-      </tr>
-      <tr>
-        <td class="priceBook">Book price</td>
-        <td class="priceBook">Book price</td>
-        <td class="priceBook">Book price</td>
-        <td class="priceBook">Book price</td>
-        <td class="priceBook">Book price</td>
-      </tr>
-      <tr id="sellOut2">
+  <body class="background">
+    <div class="content">
+      <table class="nytt">
+        <tr>
+          <th id="littleBit2">New Releases</th>
+        </tr>
+        <tr id="newBooks">
+        @foreach(var b in Model)
+        {
+          <td>@b.CoverImage</td>
+          <td><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></td>
+          <td>@b.Price</td>
+        }
+        </tr>
       
-      </tr>
-      <tr>
-        <td class="titleBook">Book Title</td>
-        <td class="titleBook">Book Title</td>
-        <td class="titleBook">Book Title</td>
-        <td class="titleBook">Book Title</td>
-        <td class="titleBook">Book Title</td>
-      </tr>
-      <tr>
-        <td class="priceBook">Book price</td>
-        <td class="priceBook">Book price</td>
-        <td class="priceBook">Book price</td>
-        <td class="priceBook">Book price</td>
-        <td class="priceBook">Book price</td>
-      </tr>
-    </table>
-  </div>
+      </table>
+      <table class="topRated">
+        <tr>
+          <th>Top Rated Books</th>
+        </tr>
+        <tr id="ratedBooks1">
+        @foreach(var b in Model)
+        {
+          <td>@b.CoverImage</td>
+          <td><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></td>
+          <td>@b.Price</td>
+        }
+        </tr>
+        <tr id="ratedBooks2">
 
+        @foreach(var b in Model)
+        {
+          <td>@b.CoverImage</td>
+          <td><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></td>
+          <td>@b.Price</td>
+        }
+        </tr>
+      </table>
+      <table class="topRated">
+        <tr>
+          <th id="littleBit">Top Sellers</th>
+        </tr>
+        <tr id="sellOut1">
+        @foreach(var b in Model)
+        {
+          <td>@b.CoverImage</td>
+          <td><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></td>
+          <td>@b.Price</td>
+        }
+        </tr>
+        <tr id="sellOut2">
+        @foreach(var b in Model)
+        {
+          <td>@b.CoverImage</td>
+          <td><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></td>
+          <td>@b.Price</td>
+        }
+        </tr>
+      </table>
+    </div>
   </body>
-  </html>
+</html>

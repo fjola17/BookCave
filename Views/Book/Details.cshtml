@@ -8,9 +8,18 @@
 <p>@Model.PublishingYear</p>
 <p>@Model.Genre</p>
 <p>@Model.Description</p>
-<p>@Model.Formats</p>
+<p>@Model.Formats</p> <!--öðruvísi format-->
 <p>@Model.AudioSample</p>
 <p>@Model.Price</p>
 <button class="btn cart">Add to Cart</button>
 
 <!-- TODO Bæta við Review einhverstaðar fyrir þessa bók -->
+<!--
+<div>
+@foreach(var b in Model)
+{
+    <h2>Review</h2>
+    <p>@b.Rating</p>
+    <p>@b.Review</p>
+} 
+</div>-->

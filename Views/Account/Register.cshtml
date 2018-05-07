@@ -1,31 +1,114 @@
 @model BookCave.Models.ViewModels.RegisterViewModel
+<head>
+<link href="@Url.Content("~/css/base.css")" rel="stylesheet" type="text/css" />
 
+</head>
 <h1>Register</h1>
-<div id="Register">
-    <form asp-action="Register" asp-controller="Account" class="form-horizontal">
-        <div class="form-group">
-            <input type="email" asp-for="Email" class="form-control" placeholder="Enter email"/>
-        </div>
-        <div class="form-group">
-            <input type="text" asp-for="FirstName" class="form-control" placeholder="Enter first name"/>
-        </div>
-        <div class="form-group">
-            <input type="text" asp-for="LastName" class="form-control" placeholder="Enter last name"/>
-        </div>
-        <div class="form-group">
-            <input type="password" asp-for="Password" class="form-control" placeholder="Enter password"/>
-        </div>
-        <div class="form-group">
-            <button class="btn" type="submit">Register</button>
-        </div>
+<body class="background">
+<div id="terms-of-service">
+    <fieldset>
+        <legend>Terms of service</legend>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugiat erat molestie, suscipit justo ut, accumsan sem. Proin vitae luctus metus. Nullam accumsan, quam vitae aliquet lacinia, libero turpis finibus nibh, id rutrum nibh nisi a dui.
+            Etiam gravida sit amet lorem vitae vulputate. Duis id facilisis mauris. Quisque iaculis ligula est, sit amet aliquam enim iaculis sed. Nulla ultrices dictum nulla sed dictum. Integer et arcu quis velit tempus dapibus.
+            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi sagittis ipsum non diam viverra sagittis. Vestibulum mauris massa, viverra et ullamcorper sed, mattis eget nunc. Nam at porta lacus. 
+            Suspendisse hendrerit nec libero eget facilisis. Sed eu odio in sapien accumsan pulvinar. Vestibulum non lectus sed risus suscipit lacinia. Proin rutrum urna felis, eu interdum augue euismod sed. Quisque odio arcu, laoreet et neque quis, mattis tincidunt mauris.
+            Aliquam sed est tempor purus pulvinar consequat non vel neque. Maecenas fermentum est magna, in iaculis lorem euismod eu. Sed nec nulla nec urna consequat tincidunt sit amet quis augue. Vestibulum nunc enim, aliquet vitae tincidunt vel, porttitor nec lacus. 
+            Aenean elementum erat justo, in facilisis dolor varius sed. Phasellus ut purus eget mauris vulputate pharetra luctus non ante. Aenean vitae leo ac nisi tincidunt convallis. Aenean luctus porttitor luctus. Nulla mattis aliquam tincidunt.
+        </p>
+    </fieldset>
+</div>
 
+<div id="Register">
+    <form class="border border-dark"  asp-action="Register" asp-controller="Account" class="form-horizontal">
+        <fieldset>
+            <legend>User info</legend>
+            <!--Er ekki hægt að hafa fullt nafn í einu texta boxi?-->
+            <div class="form-group">
+                <label for="fName">First name: </label>
+                <input id="fName" type="text" asp-for="FirstName" class="form-control" placeholder="Enter first name"/>
+            </div>
+            <div class="form-group">
+                <label for="lName">First name: </label>
+                <input id="lName" type="text" asp-for="LastName" class="form-control" placeholder="Enter last name"/>
+            </div>
+            <div class="form-group">
+                <label for="input-Email">Email: </label>
+                <input id="input-Email" type="email" asp-for="Email" class="form-control" placeholder="Enter email"/>
+            </div> 
+            <!--<div class="form-group">
+                <label for="User">UserName: </label>
+                <input id="User" type="text" asp-for="Username" class="form-control" placeholder="Enter username"/>
+            </div>-->
+            <div class="form-group">
+                <label for="Password">Password: </label>
+                <input id="Password" type="password" asp-for="Password" class="form-control" placeholder="Enter password"/>
+            </div>
+            <!--<div class="form-group">
+                <label for="confirm-password">Confirm password: </label>
+                <input type="password" name="confirm_password" id="confirm-password" />
+                <span id='message'></span>
+            </div>-->
+            <!--
+                jQuary-confirm password
+
+                $('#password, #confirm_password').on('keyup', function () {
+                if ($('#password').val() == $('#confirm_password').val()) {
+                    $('#message').html('Matching').css('color', 'green');
+                } 
+                else 
+                    $('#message').html('Not Matching').css('color', 'red');
+                });
+
+                HTML:
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                <label>password :
+                <input name="password" id="password" type="password" />
+                </label>
+                <br>
+                <label>confirm password:
+                <input type="password" name="confirm_password" id="confirm_password" />
+                <span id='message'></span>
+                </label>
+
+                Javascritp-confirm password
+
+                var check = function() {
+                    if (document.getElementById('password').value ==
+                    document.getElementById('confirm_password').value) {
+                        document.getElementById('message').style.color = 'green';
+                        document.getElementById('message').innerHTML = 'matching';
+                    } 
+                    else {
+                    document.getElementById('message').style.color = 'red';
+                    document.getElementById('message').innerHTML = 'not matching';
+                    }
+                }
+
+                HTML:
+                <label>password :
+                <input name="password" id="password" type="password" onkeyup='check();' />
+                </label>
+                <br>
+                <label>confirm password:
+                <input type="password" name="confirm_password" id="confirm_password"  onkeyup='check();' /> 
+                <span id='message'></span>
+                </label>
+             -->
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Register</button>
+            </div>
+        </fieldset>
     </form>
 </div>
-<div id="terms-of-service">
-    <h2>Terms of service</h2>
-    <p>
-        Lorem ipsum dolor sit amet, vim ei luptatum scripserit interpretaris, ceteros copiosae efficiendi has ea. 
-        Mel timeam iuvaret disputando ne. Cetero persius vivendo sed cu, ex aliquid omnesque dissentiunt qui. 
-        Lobortis nominati senserit an vel. 
-        Id feugait cotidieque vix. Sanctus facilisis similique cu quo, sed id tamquam eruditi, ius et tota dicat. Nisl congue an pri, te quo populo senserit.</p>
-</div>
+</body>
+
+<environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/base.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+    </environment>

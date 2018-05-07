@@ -3,6 +3,7 @@
 @using BookCave.Models
 
 @inject SignInManager<ApplicationUser> SignInManager
+ <link rel="stylesheet" href="~/css/base.css" />
 
 @{
     var claim =((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Name")?.Value;

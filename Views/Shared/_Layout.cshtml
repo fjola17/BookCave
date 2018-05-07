@@ -1,42 +1,24 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BookCave</title>
-
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
-</head>
-<body>
-    
-
-<link href="@Url.Content("~/css/base.css")" rel="stylesheet" type="text/css" />
+﻿<link href="@Url.Content("~/css/base.css")" rel="stylesheet" type="text/css" />
 
 <body>
-  <div class="background">
+
+<body>
+  <div>
     <div class="banner">
       <a href="#home"><img src="@Url.Content("~/images/logo.png")" /></a>
       <ul class="ulList">
         <form action="index.html" method="GET">
-          <li class="liList"><select name="menu">
-            <option value="menu"> Menu </option>
-            <option value="2"> 2 </option>
-          <option value="3"> 3 </option>
-          <option value="4"> 4 </option>
-        </select>
+          <li class="liList">
+            <select name="menu">
+              <option value="menu"> Menu </option>
+              <option value="2"> 2 </option>
+              <option value="3"> 3 </option>
+              <option value="4"> 4 </option>
+            </select>
           </li>
           <li class="liList">
-            <label for="search">
-          <input id="search" type="text" placeholder="Search">
+          <label for="search">
+          <input id="search" type="text" placeholder="search..">
           <button class="btn btn-default btn-sm" type="submit">Search</button>
         </li>
         <li class="liList">
@@ -52,15 +34,13 @@
 
 </div>
 </body>
-
+ @RenderBody()
     <div class="container body-content">
-        @RenderBody()
-        <hr />
         <footer class="footer">
             <a id="footCon" href="#contact">Contact</a><br>
             <a id="footAbo" href="#about">About us</a><br>
             <a id="footAgg" href="#aggrement">User agreement</a><br>
-            <p>&copy; 2018 - BookCave</p>
+            <p id="copy">&copy; 2018 - BookCave</p>
         </footer>
     </div>
 
@@ -87,4 +67,3 @@
 
     @RenderSection("Scripts", required: false)
 </body>
-</html>

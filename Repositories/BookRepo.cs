@@ -34,7 +34,7 @@ namespace BookCave.Repositories
                                 Formats = bo.Formats,
                                 AudioSample = bo.AudioSample,
                                 CoverImage = bo.CoverImage
-                            }).ToList();
+                            }).Take(5).ToList();
             return bookList;
         }
 

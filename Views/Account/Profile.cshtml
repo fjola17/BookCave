@@ -4,27 +4,34 @@
 
 @inject SignInManager<ApplicationUser> SignInManager
 
+@if(SignInManager.IsSignedIn(User))
+{
 
 
-@{
     var name = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Name")?.Value;
     var email = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Email")?.Value;
     var address = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Address")?.Value;
     var image = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Image")?.Value;
     var favoriteBook = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "FavoriteBook")?.Value;
-}
 
-<h1>@name&#39s Profile</h1>
 
-@if(image == null) 
-{
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png" alt="Profile pic" width="150" height="auto">
+    <h1>@name&#39s Profile</h1>
+
+    @if(image == null) 
+    {
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png" alt="Profile pic" width="150" height="auto">
+    }
+    else
+    {
+        <img src="@image" alt="Profile pic">
+    }
+    <br>
+    <h2>Address: @address</h2>
+    <h2>Email: @email</h2>
+    <h3>Favorite book: @favoriteBook</h3>
 }
 else
 {
-    <img src="@image" alt="Profile pic">
+    <h1>You are not logged in.</h1>
+    <h2>Please <a asp-controller="Account" asp-action="Login">log in</a> or <a asp-controller="Account" asp-action="Register">register</a> to view profile</h2>
 }
-<br>
-<h2>Address: @address</h2>
-<h2>Email: @email</h2>
-<h3>Favorite book: @favoriteBook</h3>

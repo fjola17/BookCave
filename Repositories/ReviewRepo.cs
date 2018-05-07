@@ -63,7 +63,7 @@ namespace BookCave.Repositories
         public bool Create(ReviewInputModel rv)
         {
             
-            var reviewToAdd = new ReviewInputModel()
+            var reviewToAdd = new Review()
             {
                 OwnerId = rv.OwnerId,
                 BookId = rv.BookId,

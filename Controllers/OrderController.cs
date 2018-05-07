@@ -18,22 +18,14 @@ namespace BookCave.Controllers
         {
             _orderServices = new OrderRepo();
         }
-        public IActionResult Index() //Displays all orders for the certain user
-        {/* 
-            if(id == null)
-            {
-                return View("Error");
-            }
-            var allOrderFromusers = _orderServices.GetByOwnerId(id).ToList();
-            if(allOrderFromusers == null)
-            {
-                return View("Error");
-            }
-            return View(allOrderFromusers);*/
-            return View();
+        public IActionResult Index() //Displays all orders for a logged in user
+        { 
+            var allOrderFromusers = _orderServices.GetByOwnerId().ToList();
+            
+            return View(allOrderFromusers);
         }
         public IActionResult Details(int? id)
-        {/* 
+        { 
             if(id == null)
             {
                 return View("Error");
@@ -43,39 +35,42 @@ namespace BookCave.Controllers
             {
                 return View("Error");
             }
-            return View(orders);*/
-            return View();
+            return View(orders);
         }
-        [HttpGet]
-        public IActionResult Create()
+        
+
+
+        [HttpPost]
+        public IActionResult Create(OrderViewModel booksToBuy)
         {
             
             return View();
         }
-        [HttpPost]
-        public IActionResult Create(OrderViewModel booksToBuy)
-        {
-            if(!ModelState.IsValid)
-            {
-                ViewData["ErrorMessage"] = "Error!";
-                return View();
-            }
-            _orderServices.Create(booksToBuy);
-            ViewData["SucessMessage"] = "Sucess!";
-            return View();
-        }
+
         [HttpDelete] //veit ekki hvort þetta eigi að vera hér
         public IActionResult Delete(int ISBN)
         {
-            //Þarf að útfæra betur
+            //Þarf að útfæra betur, nota Ajax
             return View();
         }
         [HttpGet]
         public IActionResult Buy(OrderViewModel bookTobuy)
         {
             //Þarf að útfæra betur
+            var buybooks = _orderServices.Buy(bookTobuy);
             return View();
         }
+        public IActionResult AddToCart(BookViewModel book)
+        {
+            return View();
+        }
+        public IActionResult Cart()
+        {
+            //er bara að skoða körfu
+            return View();
+        }
+
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

@@ -63,13 +63,57 @@ namespace BookCave.Repositories
         {
             return true;
         }
+        public void ClearCart(CartViewModel cart)
+        {
+            //hreynsar allt út úr körfunni
+            if(cart == null)
+            {
+                return;
+            }
+        }
+
         public bool DeleteById(int orderId)
         {
+            //eftir að útfæra
             return false;
         }
         
         public bool Buy(OrderViewModel owm)
         {
+            return true;
+        }
+        /*public CartViewModel Cart()
+        {
+            var cart = (from ca in _db.Carts
+            select new CartViewModel
+            {
+                OwnerId = ca.OwnerId,
+                
+            }).SingleOrDefault();
+            var booksInCart = new BookViewModel
+            {
+                //eftir að uppfæra
+            };
+            return cart;
+
+        }*/
+        public bool AddToCart(int id)
+        {  
+           var newBook = (from bks in _db.Books
+                        where bks.Id == id
+                        select new Book
+                        {
+                            Title = bks.Title,
+                            PublishingYear = bks.PublishingYear,
+                            Description = bks.Description,
+                            Genre = bks.Genre,
+                            Rating = bks.Rating,
+                            Price = bks.Price,
+                            Formats = bks.Formats,
+                            AudioSample = bks.AudioSample,
+                            CoverImage = bks.CoverImage
+                        }).SingleOrDefault();
+           //bætir við í körfu
             return true;
         }
     }

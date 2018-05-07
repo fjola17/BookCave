@@ -60,9 +60,15 @@ namespace BookCave.Controllers
             var buybooks = _orderServices.Buy(bookTobuy);
             return View();
         }
-        public IActionResult AddToCart(BookViewModel book)
+        [HttpPost]
+        public IActionResult AddToCart(int id)
         {
-            return View();
+            if(!ModelState.IsValid)
+            {
+                RedirectToAction("Login");
+            }
+            //var addBookToCart = _orderServices.AddToCart(id);
+            return View("Cart", "Order");
         }
         public IActionResult Cart()
         {

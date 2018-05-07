@@ -11,15 +11,17 @@
 
 @if(SignInManager.IsSignedIn(User))
 {
+    <form asp-action="LogOut" asp-controller="Account" method="POST">
     <ul class="nav navbar-nav">
         <li>
             <!-- Linkur á prófíl notanda -->
-            <a asp-action="" asp-controller=""> @claim</a>
+            <button class="btn btn-link navbar-btn"> @claim</a>
         </li>
         <li>
-            <a asp-area="" asp-controller="Account" asp-action="Logout">Log out</a>
+            <button type="submit" class="btn btn-link navbar-btn">Log out</button>
         </li>
     </ul>
+    </form>
 }
 else
 {

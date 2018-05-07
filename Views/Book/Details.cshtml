@@ -1,5 +1,11 @@
 @model BookCave.Models.ViewModels.BookDetailsViewModel
 
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@using BookCave.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+
 <!-- Þarf að útfæra klasa og virkni hér -->
 
 <h2>@Model.Title</h2>
@@ -13,26 +19,29 @@
 <p>@Model.Price</p>
 <button class="btn cart">Add to Cart</button>
 
-<!-- Ef notandi er skráður inn getur hann sett inn sitt review -->
-<div id="review-form">
-    <form asp-action="Create" asp-controller="Review">
-        <div class="form-group">
-            <label for="Rating">Rating: </label>
-            <input type="radio" asp-for="Rating" value="1">1
-            <input type="radio" asp-for="Rating" value="2">2
-            <input type="radio" asp-for="Rating" value="3">3
-            <input type="radio" asp-for="Rating" value="4">4
-            <input type="radio" asp-for="Rating" value="5">5
-        </div>
-        <div class="form-group">
-            <textarea  placeholder="enter your review here"></textarea>
-        </div>
-        <div class="form-group">
-            <button class="btn" type="submit">Submit review</button>
-        </div>
-    </form>
-</div>
 
+@if(SignInManager.IsSignedIn(User))
+{
+    <!-- Ef notandi er skráður inn getur hann sett inn sitt review -->
+    <div id="review-form">
+        <form asp-action="Create" asp-controller="Review">
+            <div class="form-group">
+                <label for="Rating">Rating: </label>
+                <input type="radio" asp-for="Rating" value="1">1
+                <input type="radio" asp-for="Rating" value="2">2
+                <input type="radio" asp-for="Rating" value="3">3
+                <input type="radio" asp-for="Rating" value="4">4
+                <input type="radio" asp-for="Rating" value="5">5
+            </div>
+            <div class="form-group">
+                <textarea  placeholder="enter your review here"></textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn" type="submit">Submit review</button>
+            </div>
+        </form>
+    </div>
+}
 <!-- TODO Bæta við Review einhverstaðar fyrir þessa bók -->
 
 <div id="BookReviews">

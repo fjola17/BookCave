@@ -1,0 +1,57 @@
+@model BookCave.Models.ViewModels.EditViewModel
+<head>
+<link href="@Url.Content("~/css/base.css")" rel="stylesheet" type="text/css" />
+
+</head>
+
+
+<div id="Register">
+    <form class="border border-dark"  asp-action="Register" asp-controller="Account" class="form-horizontal">
+        <fieldset>
+            <legend>Edit user info</legend>
+            <!--Er ekki hægt að hafa fullt nafn í einu texta boxi?-->
+            <div class="form-group">
+                <label for="fName">First name: </label>
+                <input id="fName" type="text" asp-for="FirstName" class="form-control" placeholder="Enter first name"/>
+                <span asp-validation-for="FirstName"></span>
+            </div>
+            <div class="form-group">
+                <label for="lName">Last Name: </label>
+                <input id="lName" type="text" asp-for="LastName" class="form-control" placeholder="Enter last name"/>
+                <span asp-validation-for="LastName"></span>
+            </div>
+            <div class="form-group">
+                <label for="input-Email">Email: </label>
+                <input id="input-Email" type="email" asp-for="Email" class="form-control" placeholder="Enter email"/>
+                <span asp-validation-for="Email"></span>
+            </div>
+            <div class="form-group">
+                <label for="input-Address">Address: </label>
+                <input id="input-Address" type="text" asp-for="Address" class="form-control" placeholder="Enter address"/>
+            </div> 
+            <div class="form-group">
+                <label for="input-Image">Image: </label>
+                <input id="input-Image" type="text" asp-for="Image" class="form-control" placeholder="Enter URL for image"/>
+            </div>
+            <div class="form-group">
+                <label for="input-favoriteBook">Favorite Book: </label>
+                <input id="input-favoriteBook" type="FavoriteBook" asp-for="FavoriteBook" class="form-control" placeholder="Enter your favorite book"/>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Register</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+
+<environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/base.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+    </environment>

@@ -99,5 +99,21 @@ namespace BookCave.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult Edit()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(RegisterViewModel updatedProfile)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View();
+            }
+            return View();
+        }
     }
 }

@@ -1,7 +1,7 @@
 namespace BookCave.Data.EntityModels
 {
     //To get information about an user
-    public class UserInfo
+    public class ShippingInfo
     {
         public int UserId { get; set; }
         public string FirstName { get; set; }

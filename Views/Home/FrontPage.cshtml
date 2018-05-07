@@ -27,56 +27,14 @@
         <tr id="newBooks">
         @foreach(var b in Model)
         {
-          <td>@b.CoverImage</td>
+          <td><a href="#"><img src="@b.CoverImage" alt="CoverImage" height="170px" width="auto" /><a/></td>
           <td><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></td>
           <td>@b.Price</td>
         }
         </tr>
       
       </table>
-      <table class="topRated">
-        <tr>
-          <th>Top Rated Books</th>
-        </tr>
-        <tr id="ratedBooks1">
-        @foreach(var b in Model)
-        {
-          <td>@b.CoverImage</td>
-          <td><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></td>
-          <td>@b.Price</td>
-        }
-        </tr>
-        <tr id="ratedBooks2">
-
-        @foreach(var b in Model)
-        {
-          <td>@b.CoverImage</td>
-          <td><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></td>
-          <td>@b.Price</td>
-        }
-        </tr>
-      </table>
-      <table class="topRated">
-        <tr>
-          <th id="littleBit">Top Sellers</th>
-        </tr>
-        <tr id="sellOut1">
-        @foreach(var b in Model)
-        {
-          <td>@b.CoverImage</td>
-          <td><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></td>
-          <td>@b.Price</td>
-        }
-        </tr>
-        <tr id="sellOut2">
-        @foreach(var b in Model)
-        {
-          <td>@b.CoverImage</td>
-          <td><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></td>
-          <td>@b.Price</td>
-        }
-        </tr>
-      </table>
+      
     </div>
   </body>
 </html>

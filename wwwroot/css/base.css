@@ -1,12 +1,12 @@
 .background
 {
-  background-color: rgba(234, 105, 131, 0.29);
+  background-color: rgba(35, 111, 199, 0.815);
  
 }
 .banner
 {
   margin-bottom: 15px;
-  background-color: rgba(255, 0, 0, 0.3);
+  background-color: rgba(32, 153, 8, 0.945);
   margin: -10px -10px 0px -10px ;
   padding-bottom: 20px;
   border-bottom: 1px solid black;
@@ -64,7 +64,7 @@ li
   margin: 30px -70px 0px -70px ;
   padding-top: 30px;
   padding-bottom: 30px;
-  background-color: rgba(234, 105, 131, 0.29);
+  background-color: rgba(247, 224, 18, 0.829);
 }
 #terms-of-service
 {
@@ -134,6 +134,10 @@ li
   text-indent: 100px;
   padding-right: 30px;
   float: right;
+}
+a
+{
+  color: red;
 }
 th
 {

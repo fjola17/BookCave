@@ -4,6 +4,7 @@ using System.Linq;
 using System.Diagnostics;
 using BookCave.Data;
 using BookCave.Models.ViewModels;
+using BookCave.Models.InputModels;
 
 namespace BookCave.Repositories
 {
@@ -59,8 +60,19 @@ namespace BookCave.Repositories
             
             return review;
         }
-        public bool Create(ReviewViewModel rv)
+        public bool Create(ReviewInputModel rv)
         {
+            
+            var reviewToAdd = new Review()
+            {
+                OwnerId = rv.OwnerId,
+                BookId = rv.BookId,
+                ActualReview = rv.ActualReview,
+                Rating = rv.Rating
+            };
+            _db.Add(reviewToAdd);
+            _db.SaveChanges();
+
             return true;
         }
     }

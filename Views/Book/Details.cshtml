@@ -28,9 +28,21 @@
             <textarea  placeholder="enter your review here"></textarea>
         </div>
         <div class="form-group">
-            <button type="submit">Submit review</button>
+            <button class="btn" type="submit">Submit review</button>
         </div>
     </form>
 </div>
 
 <!-- TODO Bæta við Review einhverstaðar fyrir þessa bók -->
+
+<div id="BookReviews">
+<h2>Reviews</h2>
+<ul class="list-inline"></ul>
+@foreach(var b in Model.Reviews)
+{
+    <li>   
+    <p>@b.Rating</p>
+    <p>@b.ActualReview</p>
+    </li>
+} 
+</div>

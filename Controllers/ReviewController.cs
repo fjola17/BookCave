@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BookCave.Models.ViewModels;
 using BookCave.Repositories;
+using BookCave.Models.InputModels;
 //using BookCave.Services
 
 namespace BookCave.Controllers
@@ -33,10 +34,18 @@ namespace BookCave.Controllers
             var reviewsById = _reviewServices.GetByReviewId(reviewID);
             return View(reviewsById);
         }
-        public IActionResult Create(ReviewViewModel review) //Býr til review
+
+        [HttpPost]
+        public IActionResult Create(ReviewInputModel review) //Býr til review
         {
-            //þarf að útfæra
-            return View();
+            if(!ModelState.IsValid)
+            {
+                ViewData["ErrorMessage"] = "Failed to create review";
+                return View("Details", "Book");
+            }
+            var newReview = _reviewServices.Create(review);
+            ViewData["SucessMessage"] = "Review was created sucessfully!!";
+            return View("Details", "Book");
         }
     }
 }

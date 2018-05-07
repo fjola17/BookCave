@@ -40,14 +40,20 @@ namespace BookCave.Controllers
             var user = new ApplicationUser
             {
                 UserName = register.Email,
-                Email = register.Email
-                
+                Email = register.Email,
+                Address = register.Address,
+                Image = register.Image,
+                FavoriteBook = register.FavoriteBook
             };
             var results = await _userManager.CreateAsync(user, register.Password);
             if(results.Succeeded)
             {
                 //Notandi er nýskráður
                 await _userManager.AddClaimAsync(user, new Claim("Name", $"{register.FirstName} {register.LastName}"));
+                await _userManager.AddClaimAsync(user, new Claim("Address", $"{register.Address}"));
+                await _userManager.AddClaimAsync(user, new Claim("Email", $"{register.Email}"));
+                await _userManager.AddClaimAsync(user, new Claim("Image", $"{register.Image}"));
+                await _userManager.AddClaimAsync(user, new Claim("FavoriteBook", $"{register.FavoriteBook}"));
                 await _signinManager.SignInAsync(user, false);
                 return RedirectToAction("FrontPage", "Home");
             }
@@ -81,9 +87,15 @@ namespace BookCave.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signinManager.SignOutAsync();
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("FrontPage", "Home");
         }
         public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
+        
+        public IActionResult Profile() 
         {
             return View();
         }

@@ -6,7 +6,6 @@ namespace BookCave.Models.ViewModels
         [Required(ErrorMessage = "Invalid email" )]
         [EmailAddress]
         public string Email { get; set; }
-      //  [Required(ErrorMessage = "Invalid username")]
         public string UserName { get; set; }
         [Required]
         public string FirstName { get; set; }
@@ -14,5 +13,10 @@ namespace BookCave.Models.ViewModels
         public string LastName { get; set; }
         [Required(ErrorMessage = "Invalid password")]
         public string Password { get; set; }
+        public string Image { get; set; }
+        
+        public string FavoriteBook { get; set; }
+        
+        public string Address { get; set; }
     }
 }

@@ -15,11 +15,11 @@ namespace BookCave.Repositories
         {
             _db = new DataContext();
         }
-        public List<OrderViewModel> GetByOwnerId(int? ownerId)
+        public List<OrderViewModel> GetByOwnerId()
         {
             //Ath hvernig á að birta bækur??
             var ordersFromOwner = (from ord in _db.Orders
-                                   where ownerId == ord.OwnerId
+                                   orderby ord.OrderId
                                    select new OrderViewModel{
                                       OwnerId = ord.OwnerId,
                                       OrderId = ord.OrderId,
@@ -28,7 +28,7 @@ namespace BookCave.Repositories
                                     }).ToList();
             return ordersFromOwner;
         }
-        /* public OrderDetailsViewModel GetById(int? orderId)
+         public OrderDetailsViewModel GetById(int? orderId)
         {
             var aOrder = (from ord in _db.Orders
                         where ord.OrderId == orderId
@@ -43,8 +43,8 @@ namespace BookCave.Repositories
                         }).SingleOrDefault();
             //virkar öruglega ekki því það vantar tengingu við gagnagrunn
             var books = (from bks in _db.Books
-                        join obc in _db.OrderBookConnections on bks.Id equals obc.BookId
-                        join orde in _db.Orders on obc.OrderId equals orde.OrderId
+                      //  join obc in _db.OrderBookConnections on bks.Id equals obc.BookId
+                    //    join orde in _db.Orders on obc.OrderId equals orde.OrderId
                         select new BookViewModel{
                             Title = bks.Title,
                             PublishingYear = bks.PublishingYear,
@@ -58,7 +58,7 @@ namespace BookCave.Repositories
                         }).ToList();
             aOrder.Books = books;
             return aOrder;
-        }*/
+        }
         public bool Create(OrderViewModel ovm)
         {
             return true;

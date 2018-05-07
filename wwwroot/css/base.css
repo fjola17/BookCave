@@ -1,21 +1,31 @@
 .background
 {
+<<<<<<< HEAD
   background-color: rgba(35, 111, 199, 0.815);
+=======
+  background-color: rgba(83, 133, 180, 0.473);
+>>>>>>> da2345483d5bde95eb3ca369abdf3f4fb83d1e0b
  
 }
-.banner
+.header
 {
+<<<<<<< HEAD
   margin-bottom: 15px;
   background-color: rgba(32, 153, 8, 0.945);
   margin: -10px -10px 0px -10px ;
+=======
+  left: 0;
+  top: 0;
+  right: 0;
+  background-color: rgba(5, 190, 5, 0.26);
+>>>>>>> da2345483d5bde95eb3ca369abdf3f4fb83d1e0b
   padding-bottom: 20px;
   border-bottom: 1px solid black;
-  
 }
-.banner ul
+.header ul
 {
   padding-bottom: -125px;
-  padding-left: 60px;
+  padding-left: 20px;
 
 }
 #log
@@ -34,7 +44,13 @@
 }
 .content
 {
-  margin-top: 10px;
+  margin-top: 20px;
+}
+.container
+{
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 .cover
 {
@@ -49,7 +65,7 @@ li
 .liList
 {
   display: inline;
-  padding: 60px;
+  padding: 80px;
 }
 .titleBook
 {
@@ -61,10 +77,16 @@ li
 }
 .footer
 {
+<<<<<<< HEAD
   margin: 30px -70px 0px -70px ;
   padding-top: 30px;
   padding-bottom: 30px;
   background-color: rgba(247, 224, 18, 0.829);
+=======
+  margin: -400px -500px -400px -400px;
+  margin-top: 60px;
+  background-color: rgba(5, 190, 5, 0.26);
+>>>>>>> da2345483d5bde95eb3ca369abdf3f4fb83d1e0b
 }
 #terms-of-service
 {
@@ -85,39 +107,8 @@ li
 }
 #newBooks
 {
-  display: inline;
-  margin: 0 auto;
+  margin-left: 500px;
   padding: 0 auto;
-}
-#ratedBooks1
-{
-  display: inline;
-  margin: 0 auto;
-  padding: 0 auto;
-}
-#ratedBooks2
-{
-  display: inline;
-  margin: 0 auto;
-  padding: 0 auto;
-}
-#sellOut1
-{
-  display: inline;
-  margin: 0 auto;
-
-  padding: 0 auto;
-}
-#sellOut2
-{
-  display: inline;
-  margin: 0 auto;
-
-  padding: 0 auto;
-}
-#littleBit
-{
-  margin-left: 864px;
 }
 
 #footCon{
@@ -141,20 +132,18 @@ a
 }
 th
 {
-  margin: 0 auto;
+  margin-right: 800px;
 }
 table
 {
-  margin-top: 15px;
-  margin-left: 15px;
-  margin-right: 230px;
+  padding: auto;
+  margin: auto;
 }
 td
 {
-  display: inline;
+  clear: both;
   padding-bottom: 100px;
-  margin-left: 100px;
-  margin-right: 100px;
+  
   padding-top: 100px;
 }
 h1

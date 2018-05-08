@@ -8,6 +8,18 @@ body {
 {
   background-color: #6351ce;
 }
+.profile
+{
+  margin-left: 100px;;
+}
+.profile img
+{
+  float: left;
+}
+.profile h1
+{
+  
+}
 .input-group-btn button
 {
   padding: 10px 14px 9px 10px;
@@ -40,7 +52,15 @@ body {
   border: 4px solid black;
   padding: 30px;
   padding-left: 40px;
-  padding-bottom: 100px;
+  padding-bottom: 200px;
+}
+#reviewPart
+{
+  margin-left: 700px;
+}
+#textPart
+{
+  margin-right: 800px;
 }
 #shopbtn
 {
@@ -51,6 +71,10 @@ body {
   float: left;
   margin-bottom: -100px;
   
+}
+#res
+{
+  padding-bottom: 8px;
 }
 .content h2
 {
@@ -68,6 +92,17 @@ body {
   padding-left: 60px;
   list-style-type: none;
   font-size: 18px;
+}
+.searchItem
+{
+  margin-left: 60px;
+  padding-bottom: 30px;
+}
+.searchItem li
+{
+  display: inline-block;
+  list-style-type: none;
+  padding: 20px;
 }
 #description
 {

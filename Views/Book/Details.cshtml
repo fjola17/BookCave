@@ -28,7 +28,7 @@
     <div id="head-details">
         <div id="imageFloat">
             <h1>@Model.Title</h2>
-            <p class="book-details-image"><img src="@Model.CoverImage" alt="Book Image" height="350" width="auto"></p>
+            <p class="book-details-image"><img src="@Model.CoverImage" alt="Book Image" height="400" width="auto"></p>
         </div>
         <div id="description">
             <h3>Author: <a href="#">@Model.Author</a> </h3>
@@ -56,8 +56,8 @@
                         <input type="radio" asp-for="Rating" value="4">4
                         <input type="radio" asp-for="Rating" value="5">5
                     </div>
-                    <div class="form-group">
-                        <textarea  placeholder="enter your review here"></textarea>
+                    <div id="textPart" class="form-group">
+                        <textarea class="form-control" rows="5" placeholder="enter your review here"></textarea>
                     </div>
                     <div class="form-group">
                         <button class="btn" type="submit">Submit review</button>

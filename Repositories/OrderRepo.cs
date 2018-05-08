@@ -61,14 +61,15 @@ namespace BookCave.Repositories
             return aOrder;
         }
 
-        public void ClearCart(CartViewModel cart)
+        /*public void ClearCart(CartViewModel cart)
         {
             //hreynsar allt út úr körfunni
             if(cart == null)
             {
                 return;
             }
-        }
+           
+        }*/ 
 
         public bool DeleteById(int orderId)
         {
@@ -80,7 +81,7 @@ namespace BookCave.Repositories
         {
             return true;
         }
-        public OrderDetailsViewModel Cart()
+       /* public OrderDetailsViewModel Cart()
         {
             var cart = (from ca in _db.Orders
             select new OrderDetailsViewModel
@@ -106,7 +107,7 @@ namespace BookCave.Repositories
             totalprice = cart.TotalPrice;
             return cart;
 
-        }
+        }*/
         public bool AddToCart(int id)
         {  
             var itemincart = (from it in _db.Orders

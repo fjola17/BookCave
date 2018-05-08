@@ -69,7 +69,23 @@ namespace BookCave.Controllers
             return View();
         }
 
-
+        public IActionResult Shipping()
+        {
+            return View();
+        }/* 
+        [HttpPost]
+        public IActionResult ShippingInfo(ShippingInfoInputModel shipping)
+        {
+            return RedirectToAction View("Review", "Order");
+        }*/
+        public IActionResult BillingInfo()
+        {
+            return View();
+        }
+        public IActionResult Review()
+        {
+            return View();
+        }
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

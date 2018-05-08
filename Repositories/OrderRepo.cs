@@ -61,13 +61,10 @@ namespace BookCave.Repositories
             return aOrder;
         }
 
-        public void ClearCart(CartViewModel cart)
+        public void ClearCart()
         {
             //hreynsar allt út úr körfunni
-            if(cart == null)
-            {
-                return;
-            }
+            
         }
 
         public bool DeleteById(int orderId)
@@ -92,33 +89,53 @@ namespace BookCave.Repositories
             var booksInCart = (from bks in _db.Books
             join bksc in _db.BookInCarts on bks.Id equals bksc.BookId
             join ord in _db.Orders on bksc.CartId equals ord.OrderId
-            select new BookViewModel{
+            select new BookCartViewModel
+            {
                 Title = bks.Title,
                 CoverImage = bks.CoverImage,
-                Price = bks.Price
+                Price = bks.Price,
+                Amount = bksc.CountOfBooks
             }).ToList();
-            var totalprice = 0.0;
+            booksInCart = cart.BooksInOrder;
+            double totalprice = 0.0;
             foreach (var book in cart.BooksInOrder)
             {
                 totalprice += book.Price;
             }
-            booksInCart = cart.BooksInOrder;
             totalprice = cart.TotalPrice;
             return cart;
 
         }
         public bool AddToCart(int id)
         {  
+            var cartId = GetCartId();
             var itemincart = (from it in _db.Orders
+                            where it.Id == cartId
                             join bksc in _db.BookInCarts on it.OrderId equals bksc.CartId
                             join bok in _db.Books on bksc.BookId equals bok.Id
                             where it.Paid == false && id == bok.Id
-            select it).SingleOrDefault();
+                            select bksc).SingleOrDefault();
             if(itemincart == null)
             {
-
+                itemincart = new BookInCart
+                {
+                    CartId = cartId,
+                    BookId = id,
+                    CountOfBooks = 1
+                };
             }
+            else{
+                itemincart.CountOfBooks++;
+            }
+            _db.BookInCarts.Add(itemincart);
             return true;
         }
+        public int GetCartId()
+        {
+            var cart = 1;
+            return cart;
+        }
     }
+
+    
 }

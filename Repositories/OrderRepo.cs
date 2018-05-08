@@ -61,7 +61,7 @@ namespace BookCave.Repositories
             return aOrder;
         }
 
-        public void ClearCart(CartViewModel cart)
+       /* public void ClearCart(CartViewModel cart)
         {
             //hreynsar allt út úr körfunni
             if(cart == null)
@@ -69,7 +69,7 @@ namespace BookCave.Repositories
                 return;
             }
         }
-
+        */
         public bool DeleteById(int orderId)
         {
             //eftir að útfæra
@@ -80,7 +80,7 @@ namespace BookCave.Repositories
         {
             return true;
         }
-        public OrderDetailsViewModel Cart()
+       /* public OrderDetailsViewModel Cart()
         {
             var cart = (from ca in _db.Orders
             select new OrderDetailsViewModel
@@ -119,6 +119,6 @@ namespace BookCave.Repositories
 
             }
             return true;
-        }
+        }*/
     }
 }

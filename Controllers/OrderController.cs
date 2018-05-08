@@ -52,7 +52,7 @@ namespace BookCave.Controllers
             var buybooks = _orderServices.Buy(bookTobuy);
             return View();
         }
-        [HttpPost]
+        /*[HttpPost]
         public IActionResult AddToCart(int bookAdded)
         {
             if(!ModelState.IsValid)
@@ -69,7 +69,7 @@ namespace BookCave.Controllers
             return View();
         }
 
-
+*/
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

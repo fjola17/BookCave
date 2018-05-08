@@ -2,14 +2,15 @@
 
 <h1>Current items in cart</h2>
 <ul>
-@foreach(var books in Model)
+
 {
     <li>
+
         <button asp-controller="Order" asp-action="Delete">Delete item</button>
     </li>
 } 
 
 </ul>
-<form asp-controller="Order" asp-action="Buy">
+<form asp-controller="Order" asp-action="Shipping">
     <button type="submit">Process order</button>
 </form>

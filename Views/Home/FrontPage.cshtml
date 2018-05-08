@@ -5,7 +5,7 @@
         @foreach(var b in Model)
         {
           <li><a href="#"><img src="@b.CoverImage" alt="CoverImage" height="170px" width="auto" /><a/><br>
-          <a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a><br>
+          <a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id">@b.Title</a><br>
           Price: @b.Price
           </li>
         }

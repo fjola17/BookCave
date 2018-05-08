@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using BookCave.Models;
 using BookCave.Models.ViewModels;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookCave.Controllers
 {
@@ -94,26 +95,72 @@ namespace BookCave.Controllers
             return View();
         }
 
-        
+        [Authorize]
         public IActionResult Profile() 
         {
             return View();
         }
+        [Authorize]
         [HttpGet]
         public IActionResult Edit()
-        {
+        {   
             return View();
         }
-
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(RegisterViewModel updatedProfile)
+        public async Task<IActionResult> Edit(EditViewModel updatedProfile)
         {
-            if(!ModelState.IsValid)
+            if(!ModelState.IsValid) //Skoðar hvort model sé "valid"
             {
-                return View();
+                return View("Profile");
             }
-            return View();
+            
+            if(updatedProfile == null) //Skoðar hvort modelið sem kemur inn sé "valid"
+            {
+                return View("Profile");
+            }
+
+            ApplicationUser user = _userManager.FindByNameAsync(User.Identity.Name).Result;
+            
+
+            if(updatedProfile.FirstName != null || updatedProfile.LastName != null) //Passar að þessi eigindi séu ekki tóm
+            {
+                var claim = User.Claims.FirstOrDefault(c => c.Type == "Name"); //Nær í þetta claim
+                await _userManager.RemoveClaimAsync(user, claim); //Eyða gamla claim
+                await _userManager.AddClaimAsync(user, new Claim("Name", $"{updatedProfile.FirstName} {updatedProfile.LastName}")); //Búa til nýtt claim
+            }
+            if(updatedProfile.Address != null)
+            {
+                var claim = User.Claims.FirstOrDefault(c => c.Type == "Address");
+                if(claim != null)//Ef claim er ekki til, þ.e.a.s. er  null, þá á ekki að eyða.
+                {
+                await _userManager.RemoveClaimAsync(user, claim);
+                }
+                await _userManager.AddClaimAsync(user, new Claim("Address", $"{updatedProfile.Address}"));
+            }
+            if(updatedProfile.Image != null)
+            {
+                var claim = User.Claims.FirstOrDefault(c => c.Type == "Image");
+                if(claim != null)
+                {
+                await _userManager.RemoveClaimAsync(user, claim);
+                }
+                await _userManager.AddClaimAsync(user, new Claim("Image", $"{updatedProfile.Image}"));
+            }
+            if(updatedProfile.FavoriteBook != null)
+            {
+                var claim = User.Claims.FirstOrDefault(c => c.Type == "FavoriteBook");
+                if(claim != null)
+                {
+                await _userManager.RemoveClaimAsync(user, claim);
+                }
+                await _userManager.AddClaimAsync(user, new Claim("FavoriteBook", $"{updatedProfile.FavoriteBook}"));
+            }
+            await _signinManager.SignInAsync(user, false); //Sign-ar user inn aftur svo að síða sé uppfærð
+            
+            return RedirectToAction("Profile"); //Sendir notanda á profile aftur
+
         }
     }
 }

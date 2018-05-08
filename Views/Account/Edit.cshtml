@@ -5,8 +5,8 @@
 </head>
 
 
-<div id="Register">
-    <form class="border border-dark"  asp-action="Register" asp-controller="Account" class="form-horizontal">
+<div id="Edit">
+    <form class="border border-dark"  asp-action="Edit" asp-controller="Account" class="form-horizontal">
         <fieldset>
             <legend>Edit user info</legend>
             <!--Er ekki hægt að hafa fullt nafn í einu texta boxi?-->
@@ -19,11 +19,6 @@
                 <label for="lName">Last Name: </label>
                 <input id="lName" type="text" asp-for="LastName" class="form-control" placeholder="Enter last name"/>
                 <span asp-validation-for="LastName"></span>
-            </div>
-            <div class="form-group">
-                <label for="input-Email">Email: </label>
-                <input id="input-Email" type="email" asp-for="Email" class="form-control" placeholder="Enter email"/>
-                <span asp-validation-for="Email"></span>
             </div>
             <div class="form-group">
                 <label for="input-Address">Address: </label>

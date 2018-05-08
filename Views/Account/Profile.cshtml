@@ -19,13 +19,13 @@
     <div class="profile">
     <h1>@name&#39s Profile</h1><br>
     <!-- Ef notandi hefur ekki sett inn mynd-->
-    @if(image != null)  
+    @if(image == null)  
     {
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png" alt="Profile pic" width="200" height="auto">
     }
     else
     {
-        <img src="@image" alt="Profile pic">
+        <img src="@image" alt="Profile pic" width="200" height="auto">
     }
     <br>
     <h2>Address: @address</h2>

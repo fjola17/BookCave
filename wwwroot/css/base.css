@@ -1,16 +1,10 @@
 body {
   color: #1a4db9;
+  background-color: #527dda;
   font-family: Helvetica;
   line-height: 24px;
 }
-.background
-{
-  background-color: rgba(83, 133, 180, 0.473);
-}
-#Back
-{
-  background-color: #6351ce;
-}
+
 .input-group-btn button
 {
   padding: 10px 14px 9px 10px;
@@ -197,7 +191,6 @@ h1
 }
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
   color: #333333;
-  font-family: "Roboto",sans-serif;
   font-weight: 500;
   line-height: 1.1;
   margin-top: 0;

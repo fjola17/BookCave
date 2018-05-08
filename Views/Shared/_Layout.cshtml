@@ -40,7 +40,7 @@
           <li><a href="#">Fantasy</a></li>
         </ul>
       </li>
-      <li><a href="#">Top 10</a></li>
+      <li><a asp-controller="Book" asp-action="Top10">Top 10</a></li>
       <li>
         <div >
           <form class="navbar-form" method="GET" asp-controller="Book" asp-action="BookIndex">
@@ -54,7 +54,7 @@
         </div>
       </li>
       <li>
-        <button id="shopbtn" type="button" class="btn btn-default btn-dark">
+        <button asp-controller="Order" asp-action="Cart" id="shopbtn" type="button" class="btn btn-default btn-dark">
           <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
         </button>
       </li>

@@ -55,7 +55,11 @@ namespace BookCave.Repositories
                                 Formats = bo.Formats,
                                 AudioSample = bo.AudioSample,
                                 CoverImage = bo.CoverImage
+<<<<<<< HEAD
                             }).Take(112).ToList();
+=======
+                            }).Take(20).ToList();
+>>>>>>> 1b3e75ba30f922011ea4e06c2575913dbddb616f
             return bookList;
         }
 
@@ -84,7 +88,7 @@ namespace BookCave.Repositories
             */
             
             var booksfiltered = (from bo in _db.Books
-                        where bo.Title.Contains(searchString)
+                        where bo.Title.ToLower().Contains(searchString.ToLower()) || bo.Author.ToLower().Contains(searchString.ToLower())
                         orderby bo.Title
                         select new BookViewModel
                         {
@@ -143,7 +147,7 @@ namespace BookCave.Repositories
         public List<BookViewModel> TopRatedBooks()
         {
             var bookList = (from bo in _db.Books
-                            orderby bo.Rating
+                            orderby bo.Rating descending
                             select new BookViewModel
                             {
                                 Id = bo.Id,

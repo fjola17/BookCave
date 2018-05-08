@@ -6,19 +6,38 @@ body {
 .background
 {
   background-color: lightgray;
-  background-image: url(https://lh3.googleusercontent.com/B-JXBF-P9KcO4Ar6L5uElurUbv3TPXmMlBnaFPupCVOKrzq9BD9hMb7PblE9O665Vq1UKSBTur2EeYkh9sU1wUgx-mv0f1ZX2C4hJPZ33cfuaA5vpOUZ4oWv1IvXAkJsPIozOzD6d_M11T_MQOqY1nLhISg3RRJcoqTO--Z-exDYB2auGrNwzmj7vhfpqMtVtiLJz0AgwoQwIiMqn1kIgmLMpTLrcPp8u_dIqeh398xioMP9TFcgXGwBNAPSNYXB1vnPtJm9Q3q-XbQuwfFeNk3c1sfPw7PfY18GcgcBKzY3Kxe0fu1EyY6Z__KOxuGyBW6055w1IHXaqwmaiCOjWiVJEsHuupPfq3I_agWKyVhgTjbZaZ6vPJ_Z58NRU_jE7ITVq8OSthrG2mIGXiildcjQzbLAFAf-p-CXNpczl1DRY2Yzqae-KtjMnkiY0DZ4U2RVdBmCyxIRCpqVqMYJL312puQCluFispx5bbhPMdWgzgtq6Dlz9ELpWmdfBlkHUhf7wz3G5V8h4HXJFjDRxgGSU6M1vF7zTwwGqyu8mfg4vfsXW5pvNxBqMoR3mho7WAJK5rOErrgx7DqqSVPXXBFJ2Me2ZQK9N4UEcr8=w880-h681-no);
+  background-image: url(https://lh3.googleusercontent.com/nGBDoKt7Cg9zEgG_QOs2_apFJ4JVETf19JUAZTGBygVyqEfqrLBP9T1gpNMY22uN5HueL_MncffH-AAdVxY9yn2xQ3IySOSQLsY8FFwPb7W3lHw1KA44RJAFscgP61cHCZU83qMecWT-JQThHWnkP_6LGTr5jeMwmhRGQy1YGjn5JQFrEHtnPd41_CG7fesm2yGLU3nwaedH3_uEL3VarAu4ttoV8O48S4kXoBqQiqMPTNIz1pfQppT2Q_c9ocX5H0LmRUhMCOJdExGIki0ivU3pcT3XBZNMUamAlWZ8DOUDGr6moHxm5YO4H6GEmA07rs4iEAJ337C5okkYkPTg07xCtVTrCjiOmS_o9ItcSUu89ywejAgtc8lC0XkOFRhowuBJlgLbAQjO-8xr2caskPZcZdlqUBoihrTCx-zZdSu8JhUjQHkkw-PHj9fKUOWeiRo4ppRRH6LuQd3ILdXLWUjzaghL6GF0P1HonCY6jv9n4dVT2tUbW1E2derIq65zEx1oBIS7fasGUxxQIpJnwLq-3TvUAskdpzbNj8UIPvbXNfSn_rTwzpcWl3ShzbnWzBJQ-f1YV-m13mLptcjY0i4i-4Mh2mH16gKLW6Y=w284-h220-no);
   background-position: center;
-  background-size: fill;
+  background-size: cover;
   background-repeat: no-repeat;
+}
+#newBooks
+{
+  margin-top: 30px;
+  padding-bottom: 50px;
+}
+#booklist
+{
+  overflow: hidden;
+}
+.bookTitle{
+  max-width: 160px;
 }
 .profile
 {
   margin-left: 100px;;
 }
+.content
+{
+  display: inline-block;
+}
+<<<<<<< HEAD
+=======
 .profile img
 {
   float: left;
 }
+>>>>>>> 1b3e75ba30f922011ea4e06c2575913dbddb616f
 .input-group-btn button
 {
   padding: 10px 14px 9px 10px;
@@ -71,6 +90,7 @@ body {
   margin-bottom: -100px;
   
 }
+
 #res
 {
   padding-bottom: 8px;

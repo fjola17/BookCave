@@ -8,7 +8,7 @@ namespace BookCave.Data
         public DbSet<Book> Books{ get; set; }
         public DbSet<Review> Reviews{ get; set; }
         public DbSet<Order> Orders{ get; set; }
-        public DbSet<Cart> Carts{ get; set; }
+        public DbSet<BookInCart> BookInCarts{ get; set; }
        // public DbSet<ShippingInfo> ShippingInfos { get; set; }
 
         //Ekki viss með Author ef nota þá tek út komment, kommenta userinfo þegar það er rétt sett inn     

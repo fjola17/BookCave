@@ -20,20 +20,21 @@ namespace BookCave.Repositories
             //Ath hvernig á að birta bækur??
             var ordersFromOwner = (from ord in _db.Orders
                                    orderby ord.OrderId
-                                   select new OrderViewModel{
+                                   select new OrderViewModel
+                                   {
                                       OwnerId = ord.OwnerId,
-                                      OrderId = ord.OrderId,
                                       Paid = ord.Paid,
                                       TotalPrice = ord.TotalPrice
                                     }).ToList();
             return ordersFromOwner;
         }
-         public OrderDetailsViewModel GetById(int? orderId)
+         public OrderDetailsViewModel GetById(int? id)
         {
             var aOrder = (from ord in _db.Orders
-                        where ord.OrderId == orderId
-             
+                        where ord.OrderId == id 
                         //líkleg join hér sem á eftir að útfæra
+                        join cob in _db.BookInCarts on ord.OrderId equals cob.CartId
+                        join bk in _db.Books on cob.BookId equals bk.Id
                         select new OrderDetailsViewModel() //Hér eiga allar bækurnar að koma upp
                         {
                             OwnerId = ord.OwnerId,
@@ -41,28 +42,25 @@ namespace BookCave.Repositories
                             Paid = ord.Paid,
                             TotalPrice = ord.TotalPrice
                         }).SingleOrDefault();
+            var booksInorder = (from bks in _db.Books
+                                
+                                select new BookViewModel
+                                {
+                                    Title = bks.Title,
+                                    PublishingYear = bks.PublishingYear,
+                                    Description = bks.Description,
+                                    Genre = bks.Genre,
+                                    Rating = bks.Rating,
+                                    Price = bks.Price,
+                                    Formats = bks.Formats,
+                                    AudioSample = bks.AudioSample,
+                                    CoverImage = bks.CoverImage
+                                }).ToList();
             //virkar öruglega ekki því það vantar tengingu við gagnagrunn
-            var books = (from bks in _db.Books
-                      //  join obc in _db.OrderBookConnections on bks.Id equals obc.BookId
-                    //    join orde in _db.Orders on obc.OrderId equals orde.OrderId
-                        select new BookViewModel{
-                            Title = bks.Title,
-                            PublishingYear = bks.PublishingYear,
-                            Description = bks.Description,
-                            Genre = bks.Genre,
-                            Rating = bks.Rating,
-                            Price = bks.Price,
-                            Formats = bks.Formats,
-                            AudioSample = bks.AudioSample,
-                            CoverImage = bks.CoverImage
-                        }).ToList();
-            aOrder.Books = books;
+           
             return aOrder;
         }
-        public bool Create(OrderViewModel ovm)
-        {
-            return true;
-        }
+
         public void ClearCart(CartViewModel cart)
         {
             //hreynsar allt út úr körfunni
@@ -82,38 +80,44 @@ namespace BookCave.Repositories
         {
             return true;
         }
-        /*public CartViewModel Cart()
+        public OrderDetailsViewModel Cart()
         {
-            var cart = (from ca in _db.Carts
-            select new CartViewModel
+            var cart = (from ca in _db.Orders
+            select new OrderDetailsViewModel
             {
+                OrderId = ca.OrderId,
                 OwnerId = ca.OwnerId,
-                
+                Paid = ca.Paid
             }).SingleOrDefault();
-            var booksInCart = new BookViewModel
+            var booksInCart = (from bks in _db.Books
+            join bksc in _db.BookInCarts on bks.Id equals bksc.BookId
+            join ord in _db.Orders on bksc.CartId equals ord.OrderId
+            select new BookViewModel{
+                Title = bks.Title,
+                CoverImage = bks.CoverImage,
+                Price = bks.Price
+            }).ToList();
+            var totalprice = 0.0;
+            foreach (var book in cart.BooksInOrder)
             {
-                //eftir að uppfæra
-            };
+                totalprice += book.Price;
+            }
+            booksInCart = cart.BooksInOrder;
+            totalprice = cart.TotalPrice;
             return cart;
 
-        }*/
+        }
         public bool AddToCart(int id)
         {  
-           var newBook = (from bks in _db.Books
-                        where bks.Id == id
-                        select new Book
-                        {
-                            Title = bks.Title,
-                            PublishingYear = bks.PublishingYear,
-                            Description = bks.Description,
-                            Genre = bks.Genre,
-                            Rating = bks.Rating,
-                            Price = bks.Price,
-                            Formats = bks.Formats,
-                            AudioSample = bks.AudioSample,
-                            CoverImage = bks.CoverImage
-                        }).SingleOrDefault();
-           //bætir við í körfu
+            var itemincart = (from it in _db.Orders
+                            join bksc in _db.BookInCarts on it.OrderId equals bksc.CartId
+                            join bok in _db.Books on bksc.BookId equals bok.Id
+                            where it.Paid == false && id == bok.Id
+            select it).SingleOrDefault();
+            if(itemincart == null)
+            {
+
+            }
             return true;
         }
     }

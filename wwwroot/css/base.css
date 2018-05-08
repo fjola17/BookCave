@@ -1,17 +1,13 @@
 body {
   color: #1a4db9;
-  background-color: #527dda;
+  background-color: #9fb9f0;
   font-family: Helvetica;
   line-height: 24px;
 }
-<<<<<<< HEAD
-
-=======
 #Back
 {
   background-color: #6351ce;
 }
->>>>>>> 59d97a10e86600be553143088f013788b2b85e8f
 .input-group-btn button
 {
   padding: 10px 14px 9px 10px;

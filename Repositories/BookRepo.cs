@@ -59,12 +59,10 @@ namespace BookCave.Repositories
             return bookList;
         }
 
-        public List<BookViewModel> GetBySearchString(string searchString)
+        public List<BookViewModel> GetByGenre(string genre)
         {
-            /*
-                //genre filter fara í síðar!!
             var filteredbygenre = (from bo in _db.Books
-                                where bo.Genre == searchString
+                                where bo.Genre == genre
                                 orderby bo.Title
                                 select new BookViewModel
                                 {
@@ -80,9 +78,11 @@ namespace BookCave.Repositories
                                     AudioSample = bo.AudioSample,
                                     CoverImage = bo.CoverImage
                                 }).ToList();
-             
-            */
-            
+            return filteredbygenre;
+        }
+        public List<BookViewModel> GetBySearchString(string searchString)
+        {
+
             var booksfiltered = (from bo in _db.Books
                         where bo.Title.ToLower().Contains(searchString.ToLower()) || bo.Author.ToLower().Contains(searchString.ToLower())
                         orderby bo.Title
@@ -143,7 +143,7 @@ namespace BookCave.Repositories
         public List<BookViewModel> TopRatedBooks()
         {
             var bookList = (from bo in _db.Books
-                            orderby bo.Rating descending
+                            orderby bo.Rating 
                             select new BookViewModel
                             {
                                 Id = bo.Id,

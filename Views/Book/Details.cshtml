@@ -7,51 +7,77 @@
 @inject SignInManager<ApplicationUser> SignInManager
 
 <!-- Þarf að útfæra klasa og virkni hér -->
-
-<h2>@Model.Title</h2>
-<p class="book-details-image"><img src="@Model.CoverImage" alt="Book Image"></p>
-<p><a href="#">@Model.Author</a></p>
-<p>@Model.PublishingYear</p>
-<p>@Model.Genre</p>
-<p>@Model.Description</p>
-<p>@Model.Formats</p> <!--öðruvísi format-->
-<p>@Model.AudioSample</p>
-<p>@Model.Price</p>
-<button class="btn cart">Add to Cart</button>
-
-
-@if(SignInManager.IsSignedIn(User))
-{
-    <!-- Ef notandi er skráður inn getur hann sett inn sitt review -->
-    <div id="review-form">
-        <form asp-action="Create" asp-controller="Review">
-            <div class="form-group">
-                <label for="Rating">Rating: </label>
-                <input type="radio" asp-for="Rating" value="1">1
-                <input type="radio" asp-for="Rating" value="2">2
-                <input type="radio" asp-for="Rating" value="3">3
-                <input type="radio" asp-for="Rating" value="4">4
-                <input type="radio" asp-for="Rating" value="5">5
-            </div>
-            <div class="form-group">
-                <textarea  placeholder="enter your review here"></textarea>
-            </div>
-            <div class="form-group">
-                <button class="btn" type="submit">Submit review</button>
-            </div>
-        </form>
+<head>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/base.css" />
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    </environment>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </environment>
+</head>
+<body class="background">
+    <div id="head-details">
+        <div id="imageFloat">
+            <h1>@Model.Title</h2>
+            <p class="book-details-image"><img src="@Model.CoverImage" alt="Book Image" height="350" width="auto"></p>
+        </div>
+        <div id="description">
+            <h3>Author: <a href="#">@Model.Author</a> </h3>
+            <h3>Realase year: @Model.PublishingYear</h3>
+            <h3>Genre: @Model.Genre</h3>
+            <h3>Descritption: @Model.Description</h3>
+            <h3>Formats: @Model.Formats</h3> <!--öðruvísi format-->
+            <h3>AudioSample: @Model.AudioSample</h3>
+            <h3>Price: @Model.Price</h3>
+            <button class="btn btn-default glyphicon glyphicon-shopping-cart">Add to Cart</button>
+        </div>
     </div>
-}
-<!-- TODO Bæta við Review einhverstaðar fyrir þessa bók -->
 
-<div id="BookReviews">
-<h2>Reviews</h2>
-<ul class="list-inline"></ul>
-@foreach(var b in Model.Reviews)
-{
-    <li>   
-    <p>@b.Rating</p>
-    <p>@b.ActualReview</p>
-    </li>
-} 
-</div>
+    <div id="reviewPart">
+        @if(SignInManager.IsSignedIn(User))
+        {
+            <!-- Ef notandi er skráður inn getur hann sett inn sitt review -->
+            <div id="review-form">
+                <form asp-action="Create" asp-controller="Review">
+                    <div class="form-group">
+                        <label for="Rating">Rating: </label>
+                        <input type="radio" asp-for="Rating" value="1">1
+                        <input type="radio" asp-for="Rating" value="2">2
+                        <input type="radio" asp-for="Rating" value="3">3
+                        <input type="radio" asp-for="Rating" value="4">4
+                        <input type="radio" asp-for="Rating" value="5">5
+                    </div>
+                    <div class="form-group">
+                        <textarea  placeholder="enter your review here"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn" type="submit">Submit review</button>
+                    </div>
+                </form>
+            </div>
+        }
+<!-- TODO: Bæta við Review einhverstaðar fyrir þessa bók -->
+
+        <div id="BookReviews">
+            <h2>Reviews</h2>
+            <ul class="list-inline">
+                @foreach(var b in Model.Reviews)
+                {
+                    <li>   
+                        <p>@b.Rating</p>
+                        <p>@b.ActualReview</p>
+                    </li>
+                } 
+            </ul>
+        </div>
+    </div>
+</body>

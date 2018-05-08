@@ -1,15 +1,14 @@
 @model List<BookCave.Models.ViewModels.BookViewModel>
-
-
   <body class="background">
     <div class="content">
       <h2>New Releases</h2>
         <ul id="newBooks">
         @foreach(var b in Model)
         {
-          <li><a href="#"><img src="@b.CoverImage" alt="CoverImage" height="170px" width="auto" /><a/></li>
-          <li><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a></li>
-          <li>@b.Price</li>
+          <li><a href="#"><img src="@b.CoverImage" alt="CoverImage" height="170px" width="auto" /><a/><br>
+          Title: <a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id" >@b.Title</a><br>
+          Price: @b.Price
+          </li>
         }
         </ul>
       

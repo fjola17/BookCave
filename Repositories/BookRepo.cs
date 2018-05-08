@@ -84,7 +84,7 @@ namespace BookCave.Repositories
             */
             
             var booksfiltered = (from bo in _db.Books
-                        where bo.Title.Contains(searchString) || bo.Author.Contains(searchString)
+                        where bo.Title.ToLower().Contains(searchString.ToLower()) || bo.Author.ToLower().Contains(searchString.ToLower())
                         orderby bo.Title
                         select new BookViewModel
                         {
@@ -143,7 +143,7 @@ namespace BookCave.Repositories
         public List<BookViewModel> TopRatedBooks()
         {
             var bookList = (from bo in _db.Books
-                            orderby bo.Rating
+                            orderby bo.Rating descending
                             select new BookViewModel
                             {
                                 Id = bo.Id,

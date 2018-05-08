@@ -49,7 +49,7 @@ namespace BookCave.Controllers
         public IActionResult Buy(OrderViewModel bookTobuy)
         {
             //Þarf að útfæra betur
-            var buybooks = _orderServices.Buy(bookTobuy);
+           // var buybooks = _orderServices.Buy(bookTobuy);
             return View();
         }
         [HttpPost]
@@ -59,12 +59,12 @@ namespace BookCave.Controllers
             {
                 return RedirectToAction("Login");
             }
-            _orderServices.AddToCart(bookAdded);
+           // _orderServices.AddToCart(bookAdded);
             return RedirectToAction("Cart");
         }
         public IActionResult Cart()
         {
-            var booksInCart = _orderServices.Cart();
+            //var booksInCart = _orderServices.Cart();
             //er bara að skoða körfu
             return View();
         }

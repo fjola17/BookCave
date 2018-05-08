@@ -67,7 +67,7 @@ namespace BookCave.Controllers
             {
                 RedirectToAction("Login");
             }
-            //var addBookToCart = _orderServices.AddToCart(id);
+            var addBookToCart = _orderServices.AddToCart(id);
             return View("Cart", "Order");
         }
         public IActionResult Cart()

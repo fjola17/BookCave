@@ -20,10 +20,11 @@ namespace BookCave.Controllers
         }
         public IActionResult Index() //Displays all orders for a logged in user
         { 
-            var allOrderFromusers = _orderServices.GetByOwnerId().ToList();
+            var allOrderFromusers = _orderServices.GetByOwnerId();
             
-            return View(allOrderFromusers);
+            return View(allOrderFromusers.ToList());
         }
+
         public IActionResult Details(int? id)
         { 
             if(id == null)
@@ -33,18 +34,9 @@ namespace BookCave.Controllers
             var orders = _orderServices.GetById(id);
             if(orders == null)
             {
-                return View("Error");
+                return View("NotFound");
             }
             return View(orders);
-        }
-        
-
-
-        [HttpPost]
-        public IActionResult Create(OrderViewModel booksToBuy)
-        {
-            
-            return View();
         }
 
         [HttpDelete] //veit ekki hvort þetta eigi að vera hér
@@ -61,17 +53,18 @@ namespace BookCave.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddToCart(int id)
+        public IActionResult AddToCart(int bookAdded)
         {
             if(!ModelState.IsValid)
             {
-                RedirectToAction("Login");
+                return RedirectToAction("Login");
             }
-            var addBookToCart = _orderServices.AddToCart(id);
-            return View("Cart", "Order");
+            _orderServices.AddToCart(bookAdded);
+            return RedirectToAction("Cart");
         }
         public IActionResult Cart()
         {
+            var booksInCart = _orderServices.Cart();
             //er bara að skoða körfu
             return View();
         }

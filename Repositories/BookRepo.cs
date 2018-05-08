@@ -4,6 +4,9 @@ using System.Linq;
 using System.Diagnostics;
 using BookCave.Data;
 using BookCave.Models.ViewModels;
+using BookCave.Models;
+using Microsoft.AspNetCore.Identity;
+using BookCave.Models.InputModels;
 
 namespace BookCave.Repositories
 {
@@ -161,7 +164,15 @@ namespace BookCave.Repositories
             return bookList;
         }
 
-
+        public void SendFeedback(FeedbackInputModel feedback)
+        {
+         //   var currentUser = 
+            var feed = new Feedback
+            {
+                UserName = feedback.UserName,
+                Message = feedback.Message
+            };
+        }
 
         public bool Update(int bookId)
         {

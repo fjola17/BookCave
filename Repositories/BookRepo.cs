@@ -84,7 +84,7 @@ namespace BookCave.Repositories
             */
             
             var booksfiltered = (from bo in _db.Books
-                        where bo.Title.Contains(searchString)
+                        where bo.Title.Contains(searchString) || bo.Author.Contains(searchString)
                         orderby bo.Title
                         select new BookViewModel
                         {

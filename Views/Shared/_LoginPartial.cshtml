@@ -8,7 +8,7 @@
 @{
     var claim =((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Name")?.Value;
 }
-
+<body class="background">
 @if(SignInManager.IsSignedIn(User))
 {
     <form asp-action="LogOut" asp-controller="Account" method="POST">
@@ -34,3 +34,4 @@ else
         </li>
     </ul>
 }
+</body>

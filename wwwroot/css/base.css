@@ -3,9 +3,13 @@ body {
   font-family: Helvetica;
   line-height: 24px;
 }
-#Back
+.background
 {
-  background-color: #6351ce;
+  background-color: lightgray;
+  background-image: url(https://lh3.googleusercontent.com/B-JXBF-P9KcO4Ar6L5uElurUbv3TPXmMlBnaFPupCVOKrzq9BD9hMb7PblE9O665Vq1UKSBTur2EeYkh9sU1wUgx-mv0f1ZX2C4hJPZ33cfuaA5vpOUZ4oWv1IvXAkJsPIozOzD6d_M11T_MQOqY1nLhISg3RRJcoqTO--Z-exDYB2auGrNwzmj7vhfpqMtVtiLJz0AgwoQwIiMqn1kIgmLMpTLrcPp8u_dIqeh398xioMP9TFcgXGwBNAPSNYXB1vnPtJm9Q3q-XbQuwfFeNk3c1sfPw7PfY18GcgcBKzY3Kxe0fu1EyY6Z__KOxuGyBW6055w1IHXaqwmaiCOjWiVJEsHuupPfq3I_agWKyVhgTjbZaZ6vPJ_Z58NRU_jE7ITVq8OSthrG2mIGXiildcjQzbLAFAf-p-CXNpczl1DRY2Yzqae-KtjMnkiY0DZ4U2RVdBmCyxIRCpqVqMYJL312puQCluFispx5bbhPMdWgzgtq6Dlz9ELpWmdfBlkHUhf7wz3G5V8h4HXJFjDRxgGSU6M1vF7zTwwGqyu8mfg4vfsXW5pvNxBqMoR3mho7WAJK5rOErrgx7DqqSVPXXBFJ2Me2ZQK9N4UEcr8=w880-h681-no);
+  background-position: center;
+  background-size: fill;
+  background-repeat: no-repeat;
 }
 .profile
 {

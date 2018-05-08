@@ -4,10 +4,6 @@ body {
   font-family: Helvetica;
   line-height: 24px;
 }
-#Back
-{
-  background-color: #6351ce;
-}
 .profile
 {
   margin-left: 100px;;
@@ -16,10 +12,7 @@ body {
 {
   float: left;
 }
-.profile h1
-{
-  
-}
+
 .input-group-btn button
 {
   padding: 10px 14px 9px 10px;

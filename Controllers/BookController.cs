@@ -23,12 +23,19 @@ namespace BookCave.Controllers
         }  
         public IActionResult BookIndex(string searchString) //Nær í lista af öllum bókum.
         {
+            //ef ekkert er slegið inn
             if(searchString == null)
             {
+                ViewBag.Title ="All books";
                 var books = _bookServices.GetBookIndex();
                 return View(books);
             }
+            ViewBag.Title = "searchString";
             var booksFound = _bookServices.GetBySearchString(searchString); //filterar bækur
+            if(booksFound == null)
+            {
+                return View("NotFound");
+            }
             return View(booksFound.ToList());
         }
         public IActionResult Details(int? id) //Nær í details fyrir eina bók með id
@@ -45,6 +52,7 @@ namespace BookCave.Controllers
             return View(book);
         }
         
+        [HttpGet]
         public IActionResult Top10()
         {
             var top10 = _bookServices.TopRatedBooks();

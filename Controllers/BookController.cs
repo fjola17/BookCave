@@ -29,11 +29,7 @@ namespace BookCave.Controllers
                 return View(books);
             }
             var booksFound = _bookServices.GetBySearchString(searchString); //filterar bækur
-            if(booksFound == null)
-            {
-                return View("NotFound");
-            }
-            return View(booksFound);
+            return View(booksFound.ToList());
         }
         public IActionResult Details(int? id) //Nær í details fyrir eina bók með id
         {

@@ -36,12 +36,30 @@ body {
 {
   overflow: hidden;
 }
+#profileInfo
+{
+  margin-left: 280px;
+  padding-right: 120px;
+  
+}
 .bookTitle{
   max-width: 160px;
 }
 .profile
 {
-  margin-left: 100px;;
+  float: left;
+  margin-left: 150px;
+  padding: 20px 70px 175px 40px ;
+  
+}
+#profileIMG
+{
+  margin-right: 100px;
+  margin-bottom: 100px;
+}
+#Floating
+{
+  padding-right: 30px;
 }
 .content
 {

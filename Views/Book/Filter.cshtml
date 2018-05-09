@@ -1,7 +1,7 @@
 @model List<BookCave.Models.ViewModels.BookViewModel>
 
     <h1 class="filterHead">@Model[0].Genre</h1>
-    <div class="searchItem borderClass">
+    <div class="searchItem borderClass Moving">
     @foreach (var books in Model)
     {
         <li> 

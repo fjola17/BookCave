@@ -4,10 +4,10 @@
 @foreach (var books in Model)
 {
        <li> 
-            <p class="book-image"><img src="@books.CoverImage" alt="book image" height="350" width="auto"><br>
+            <p class="book-image"><img src="@books.CoverImage" alt="book image" height="300" width="210"><br>
             Title: <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">@books.Title</a><br>
             Price: @books.Price</p>
-            <button class="btn cart">Add to cart</button>
+            
         </li>
 }
 </div>

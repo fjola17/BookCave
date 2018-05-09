@@ -28,6 +28,7 @@ namespace BookCave.Repositories
                                     }).ToList();
             return ordersFromOwner;
         }
+        /* 
          public OrderDetailsViewModel GetById(int? id)
         {
             var aOrder = (from ord in _db.Orders
@@ -60,26 +61,16 @@ namespace BookCave.Repositories
            
             return aOrder;
         }
-
-<<<<<<< HEAD
-        /*public void ClearCart(CartViewModel cart)
-=======
+        */
        /* public void ClearCart(CartViewModel cart)
->>>>>>> 1b3e75ba30f922011ea4e06c2575913dbddb616f
         {
             //hreynsar allt út úr körfunni
             if(cart == null)
             {
                 return;
             }
-<<<<<<< HEAD
-           
-        }*/ 
-
-=======
         }
         */
->>>>>>> 1b3e75ba30f922011ea4e06c2575913dbddb616f
         public bool DeleteById(int orderId)
         {
             //eftir að útfæra
@@ -117,6 +108,7 @@ namespace BookCave.Repositories
             return cart;
 
         }*/
+        /* 
         public bool AddToCart(int id)
         {  
             var itemincart = (from it in _db.Orders
@@ -129,6 +121,7 @@ namespace BookCave.Repositories
 
             }
             return true;
-        }*/
+        }
+        */
     }
 }

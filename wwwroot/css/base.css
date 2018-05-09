@@ -31,32 +31,13 @@ body {
 {
   display: inline-block;
 }
-<<<<<<< HEAD
-=======
 .profile img
 {
   float: left;
 }
->>>>>>> 1b3e75ba30f922011ea4e06c2575913dbddb616f
 .input-group-btn button
 {
   padding: 10px 14px 9px 10px;
-}
-.header
-{
-  left: 0;
-  top: 0;
-  right: 0;
-  background-color: rgba(5, 190, 5, 0.26);
-  padding-bottom: 20px;
-  border-bottom: 1px solid black;
-}
-
-.header ul
-{
-  padding-bottom: -125px;
-  padding-left: 20px;
-
 }
 #log
 {
@@ -114,8 +95,12 @@ body {
 }
 .searchItem
 {
-  margin-left: 60px;
+  margin-left: 120px;
   padding-bottom: 30px;
+}
+.searchItem h1
+{
+  margin-left: 450px;
 }
 .searchItem li
 {
@@ -173,13 +158,25 @@ td
   
   padding-top: 100px;
 }
-h1
-{
-  margin-left: 20px;
-}
 .nav 
 {
   font-size: 20px;
+}
+.header
+{
+  left: 0;
+  top: 0;
+  right: 0;
+  background-color: rgba(5, 190, 5, 0.26);
+  padding-bottom: 20px;
+  border-bottom: 1px solid black;
+}
+
+.header ul
+{
+  padding-bottom: -125px;
+  padding-left: 20px;
+
 }
 /*Footer*/
 #footer-Section

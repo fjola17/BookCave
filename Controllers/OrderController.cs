@@ -24,7 +24,7 @@ namespace BookCave.Controllers
             
             return View(allOrderFromusers.ToList());
         }
-
+        /* 
         public IActionResult Details(int? id)
         { 
             if(id == null)
@@ -38,7 +38,7 @@ namespace BookCave.Controllers
             }
             return View(orders);
         }
-
+        */
         [HttpDelete] //veit ekki hvort þetta eigi að vera hér
         public IActionResult Delete(int ISBN)
         {
@@ -52,11 +52,7 @@ namespace BookCave.Controllers
             var buybooks = _orderServices.Buy(bookTobuy);
             return View();
         }
-<<<<<<< HEAD
-       /* [HttpPost]
-=======
         /*[HttpPost]
->>>>>>> 1b3e75ba30f922011ea4e06c2575913dbddb616f
         public IActionResult AddToCart(int bookAdded)
         {
             if(!ModelState.IsValid)
@@ -72,13 +68,8 @@ namespace BookCave.Controllers
             //er bara að skoða körfu
             return View();
         }
-<<<<<<< HEAD
-        */
-
-=======
 
 */
->>>>>>> 1b3e75ba30f922011ea4e06c2575913dbddb616f
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

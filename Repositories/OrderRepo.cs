@@ -6,13 +6,14 @@ using BookCave.Models.ViewModels;
 using BookCave.Data;
 using Microsoft.AspNetCore.Identity;
 using BookCave.Models;
+using System.Security.Claims;
+using System;
 
 namespace BookCave.Repositories
 {
     public class OrderRepo
     {
         private DataContext _db ;
-
         public OrderRepo() 
         {
             _db = new DataContext();
@@ -30,106 +31,118 @@ namespace BookCave.Repositories
                                     }).ToList();
             return ordersFromOwner;
         }
-        /* 
+         
          public OrderDetailsViewModel GetById(int? id)
         {
             var aOrder = (from ord in _db.Orders
                         where ord.OrderId == id 
                         //líkleg join hér sem á eftir að útfæra
-                        join cob in _db.BookInCarts on ord.OrderId equals cob.CartId
-                        join bk in _db.Books on cob.BookId equals bk.Id
+                        
                         select new OrderDetailsViewModel() //Hér eiga allar bækurnar að koma upp
                         {
-                            OwnerId = ord.OwnerId,
+                            UserId = ord.UserId,
                             OrderId = ord.OrderId,
                             Paid = ord.Paid,
                             TotalPrice = ord.TotalPrice
-                        }).SingleOrDefault();
+                        }).FirstOrDefault();
             var booksInorder = (from bks in _db.Books
-                                
-                                select new BookViewModel
+                                join cob in _db.BooksInCarts on bks.Id equals cob.BookId
+                        join bk in _db.Orders on cob.OrderId equals bk.Id
+                                select new BookCartViewModel
                                 {
                                     Title = bks.Title,
-                                    PublishingYear = bks.PublishingYear,
-                                    Description = bks.Description,
-                                    Genre = bks.Genre,
-                                    Rating = bks.Rating,
-                                    Price = bks.Price,
-                                    Formats = bks.Formats,
-                                    AudioSample = bks.AudioSample,
                                     CoverImage = bks.CoverImage
                                 }).ToList();
-            //virkar öruglega ekki því það vantar tengingu við gagnagrunn
            
             return aOrder;
         }
-        */
-       /* public void ClearCart(CartViewModel cart)
+        
+        public void ClearCart(Order cart)
         {
             //hreynsar allt út úr körfunni
             if(cart == null)
             {
                 return;
             }
+            cart = new Order
+            {
+                OrderId = cart.OrderId,
+                Paid = false,
+            };
+            _db.Update(cart);
+            _db.SaveChanges();
         }
         
-        public bool DeleteById(int? orderId)
+        public bool DeleteById(int? bookId)
         {
-            if(orderId == null)
+            if(bookId == null)
             {
                 return false;
             }
-            int cartId = GetCart();
             //leita af bókinni 
-            var bookTodelete = (from bks in _db.BookInCarts
-                                where bks.Id == orderId
+            var bookTodelete = (from bks in _db.BooksInCarts
+                                where bks.Id == bookId
                                 select bks).SingleOrDefault();
-            _db.BookInCarts.Remove(bookTodelete);
+            _db.BooksInCarts.Remove(bookTodelete);
             _db.SaveChanges();
             return true;
             
         }
-      */  
+       
         public bool Buy(OrderViewModel owm)
         {
             return true;
         }
-       /* public OrderDetailsViewModel Cart()
+        public OrderDetailsViewModel Cart(string userId)
         {
+            var cartId = GetCart(userId);
             var cart = (from ca in _db.Orders
-            select new OrderDetailsViewModel
-            {
-                OrderId = ca.OrderId,
-                OwnerId = ca.OwnerId,
-                Paid = ca.Paid
-            }).SingleOrDefault();
+                        where ca.OrderId == cartId.Id && ca.Paid == false
+                        select new OrderDetailsViewModel
+                        {
+                            Id = cartId.OrderId,
+                            UserId = ca.UserId,
+                            OrderId = ca.OrderId,
+                            Paid = ca.Paid,
+                            TotalPrice = ca.TotalPrice
+                        }).FirstOrDefault();
             var booksInCart = (from bks in _db.Books
-            join bksc in _db.BookInCarts on bks.Id equals bksc.BookId
-            join ord in _db.Orders on bksc.CartId equals ord.OrderId
+            join bksc in _db.BooksInCarts on bks.Id equals bksc.BookId
+            join ord in _db.Orders on bksc.OrderId equals ord.Id
             select new BookViewModel{
                 Title = bks.Title,
                 CoverImage = bks.CoverImage,
                 Price = bks.Price
             }).ToList();
-            var totalprice = 0.0;
-            foreach (var book in cart.BooksInOrder)
+            if(cart == null)
             {
-                totalprice += book.Price;
+                return cart;
             }
-            booksInCart = cart.BooksInOrder;
-            totalprice = cart.TotalPrice;
+            cart.BooksInOrder = booksInCart;
+
             return cart;
 
-        }*/
-        public bool AddToCart(int id)
+        }
+        public void AddToCart(int id, string userid)
         {  
-            int cartid = GetCart();
-            var itemincart = (from it in _db.Orders
-                            join bksc in _db.BooksInCarts on it.OrderId equals bksc.OrderId
-                            join bok in _db.Books on bksc.BookId equals bok.Id
-                            where it.Paid == false && id == bok.Id
-            select bksc).SingleOrDefault();
+            var cartId = GetCart(userid);
+            var itemincart = (from it in _db.BooksInCarts
+                          //  join bksc in _db.BooksInCarts on it.OrderId equals bksc.OrderId
+                         //   join bok in _db.Books on bksc.BookId equals bok.Id
+                            where it.OrderId == cartId.Id && id == it.BookId
+            select new BooksInCart
+            {
+                Id = it.Id,
+                BookId = it.BookId,
+                OrderId = it.OrderId,
+                UserId = it.UserId
+
+            }).FirstOrDefault();
             if(itemincart == null)
+            {
+                Console.WriteLine("Nothing was added");
+            }
+            if(itemincart.Id == 0)
             {
                //býr til nýjan tengistreng ef bókin er ekki í körfu
                itemincart = new BooksInCart
@@ -137,21 +150,47 @@ namespace BookCave.Repositories
                    BookId = id,
                    Quantity = 1,
                    UserId = itemincart.UserId,
-                   OrderId = itemincart.OrderId
-                   
+                   OrderId = itemincart.OrderId         
                };
                _db.BooksInCarts.Add(itemincart);
             }
             else
             {                
                 itemincart.Quantity++;
+                _db.BooksInCarts.Update(itemincart);
             }
             _db.SaveChanges();
-            return true;
         }
-        public int GetCart()
+        private Order GetCart(string id)
         {
-            return 1;
+            var cart = (from or in _db.Orders
+                        where or.UserId == id && or.Paid == false
+                        select new Order
+                        {
+                            OrderId = or.Id,
+                            UserId = or.UserId,
+                            TotalPrice = or.TotalPrice,
+                            Paid = or.Paid
+                        }).FirstOrDefault();
+            if(cart == null)
+            {
+                Console.WriteLine("Cart is null");
+                return null;
+            }
+            if(cart.OrderId == 0)
+            {
+                cart = new Order
+                {
+                    OrderId = 1,
+                    UserId = id,
+                    TotalPrice = 0,
+                    Paid = false
+                };
+                _db.Orders.Add(cart);
+                _db.SaveChanges();
+            }
+            return cart;
+        
         }
     }
 }

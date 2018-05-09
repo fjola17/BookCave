@@ -7,16 +7,21 @@ using Microsoft.AspNetCore.Mvc;
 using BookCave.Models.ViewModels;
 using BookCave.Repositories;
 using BookCave.Models;
-//using BookCave.Services
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookCave.Controllers
 {
     public class OrderController : Controller
     {
-        public OrderRepo _orderServices; 
-        public OrderController()
+        public OrderRepo _orderServices;
+         private readonly UserManager<ApplicationUser> _userManager;
+         private readonly SignInManager<ApplicationUser> _SignInManager;
+        public OrderController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
-            _orderServices = new OrderRepo();
+            _userManager = userManager;
+            _SignInManager = signInManager;
+            _orderServices = new OrderRepo();   
         }
         public IActionResult Index() //Displays all orders for a logged in user
         { 
@@ -38,7 +43,7 @@ namespace BookCave.Controllers
             }
             return View(orders);
         }
-/*
+*/
         
         public IActionResult Delete(int? ISBN)
         {
@@ -58,24 +63,37 @@ namespace BookCave.Controllers
             var buybooks = _orderServices.Buy(bookTobuy);
             return View();
         }
-        /*[HttpPost]
-        public void AddToCart(int bookAdded)
+        [Authorize]
+        [HttpPost]
+        public IActionResult AddToCart(int bookAdded)
         {
-            if(!ModelState.IsValid)
+            var userId = _userManager.GetUserId(User);
+            if(userId == null)
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("AccessDenied", "Account");
             }
-            _orderServices.AddToCart(bookAdded);
-            return RedirectToAction("Cart");
+            _orderServices.AddToCart(bookAdded, userId);
+            return RedirectToAction("Cart", "Account");
+
         }
+        [Authorize]
         public IActionResult Cart()
         {
-            var booksInCart = _orderServices.Cart();
-            //er bara að skoða körfu
-            return View();
+            if(!_SignInManager.IsSignedIn(User))
+            {
+                RedirectToAction("AccessDenied", "Account");
+            }         //er bara að skoða körfu
+            var userId = _userManager.GetUserId(User);
+            
+            var books = _orderServices.Cart(userId);
+            if(books == null)
+            {
+                return View("Error");
+            }
+            return View(books);
         }
 
-*/
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

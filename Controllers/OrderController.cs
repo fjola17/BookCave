@@ -38,12 +38,23 @@ namespace BookCave.Controllers
             }
             return View(orders);
         }
+<<<<<<< HEAD
         */
         [HttpDelete] //veit ekki hvort þetta eigi að vera hér
         public IActionResult Delete(int ISBN)
+=======
+/*
+        public IActionResult Delete(int? ISBN)
+>>>>>>> 7181e9681da57059165158acca2cd673c835765e
         {
-            //Þarf að útfæra betur, nota Ajax
-            return View();
+            //Þarf að útfæra betur
+            if(!ModelState.IsValid)
+            {
+                return Json("Book could not be deleted");
+            }
+            var itemToDelete = _orderServices.DeleteById(ISBN);
+            
+            return Json(itemToDelete);
         }
         [HttpGet]
         public IActionResult Buy(OrderViewModel bookTobuy)

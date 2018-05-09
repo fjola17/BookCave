@@ -59,5 +59,11 @@ namespace BookCave.Controllers
             return View(top10);
         }
 
+        public IActionResult Filter(string genre)
+        {
+            var filteredByGenre = _bookServices.GetByGenre(genre);
+            return View(filteredByGenre);
+        }
+
     }
 }

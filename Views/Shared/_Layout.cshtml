@@ -27,17 +27,17 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#FrontPage">BookCave</a>
+      <a class="navbar-brand" asp-controller="Home" asp-action="FrontPage">BookCave</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
+      <li class="active"><a asp-controller="Home" asp-action="FrontPage">Home</a></li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Filter<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Thriller</a></li>
-          <li><a href="#">Crime</a></li>
-          <li><a href="#">Sci-Fi</a></li>
-          <li><a href="#">Fantasy</a></li>
+          <li><a asp-controller="Book" asp-action="Filter" asp-route-genre="Thriller">Thriller</a></li>
+          <li><a asp-controller="Book" asp-action="Filter" asp-route-genre="Crime">Crime</a></li>
+          <li><a asp-controller="Book" asp-action="Filter" asp-route-genre="Sci-Fi">Sci-Fi</a></li>
+          <li><a asp-controller="Book" asp-action="Filter" asp-route-genre="Fantasy">Fantasy</a></li>
         </ul>
       </li>
       <li><a asp-controller="Book" asp-action="Top10">Top 10</a></li>
@@ -77,9 +77,9 @@
           <div class="footer-col-item">
             <h4>Reach Us</h4>
             <div class="item-contact"> 
-              <a id="footCon" href="#Contact">Contact</a> 
-              <a id="footAbo" href="#About">About</a> 
-              <a id="footAgg" href="#Info">Delivery info</a> 
+              <a id="footCon" asp-controller="Home" asp-action="Contact">Contact</a> 
+              <a id="footAbo" asp-controller="Home" asp-action="About">About</a> 
+              <a id="footAgg" asp-controller="Home" asp-action="ShippingInfo">Delivery info</a> 
             </div>
           </div>
         </div>

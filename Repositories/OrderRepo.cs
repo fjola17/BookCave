@@ -4,6 +4,8 @@ using System.Linq;
 using System.Diagnostics;
 using BookCave.Models.ViewModels;
 using BookCave.Data;
+using Microsoft.AspNetCore.Identity;
+using BookCave.Models;
 
 namespace BookCave.Repositories
 {
@@ -70,13 +72,24 @@ namespace BookCave.Repositories
                 return;
             }
         }
-        */
-        public bool DeleteById(int orderId)
-        {
-            //eftir að útfæra
-            return false;
-        }
         
+        public bool DeleteById(int? orderId)
+        {
+            if(orderId == null)
+            {
+                return false;
+            }
+            int cartId = GetCart();
+            //leita af bókinni 
+            var bookTodelete = (from bks in _db.BookInCarts
+                                where bks.Id == orderId
+                                select bks).SingleOrDefault();
+            _db.BookInCarts.Remove(bookTodelete);
+            _db.SaveChanges();
+            return true;
+            
+        }
+      */  
         public bool Buy(OrderViewModel owm)
         {
             return true;
@@ -108,20 +121,44 @@ namespace BookCave.Repositories
             return cart;
 
         }*/
+<<<<<<< HEAD
         /* 
+=======
+>>>>>>> 7181e9681da57059165158acca2cd673c835765e
         public bool AddToCart(int id)
         {  
+            int cartid = GetCart();
             var itemincart = (from it in _db.Orders
                             join bksc in _db.BookInCarts on it.OrderId equals bksc.CartId
                             join bok in _db.Books on bksc.BookId equals bok.Id
                             where it.Paid == false && id == bok.Id
-            select it).SingleOrDefault();
+            select bksc).SingleOrDefault();
             if(itemincart == null)
             {
-
+               //býr til nýjan tengistreng ef bókin er ekki í körfu
+               itemincart = new BookInCart
+               {
+                   BookId = id,
+                   OwnerId = itemincart.OwnerId,
+                   CartId = itemincart.CartId,
+                   CountOfBooks = 1
+               };
+               _db.BookInCarts.Add(itemincart);
             }
+            else
+            {
+                itemincart.CountOfBooks++;
+            }
+            _db.SaveChanges();
             return true;
         }
+<<<<<<< HEAD
         */
+=======
+        public int GetCart()
+        {
+            return 1;
+        }
+>>>>>>> 7181e9681da57059165158acca2cd673c835765e
     }
 }

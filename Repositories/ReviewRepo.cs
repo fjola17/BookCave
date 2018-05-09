@@ -30,7 +30,7 @@ namespace BookCave.Repositories
             
             return bookReviews;
         }
-        public List<ReviewViewModel> GetByOwnerId(int user) //Nær í review tengd þessum notanda
+        public List<ReviewViewModel> GetByOwnerId(string user) //Nær í review tengd þessum notanda
         {
             var ownerReviews = (from rv in _db.Reviews
                          where rv.UserId == user

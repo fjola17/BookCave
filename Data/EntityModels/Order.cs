@@ -7,7 +7,7 @@ namespace BookCave.Data.EntityModels
     {
         public int Id { get; set; }
         public int OrderId { get; set; }
-        public int UserId { get; set; } //vantar identity fyrir order
+        public string UserId { get; set; } //vantar identity fyrir order
         public bool Paid { get; set; }
         public double TotalPrice { get; set; }
     }

@@ -4,7 +4,7 @@ namespace BookCave.Data.EntityModels
     public class ShippingInfo
     {
         public int Id { get; set; }
-        public string UserName { get; set; }
+        public string UserId { get; set; }
         public int OrderId { get; set; }
         public string FullName { get; set; }
         public string Country { get; set; }

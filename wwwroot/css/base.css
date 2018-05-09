@@ -14,6 +14,17 @@ body {
   border-width: 5px;
   background-color: rgb(199, 194, 194, 0.6);
 }
+.margBottom{
+  margin-bottom: 350px;
+  margin-left: 400px;
+  margin-right: 400px;
+}
+.information
+{
+  margin-left: 400px;
+  margin-right: 400px;
+  margin-bottom: 200px;
+}
 .genreItem
 {
   display: inline
@@ -162,7 +173,15 @@ body {
 }
 .addressInfo1
 {
-  float: left;
+  display: grid;
+  margin-left: 700px;
+  padding-right: 400px;
+
+}
+.aboutSite
+{S
+  margin-left: 40px;
+  margin-right: 40px;
 }
 .contactInfo
 {
@@ -172,7 +191,7 @@ body {
 }
 #Message
 {
-  margin-right: 3000px;
+  margin-right: 300px;
   width: 350px;
   height: 300px;
 }

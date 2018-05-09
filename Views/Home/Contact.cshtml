@@ -1,22 +1,26 @@
 ﻿@{
     ViewData["Title"] = "Contact Information";
 }
-<address>
-    Book Cave<br />
-    Menntavegur 1<br />
-    <abbr title="Phone">P:</abbr>
-    456.7890
-</address>
+<div class="contactInfo">
+    <div class="addressInfo2">
+        <address>
+            <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
+            <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+        </address>
+        <h3>If you need to contact an admin directly about any problems you have with this website</h3>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
-
-<!--Ef notandi er skráður inn á hann að geta gert þetta-->
-<h3>If you need to contact an admin directly about any problems you have with this website</h3>
-
-<form asp-action="Contact" asp-controller="Home">
-    <textarea id="Message" placeholder="Enter your message here" class="form-control"></textarea>
-    <button class="btn" type="submit">Submit!!</button>
-</form>
+        <form asp-action="Contact" asp-controller="Home">
+            <textarea id="Message" placeholder="Enter your message here" class="form-control"></textarea>
+            <button class="btn" type="submit">Submit!!</button>
+        </form>
+    </div>
+    <div class="addressInfo1">
+        <address>
+            Book Cave<br />
+            Menntavegur 1<br />
+            <abbr title="Phone">P:</abbr>
+            456.7890
+        </address>
+    </div>
+    
+</div>

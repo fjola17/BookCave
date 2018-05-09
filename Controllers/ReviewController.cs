@@ -14,7 +14,7 @@ namespace BookCave.Controllers
     public class ReviewController : Controller
     {
         private ReviewRepo _reviewServices;
-        ReviewController()
+       public ReviewController()
         {
             _reviewServices = new ReviewRepo();
         }
@@ -41,11 +41,11 @@ namespace BookCave.Controllers
             if(!ModelState.IsValid)
             {
                 ViewData["ErrorMessage"] = "Failed to create review";
-                return View("Details", "Book");
+                return RedirectToAction("Details", "Book");
             }
             var newReview = _reviewServices.Create(review);
             ViewData["SucessMessage"] = "Review was created sucessfully!!";
-            return View("Details", "Book");
+            return RedirectToAction("Details", "Book");
         }
     }
 }

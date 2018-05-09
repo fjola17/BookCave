@@ -6,10 +6,25 @@ body {
 .background
 {
   
-  background-image: url(https://lh3.googleusercontent.com/nGBDoKt7Cg9zEgG_QOs2_apFJ4JVETf19JUAZTGBygVyqEfqrLBP9T1gpNMY22uN5HueL_MncffH-AAdVxY9yn2xQ3IySOSQLsY8FFwPb7W3lHw1KA44RJAFscgP61cHCZU83qMecWT-JQThHWnkP_6LGTr5jeMwmhRGQy1YGjn5JQFrEHtnPd41_CG7fesm2yGLU3nwaedH3_uEL3VarAu4ttoV8O48S4kXoBqQiqMPTNIz1pfQppT2Q_c9ocX5H0LmRUhMCOJdExGIki0ivU3pcT3XBZNMUamAlWZ8DOUDGr6moHxm5YO4H6GEmA07rs4iEAJ337C5okkYkPTg07xCtVTrCjiOmS_o9ItcSUu89ywejAgtc8lC0XkOFRhowuBJlgLbAQjO-8xr2caskPZcZdlqUBoihrTCx-zZdSu8JhUjQHkkw-PHj9fKUOWeiRo4ppRRH6LuQd3ILdXLWUjzaghL6GF0P1HonCY6jv9n4dVT2tUbW1E2derIq65zEx1oBIS7fasGUxxQIpJnwLq-3TvUAskdpzbNj8UIPvbXNfSn_rTwzpcWl3ShzbnWzBJQ-f1YV-m13mLptcjY0i4i-4Mh2mH16gKLW6Y=w284-h220-no);
+  background-image: url(https://scontent-arn2-1.xx.fbcdn.net/v/t1.15752-9/31947046_10210899971925494_8416890290924683264_n.png?_nc_cat=0&oh=1dfd8d160787f9e9c33d659f06a1e789&oe=5B909CF3);
   background-position: center;
-  background-size: cover;
+  background-size: fill;
   background-repeat: no-repeat;
+}
+.borderClass
+{
+  border-style: ridge;
+  border-color: blue;
+  border-width: 5px;
+  background-color: rgb(199, 194, 194, 0.6);
+}
+.genreItem
+{
+  display: inline
+}
+.filterHead
+{
+  margin-left: 850px;
 }
 #newBooks
 {
@@ -50,7 +65,6 @@ body {
 }
 #head-details
 {
-  border: 4px solid black;
   padding: 30px;
   padding-left: 40px;
   padding-bottom: 200px;
@@ -104,6 +118,10 @@ body {
   border-left: 1px solid whitesmoke;
   margin-bottom: 30px;
 }
+#Front h1
+{
+  margin-left: 360px;
+}
 .searchItem
 {
   border-style: ridge;
@@ -114,9 +132,21 @@ body {
   margin-right: 91px;
   padding-bottom: 30px;
 }
-#Front h1
+.addressInfo1
 {
-  margin-left: 360px;
+  float: left;
+}
+.contactInfo
+{
+  margin-bottom: 200px;
+  padding-left: 100px;
+  padding-right: 1000px;
+}
+#Message
+{
+  margin-right: 3000px;
+  width: 350px;
+  height: 300px;
 }
 .searchItem h1
 {
@@ -125,8 +155,10 @@ body {
 .searchItem li
 {
   display: inline-block;
+  border-left: 1px solid whitesmoke;
+  margin-bottom: 30px;
   list-style-type: none;
-  padding: 20px;
+  padding: 30px;
 }
 #description
 {

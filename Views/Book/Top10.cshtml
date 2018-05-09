@@ -7,7 +7,7 @@
        <li> 
             <p class="book-image"><img src="@books.CoverImage" alt="book image" height="350" width="auto"><br>
             <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id"><strong>@books.Title</strong></a><br>
-            Price($): @books.Price<br>
+            Price: $@books.Price<br>
             Ratings: @books.Rating</p>
             <button class="btn cart">Add to cart</button>
         </li>

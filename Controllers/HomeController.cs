@@ -27,12 +27,13 @@ namespace BookCave.Controllers
         {
             return View();
         }
-        [HttpPost]
+       /* [HttpPost]
         public IActionResult Contact(FeedbackInputModel feedback)
         {
             _bookServices.SendFeedback(feedback);
             return RedirectToAction("FrontPage");
         }
+        */
         public IActionResult About()
         {
             return View();

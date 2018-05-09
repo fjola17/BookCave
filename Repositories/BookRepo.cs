@@ -126,8 +126,6 @@ namespace BookCave.Repositories
                    join bks in _db.Books on rw.BookId equals bks.Id
                    select new ReviewViewModel
                    {
-                       OwnerId = rw.OwnerId, //current user
-                       BookId = rw.BookId, //current bók
                        ActualReview = rw.ActualReview,
                        Rating = rw.Rating
 

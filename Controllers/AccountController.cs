@@ -121,7 +121,7 @@ namespace BookCave.Controllers
                 return View("Profile");
             }
 
-            ApplicationUser user = _userManager.FindByNameAsync(User.Identity.Name).Result;
+            ApplicationUser user =  _userManager.FindByNameAsync(User.Identity.Name).Result;
             
 
             if(updatedProfile.FirstName != null || updatedProfile.LastName != null) //Passar að þessi eigindi séu ekki tóm

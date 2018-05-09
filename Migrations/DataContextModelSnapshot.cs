@@ -50,22 +50,22 @@ namespace BookCave.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("BookCave.Data.EntityModels.BookInCart", b =>
+            modelBuilder.Entity("BookCave.Data.EntityModels.BooksInCart", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("BookId");
 
-                    b.Property<int>("CartId");
+                    b.Property<int>("OrderId");
 
-                    b.Property<int>("CountOfBooks");
+                    b.Property<int>("Quantity");
 
-                    b.Property<int>("OwnerId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
-                    b.ToTable("BookInCarts");
+                    b.ToTable("BooksInCarts");
                 });
 
             modelBuilder.Entity("BookCave.Data.EntityModels.Order", b =>
@@ -75,11 +75,11 @@ namespace BookCave.Migrations
 
                     b.Property<int>("OrderId");
 
-                    b.Property<int>("OwnerId");
-
                     b.Property<bool>("Paid");
 
                     b.Property<double>("TotalPrice");
+
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
@@ -95,13 +95,39 @@ namespace BookCave.Migrations
 
                     b.Property<int>("BookId");
 
-                    b.Property<int>("OwnerId");
-
                     b.Property<int>("Rating");
+
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
                     b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("BookCave.Data.EntityModels.ShippingInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Adress");
+
+                    b.Property<string>("City");
+
+                    b.Property<string>("Country");
+
+                    b.Property<string>("FullName");
+
+                    b.Property<int>("OrderId");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<string>("UserId");
+
+                    b.Property<string>("Zipcode");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ShippingInfos");
                 });
 #pragma warning restore 612, 618
         }

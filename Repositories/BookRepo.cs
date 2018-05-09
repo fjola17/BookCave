@@ -5,6 +5,7 @@ using System.Diagnostics;
 using BookCave.Data;
 using BookCave.Models.ViewModels;
 
+
 namespace BookCave.Repositories
 {
     public class BookRepo
@@ -17,7 +18,7 @@ namespace BookCave.Repositories
             _db = new DataContext();
         }
 
-        public List<BookViewModel> GetNewestBooks()
+ public List<BookViewModel> GetNewestBooks()
         {
             var bookList = (from bo in _db.Books
                             orderby bo.Id descending
@@ -126,7 +127,7 @@ namespace BookCave.Repositories
                    join bks in _db.Books on rw.BookId equals bks.Id
                    select new ReviewViewModel
                    {
-                       OwnerId = rw.OwnerId, //current user
+                       UserId = rw.UserId, //current user
                        BookId = rw.BookId, //current bók
                        ActualReview = rw.ActualReview,
                        Rating = rw.Rating
@@ -143,7 +144,7 @@ namespace BookCave.Repositories
         public List<BookViewModel> TopRatedBooks()
         {
             var bookList = (from bo in _db.Books
-                            orderby bo.Rating descending
+                            orderby bo.Rating ascending
                             select new BookViewModel
                             {
                                 Id = bo.Id,
@@ -161,7 +162,15 @@ namespace BookCave.Repositories
             return bookList;
         }
 
-
+        /*public void SendFeedback(FeedbackInputModel feedback)
+        {
+         //   var currentUser = 
+            var feed = new Feedback
+            {
+                UserName = feedback.UserName,
+                Message = feedback.Message
+            };
+        }*/
 
         public bool Update(int bookId)
         {

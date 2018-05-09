@@ -14,7 +14,11 @@ namespace BookCave.Controllers
     public class ReviewController : Controller
     {
         private ReviewRepo _reviewServices;
+<<<<<<< HEAD
        public ReviewController()
+=======
+        public ReviewController()
+>>>>>>> 09b70946aa863c237674e6614ba15430be5c73ee
         {
             _reviewServices = new ReviewRepo();
         }
@@ -24,7 +28,7 @@ namespace BookCave.Controllers
             var reviewsByBookId = _reviewServices.GetByBookId(bookId);
             return View(reviewsByBookId);
         }
-        public IActionResult UserReviews(int ownerId) //Nær í review eftir notanda
+        public IActionResult UserReviews(string ownerId) //Nær í review eftir notanda
         {
             var reviewsByOwnerId = _reviewServices.GetByOwnerId(ownerId);
             return View(reviewsByOwnerId);

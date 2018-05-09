@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Identity;
+
 namespace BookCave.Models.ViewModels
 {
     //Þarf kanski að skoða pínu betur

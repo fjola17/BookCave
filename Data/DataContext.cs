@@ -9,7 +9,7 @@ namespace BookCave.Data
         public DbSet<Book> Books{ get; set; }
         public DbSet<Review> Reviews{ get; set; }
         public DbSet<Order> Orders{ get; set; }
-        public DbSet<BookInCart> BookInCarts{ get; set; }
+        public DbSet<BooksInCart> BooksInCarts{ get; set; }
         public DbSet<ShippingInfo> ShippingInfos { get; set; }
       
 

@@ -143,7 +143,7 @@ namespace BookCave.Repositories
         public List<BookViewModel> TopRatedBooks()
         {
             var bookList = (from bo in _db.Books
-                            orderby bo.Rating 
+                            orderby bo.Rating descending
                             select new BookViewModel
                             {
                                 Id = bo.Id,

@@ -59,7 +59,7 @@ namespace BookCave.Controllers
             return View(top10);
         }
 
-        public IActionResult Filter(string genre)
+        public IActionResult Filter(string genre) //Filter-ar bækur eftir genre
         {
             var filteredByGenre = _bookServices.GetByGenre(genre);
             return View(filteredByGenre);

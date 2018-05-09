@@ -72,8 +72,9 @@ namespace BookCave.Controllers
             {
                 return RedirectToAction("AccessDenied", "Account");
             }
-            _orderServices.AddToCart(bookAdded, userId);
-            return RedirectToAction("Cart", "Account");
+            var cart =_orderServices.GetCart(userId);
+            _orderServices.AddToCart(bookAdded, userId, cart);
+            return RedirectToAction("Cart", "Order");
 
         }
         [Authorize]
@@ -84,12 +85,12 @@ namespace BookCave.Controllers
                 RedirectToAction("AccessDenied", "Account");
             }         //er bara að skoða körfu
             var userId = _userManager.GetUserId(User);
-            
-            var books = _orderServices.Cart(userId);
-            if(books == null)
+            var cart = _orderServices.GetCart(userId); //finn / bý til cart áður en ég fer inn
+            if(cart == null)
             {
-                return View("Error");
+                return View();
             }
+            var books = _orderServices.Cart(userId, cart);
             return View(books);
         }
 

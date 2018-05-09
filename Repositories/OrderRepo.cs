@@ -79,10 +79,17 @@ namespace BookCave.Repositories
             {
                 return false;
             }
-            //leita af bókinni 
+            //leita af bókinni í gagnagrunninum
             var bookTodelete = (from bks in _db.BooksInCarts
                                 where bks.Id == bookId
-                                select bks).SingleOrDefault();
+                                select new BooksInCart
+                                {
+                                    Id = bks.Id,
+                                    BookId = bks.Id,
+                                    Quantity = bks.Quantity,
+                                    OrderId = bks.Id,
+                                    UserId = bks.UserId
+                                }).FirstOrDefault();
             _db.BooksInCarts.Remove(bookTodelete);
             _db.SaveChanges();
             return true;
@@ -93,11 +100,10 @@ namespace BookCave.Repositories
         {
             return true;
         }
-        public OrderDetailsViewModel Cart(string userId)
+        public OrderDetailsViewModel Cart(string userId, Order cartId)
         {
-            var cartId = GetCart(userId);
             var cart = (from ca in _db.Orders
-                        where ca.OrderId == cartId.Id && ca.Paid == false
+                        where ca.Id == cartId.Id && userId == ca.UserId
                         select new OrderDetailsViewModel
                         {
                             Id = cartId.OrderId,
@@ -107,13 +113,13 @@ namespace BookCave.Repositories
                             TotalPrice = ca.TotalPrice
                         }).FirstOrDefault();
             var booksInCart = (from bks in _db.Books
-            join bksc in _db.BooksInCarts on bks.Id equals bksc.BookId
-            join ord in _db.Orders on bksc.OrderId equals ord.Id
-            select new BookViewModel{
-                Title = bks.Title,
-                CoverImage = bks.CoverImage,
-                Price = bks.Price
-            }).ToList();
+                    join bksc in _db.BooksInCarts on bks.Id equals bksc.BookId
+                    join ord in _db.Orders on bksc.OrderId equals ord.Id
+                    select new BookViewModel{
+                        Title = bks.Title,
+                        CoverImage = bks.CoverImage,
+                        Price = bks.Price
+                    }).ToList();
             if(cart == null)
             {
                 return cart;
@@ -123,24 +129,24 @@ namespace BookCave.Repositories
             return cart;
 
         }
-        public void AddToCart(int id, string userid)
+        public void AddToCart(int id, string userId, Order cartId)
         {  
-            var cartId = GetCart(userid);
-            var itemincart = (from it in _db.BooksInCarts
-                          //  join bksc in _db.BooksInCarts on it.OrderId equals bksc.OrderId
-                         //   join bok in _db.Books on bksc.BookId equals bok.Id
-                            where it.OrderId == cartId.Id && id == it.BookId
+            var itemincart = (from it in _db.BooksInCarts              
+                            //join ord in _db.Orders on it.OrderId equals ord.Id
+                            where it.UserId == userId && id == it.BookId && cartId.Id == it.OrderId
             select new BooksInCart
             {
                 Id = it.Id,
                 BookId = it.BookId,
+                Quantity = it.Quantity,
                 OrderId = it.OrderId,
                 UserId = it.UserId
 
             }).FirstOrDefault();
             if(itemincart == null)
             {
-                Console.WriteLine("Nothing was added");
+                Console.WriteLine("Error");
+                return;
             }
             if(itemincart.Id == 0)
             {
@@ -148,9 +154,9 @@ namespace BookCave.Repositories
                itemincart = new BooksInCart
                {
                    BookId = id,
-                   Quantity = 1,
-                   UserId = itemincart.UserId,
-                   OrderId = itemincart.OrderId         
+                   Quantity = 1,    
+                   OrderId = itemincart.Id,
+                   UserId = userId,         
                };
                _db.BooksInCarts.Add(itemincart);
             }
@@ -161,7 +167,7 @@ namespace BookCave.Repositories
             }
             _db.SaveChanges();
         }
-        private Order GetCart(string id)
+        public Order GetCart(string id)
         {
             var cart = (from or in _db.Orders
                         where or.UserId == id && or.Paid == false
@@ -174,14 +180,12 @@ namespace BookCave.Repositories
                         }).FirstOrDefault();
             if(cart == null)
             {
-                Console.WriteLine("Cart is null");
-                return null;
+                Console.WriteLine("Error");
             }
-            if(cart.OrderId == 0)
+            else if(cart.Id == 0)
             {
                 cart = new Order
                 {
-                    OrderId = 1,
                     UserId = id,
                     TotalPrice = 0,
                     Paid = false
@@ -189,8 +193,10 @@ namespace BookCave.Repositories
                 _db.Orders.Add(cart);
                 _db.SaveChanges();
             }
-            return cart;
-        
+              
+                
+            return cart; 
+
         }
     }
 }

@@ -43,8 +43,8 @@
             <h3>Formats: @Model.Formats</h3> <!--öðruvísi format-->
             <h3>AudioSample: @Model.AudioSample</h3>
             <h3>Price: $@Model.Price</h3>
-            <form asp-action="Cart" asp-controller="Order">
-                <input type="hidden" value="@id">
+            <form asp-action="AddToCart" asp-controller="Order">
+                <input type="hidden" name="bookAdded" value="@id">
                 <button class="btn btn-default glyphicon glyphicon-shopping-cart">Add to Cart</button>
             </form>
         </div>

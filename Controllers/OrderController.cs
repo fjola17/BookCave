@@ -38,14 +38,9 @@ namespace BookCave.Controllers
             }
             return View(orders);
         }
-<<<<<<< HEAD
-        */
-        [HttpDelete] //veit ekki hvort þetta eigi að vera hér
-        public IActionResult Delete(int ISBN)
-=======
 /*
+        
         public IActionResult Delete(int? ISBN)
->>>>>>> 7181e9681da57059165158acca2cd673c835765e
         {
             //Þarf að útfæra betur
             if(!ModelState.IsValid)
@@ -64,7 +59,7 @@ namespace BookCave.Controllers
             return View();
         }
         /*[HttpPost]
-        public IActionResult AddToCart(int bookAdded)
+        public void AddToCart(int bookAdded)
         {
             if(!ModelState.IsValid)
             {

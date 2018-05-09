@@ -121,10 +121,6 @@ namespace BookCave.Repositories
             return cart;
 
         }*/
-<<<<<<< HEAD
-        /* 
-=======
->>>>>>> 7181e9681da57059165158acca2cd673c835765e
         public bool AddToCart(int id)
         {  
             int cartid = GetCart();
@@ -152,13 +148,9 @@ namespace BookCave.Repositories
             _db.SaveChanges();
             return true;
         }
-<<<<<<< HEAD
-        */
-=======
         public int GetCart()
         {
             return 1;
         }
->>>>>>> 7181e9681da57059165158acca2cd673c835765e
     }
 }

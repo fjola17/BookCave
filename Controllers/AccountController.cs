@@ -124,11 +124,11 @@ namespace BookCave.Controllers
             ApplicationUser user = _userManager.FindByNameAsync(User.Identity.Name).Result;
             
 
-            if(updatedProfile.FirstName != null || updatedProfile.LastName != null) //Passar að þessi eigindi séu ekki tóm
+            if(updatedProfile.Name != null) //Passar að þessi eigindi séu ekki tóm
             {
                 var claim = User.Claims.FirstOrDefault(c => c.Type == "Name"); //Nær í þetta claim
                 await _userManager.RemoveClaimAsync(user, claim); //Eyða gamla claim
-                await _userManager.AddClaimAsync(user, new Claim("Name", $"{updatedProfile.FirstName} {updatedProfile.LastName}")); //Búa til nýtt claim
+                await _userManager.AddClaimAsync(user, new Claim("Name", $"{updatedProfile.Name}")); //Búa til nýtt claim
             }
             if(updatedProfile.Address != null)
             {

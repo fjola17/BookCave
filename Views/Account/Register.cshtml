@@ -1,23 +1,8 @@
 @model BookCave.Models.ViewModels.RegisterViewModel
-<head>
-<link href="@Url.Content("~/css/base.css")" rel="stylesheet" type="text/css" />
 
-</head>
+<link href="@Url.Content("~/css/base.css")" rel="stylesheet" type="text/css" />
 <h1>Register</h1>
 <body class="background">
-<div id="terms-of-service">
-    <fieldset>
-        <legend>Terms of service</legend>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugiat erat molestie, suscipit justo ut, accumsan sem. Proin vitae luctus metus. Nullam accumsan, quam vitae aliquet lacinia, libero turpis finibus nibh, id rutrum nibh nisi a dui.
-            Etiam gravida sit amet lorem vitae vulputate. Duis id facilisis mauris. Quisque iaculis ligula est, sit amet aliquam enim iaculis sed. Nulla ultrices dictum nulla sed dictum. Integer et arcu quis velit tempus dapibus.
-            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi sagittis ipsum non diam viverra sagittis. Vestibulum mauris massa, viverra et ullamcorper sed, mattis eget nunc. Nam at porta lacus. 
-            Suspendisse hendrerit nec libero eget facilisis. Sed eu odio in sapien accumsan pulvinar. Vestibulum non lectus sed risus suscipit lacinia. Proin rutrum urna felis, eu interdum augue euismod sed. Quisque odio arcu, laoreet et neque quis, mattis tincidunt mauris.
-            Aliquam sed est tempor purus pulvinar consequat non vel neque. Maecenas fermentum est magna, in iaculis lorem euismod eu. Sed nec nulla nec urna consequat tincidunt sit amet quis augue. Vestibulum nunc enim, aliquet vitae tincidunt vel, porttitor nec lacus. 
-            Aenean elementum erat justo, in facilisis dolor varius sed. Phasellus ut purus eget mauris vulputate pharetra luctus non ante. Aenean vitae leo ac nisi tincidunt convallis. Aenean luctus porttitor luctus. Nulla mattis aliquam tincidunt.
-        </p>
-    </fieldset>
-</div>
 
 <div id="Register">
     <form class="border border-dark"  asp-action="Register" asp-controller="Account" class="form-horizontal">
@@ -115,11 +100,25 @@
                 </label>
              -->
             <div class="form-group">
-                <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+                <p>By creating an account you agree to our <strong>Terms of service</strong>.</p>
                 <button class="btn btn-default" type="submit">Register</button>
             </div>
         </fieldset>
     </form>
+</div>
+
+<div id="terms-of-service">
+    <fieldset>
+        <legend>Terms of service</legend>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugiat erat molestie, suscipit justo ut, accumsan sem. Proin vitae luctus metus. Nullam accumsan, quam vitae aliquet lacinia, libero turpis finibus nibh, id rutrum nibh nisi a dui.
+            Etiam gravida sit amet lorem vitae vulputate. Duis id facilisis mauris. Quisque iaculis ligula est, sit amet aliquam enim iaculis sed. Nulla ultrices dictum nulla sed dictum. Integer et arcu quis velit tempus dapibus.
+            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi sagittis ipsum non diam viverra sagittis. Vestibulum mauris massa, viverra et ullamcorper sed, mattis eget nunc. Nam at porta lacus. 
+            Suspendisse hendrerit nec libero eget facilisis. Sed eu odio in sapien accumsan pulvinar. Vestibulum non lectus sed risus suscipit lacinia. Proin rutrum urna felis, eu interdum augue euismod sed. Quisque odio arcu, laoreet et neque quis, mattis tincidunt mauris.
+            Aliquam sed est tempor purus pulvinar consequat non vel neque. Maecenas fermentum est magna, in iaculis lorem euismod eu. Sed nec nulla nec urna consequat tincidunt sit amet quis augue. Vestibulum nunc enim, aliquet vitae tincidunt vel, porttitor nec lacus. 
+            Aenean elementum erat justo, in facilisis dolor varius sed. Phasellus ut purus eget mauris vulputate pharetra luctus non ante. Aenean vitae leo ac nisi tincidunt convallis. Aenean luctus porttitor luctus. Nulla mattis aliquam tincidunt.
+        </p>
+    </fieldset>
 </div>
 </body>
 

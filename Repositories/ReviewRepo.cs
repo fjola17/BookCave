@@ -22,7 +22,7 @@ namespace BookCave.Repositories
                          select new ReviewViewModel
                         {
                             Id = rv.Id,
-                            OwnerId = rv.OwnerId,
+                            UserId = rv.UserId,
                             BookId = rv.BookId,
                             ActualReview = rv.ActualReview,
                             Rating = rv.Rating
@@ -30,14 +30,14 @@ namespace BookCave.Repositories
             
             return bookReviews;
         }
-        public List<ReviewViewModel> GetByOwnerId(int ownerId) //Nær í review tengd þessum notanda
+        public List<ReviewViewModel> GetByOwnerId(int user) //Nær í review tengd þessum notanda
         {
             var ownerReviews = (from rv in _db.Reviews
-                         where rv.OwnerId == ownerId
+                         where rv.UserId == user
                          select new ReviewViewModel
                         {
                             Id = rv.Id,
-                            OwnerId = rv.OwnerId,
+                            UserId = rv.UserId,
                             BookId = rv.BookId,
                             ActualReview = rv.ActualReview,
                             Rating = rv.Rating
@@ -52,7 +52,7 @@ namespace BookCave.Repositories
                           select new ReviewViewModel
                           {
                             Id = rv.Id,
-                            OwnerId = rv.OwnerId,
+                            UserId = rv.UserId,
                             BookId = rv.BookId,
                             ActualReview = rv.ActualReview,
                             Rating = rv.Rating
@@ -63,9 +63,9 @@ namespace BookCave.Repositories
         public bool Create(ReviewInputModel rv)
         {
             
-            var reviewToAdd = new Review()
+            var reviewToAdd = new Review
             {
-                OwnerId = rv.OwnerId,
+                UserId= rv.UserId,
                 BookId = rv.BookId,
                 ActualReview = rv.ActualReview,
                 Rating = rv.Rating

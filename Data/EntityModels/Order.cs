@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
 
 namespace BookCave.Data.EntityModels
 {
@@ -6,7 +7,7 @@ namespace BookCave.Data.EntityModels
     {
         public int Id { get; set; }
         public int OrderId { get; set; }
-        public int OwnerId { get; set; } //vantar identity fyrir order
+        public int UserId { get; set; } //vantar identity fyrir order
         public bool Paid { get; set; }
         public double TotalPrice { get; set; }
     }

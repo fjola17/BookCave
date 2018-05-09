@@ -14,7 +14,7 @@ namespace BookCave.Controllers
     public class ReviewController : Controller
     {
         private ReviewRepo _reviewServices;
-        ReviewController()
+        public ReviewController()
         {
             _reviewServices = new ReviewRepo();
         }

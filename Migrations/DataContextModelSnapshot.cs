@@ -50,7 +50,7 @@ namespace BookCave.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("BookCave.Data.EntityModels.BookInCart", b =>
+            modelBuilder.Entity("BookCave.Data.EntityModels.BooksInCart", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -59,13 +59,13 @@ namespace BookCave.Migrations
 
                     b.Property<int>("CartId");
 
-                    b.Property<int>("CountOfBooks");
-
                     b.Property<int>("OwnerId");
+
+                    b.Property<int>("Quantity");
 
                     b.HasKey("Id");
 
-                    b.ToTable("BookInCarts");
+                    b.ToTable("BooksInCarts");
                 });
 
             modelBuilder.Entity("BookCave.Data.EntityModels.Order", b =>
@@ -102,6 +102,32 @@ namespace BookCave.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("BookCave.Data.EntityModels.ShippingInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Adress");
+
+                    b.Property<string>("City");
+
+                    b.Property<string>("Country");
+
+                    b.Property<string>("FullName");
+
+                    b.Property<int>("OrderId");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<int>("UserId");
+
+                    b.Property<string>("Zipcode");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ShippingInfos");
                 });
 #pragma warning restore 612, 618
         }

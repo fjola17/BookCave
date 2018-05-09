@@ -24,7 +24,7 @@ namespace BookCave.Repositories
                                    orderby ord.OrderId
                                    select new OrderViewModel
                                    {
-                                      OwnerId = ord.OwnerId,
+                                    //  OwnerId = ord.OwnerId,
                                       Paid = ord.Paid,
                                       TotalPrice = ord.TotalPrice
                                     }).ToList();
@@ -125,25 +125,26 @@ namespace BookCave.Repositories
         {  
             int cartid = GetCart();
             var itemincart = (from it in _db.Orders
-                            join bksc in _db.BookInCarts on it.OrderId equals bksc.CartId
+                            join bksc in _db.BooksInCarts on it.OrderId equals bksc.OrderId
                             join bok in _db.Books on bksc.BookId equals bok.Id
                             where it.Paid == false && id == bok.Id
             select bksc).SingleOrDefault();
             if(itemincart == null)
             {
                //býr til nýjan tengistreng ef bókin er ekki í körfu
-               itemincart = new BookInCart
+               itemincart = new BooksInCart
                {
                    BookId = id,
-                   OwnerId = itemincart.OwnerId,
-                   CartId = itemincart.CartId,
-                   CountOfBooks = 1
+                   Quantity = 1,
+                   UserId = itemincart.UserId,
+                   OrderId = itemincart.OrderId
+                   
                };
-               _db.BookInCarts.Add(itemincart);
+               _db.BooksInCarts.Add(itemincart);
             }
             else
-            {
-                itemincart.CountOfBooks++;
+            {                
+                itemincart.Quantity++;
             }
             _db.SaveChanges();
             return true;

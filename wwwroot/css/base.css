@@ -5,7 +5,7 @@ body {
 }
 .background
 {
-  background-color: rgb(99, 99, 235);
+  background-color: rgba(99, 99, 235, 0.6);
 }
 .borderClass
 {
@@ -30,6 +30,10 @@ body {
   display: inline
 }
 .filterHead
+{
+  margin-left: 850px;
+}
+.loginTop
 {
   margin-left: 850px;
 }
@@ -84,14 +88,20 @@ body {
 {
   padding: 10px 14px 9px 10px;
 }
-#log
+.log
 {
   padding: 20px 20px 5px 20px;
   border-style: ridge;
   border-color: blue;
   border-width: 10px;
-  margin-bottom: 80px;
+  margin-bottom: 200px;
   margin-right: 400px;
+  margin-top: 100px;
+}
+.regInfo
+{
+  margin-left: 300px;
+  margin-right: 300px;
 }
 #head-details
 {
@@ -179,7 +189,7 @@ body {
 
 }
 .aboutSite
-{S
+{
   margin-left: 40px;
   margin-right: 40px;
 }
@@ -214,7 +224,7 @@ body {
 #terms-of-service
 {
   padding: 20px 40px 20px 20px;
- 
+  margin-top: 30px;
   margin-left: 20px;
   margin-right: 20px;
   border-style: ridge;
@@ -223,10 +233,9 @@ body {
 }
 #Register
 {
-  padding: 0 auto;
-  margin-left: 50px;
-  margin-right: 850px;
-  display: inline-block;
+  
+  margin-right: 400px;
+  padding-left: 50px;
 }
 .search-container button {
   float: right;

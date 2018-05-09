@@ -4,7 +4,7 @@ using System.Linq;
 using System.Diagnostics;
 using BookCave.Data;
 using BookCave.Models.ViewModels;
-
+using System;
 
 namespace BookCave.Repositories
 {
@@ -41,8 +41,10 @@ namespace BookCave.Repositories
 
         public List<BookViewModel> GetBookIndex()
         {
+            var rand = new Random();
+
             var bookList = (from bo in _db.Books
-                            orderby bo.Title
+                            orderby rand.Next()
                             select new BookViewModel
                             {
                                 Id = bo.Id,

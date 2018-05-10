@@ -7,16 +7,22 @@ using Microsoft.AspNetCore.Mvc;
 using BookCave.Models.ViewModels;
 using BookCave.Repositories;
 using BookCave.Models;
-//using BookCave.Services
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using BookCave.Models.InputModels;
 
 namespace BookCave.Controllers
 {
     public class OrderController : Controller
     {
-        public OrderRepo _orderServices; 
-        public OrderController()
+        public OrderRepo _orderServices;
+         private readonly UserManager<ApplicationUser> _userManager;
+         private readonly SignInManager<ApplicationUser> _SignInManager;
+        public OrderController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
-            _orderServices = new OrderRepo();
+            _userManager = userManager;
+            _SignInManager = signInManager;
+            _orderServices = new OrderRepo();   
         }
         public IActionResult Index() //Displays all orders for a logged in user
         { 
@@ -38,7 +44,7 @@ namespace BookCave.Controllers
             }
             return View(orders);
         }
-/*
+*/
         
         public IActionResult Delete(int? ISBN)
         {
@@ -58,27 +64,64 @@ namespace BookCave.Controllers
             var buybooks = _orderServices.Buy(bookTobuy);
             return View();
         }
-        /*[HttpPost]
-        public void AddToCart(int bookAdded)
+        [Authorize]
+        [HttpPost]
+        public IActionResult AddToCart(int bookAdded)
+        {
+            var userId = _userManager.GetUserId(User);
+            var cart =_orderServices.GetCart(userId);
+            //Ef karfan finnst ekki einhverra hluta vegna
+            if(cart == 0)
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
+            if(!_orderServices.AddToCart(bookAdded, userId, cart))
+            {
+                ViewBag.Title = "Error";
+                return RedirectToAction("Error");
+            }
+            ViewBag.Title = "Sucess!";
+            return RedirectToAction("Cart", "Order");
+
+        }
+        [Authorize]
+        public IActionResult Cart()
+        {
+                     //er bara að skoða körfu
+            var userId = _userManager.GetUserId(User);
+            var cart = _orderServices.GetCart(userId); //finn / bý til cart áður en ég fer inn
+            //karfa finnst ekki
+            if(cart == 0)
+            {
+                ViewBag.Title = "Error";
+                return View();
+            }
+            var books = _orderServices.Cart(userId, cart);
+            //bækur í körfu finnast ekki
+            if(books == null)
+            {
+                return View("Error");
+            }
+            return View(books);
+        }
+
+        [HttpGet]
+        public IActionResult Shipping()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Shipping(ShippingInfoInputModel shipping)
         {
             if(!ModelState.IsValid)
             {
-                return RedirectToAction("Login");
+                return View();
             }
-            _orderServices.AddToCart(bookAdded);
-            return RedirectToAction("Cart");
-        }
-        public IActionResult Cart()
-        {
-            var booksInCart = _orderServices.Cart();
-            //er bara að skoða körfu
-            return View();
-        }
-
-*/
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if(!_orderServices.ShippingInfo(shipping))
+            {
+                RedirectToAction("AccessDenied", "Account");
+            }
+            return RedirectToAction("Details");
         }
     }
 }

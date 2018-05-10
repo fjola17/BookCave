@@ -45,7 +45,7 @@ namespace BookCave
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
                 //login path
-                options.LoginPath = "/Accounts/Login";
+                options.LoginPath = "/Account/Login";
                 //ef má ekki vera loggaður inn
                 options.AccessDeniedPath = "/Account/AccessDenied";
                 options.SlidingExpiration = true;

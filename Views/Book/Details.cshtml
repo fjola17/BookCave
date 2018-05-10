@@ -24,7 +24,10 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </environment>
 </head>
-<body class="background">
+@{
+    var id = Model.Id;
+}
+    <body class="background">
     <div>
     <div id="head-details" class="borderClass fitting">
         <div id="imageFloat">
@@ -40,10 +43,13 @@
             <h3>Formats: @Model.Formats</h3> <!--öðruvísi format-->
             <h3>AudioSample: @Model.AudioSample</h3>
             <h3>Price: $@Model.Price</h3>
-            <button class="btn btn-default glyphicon glyphicon-shopping-cart">Add to Cart</button>
+            <form asp-action="AddToCart" asp-controller="Order">
+                <input type="hidden" name="bookAdded" value="@id">
+                <button class="btn btn-default glyphicon glyphicon-shopping-cart">Add to Cart</button>
+            </form>
         </div>
     </div>
-
+    
     <div id="reviewPart">
         @if(SignInManager.IsSignedIn(User))
         {

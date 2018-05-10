@@ -5,7 +5,7 @@
 @using BookCave.Models
 
 @inject SignInManager<ApplicationUser> SignInManager
-<div class="background">
+<div>
 @if(SignInManager.IsSignedIn(User))
 {
 
@@ -22,11 +22,11 @@
         <!-- Ef notandi hefur ekki sett inn mynd-->
         @if(image == string.Empty)  
         {
-            <img id="Floating" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png" alt="No pic" width="350" height="auto"/>
+            <img id="Floating" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png" alt="No pic"/>
         }
         else
         {
-            <img src="@image" alt="Profile pic" width="300" height="auto"/>
+            <img src="@image" alt="Profile pic"/>
         }
         <br>
         <div id="profileInfo">

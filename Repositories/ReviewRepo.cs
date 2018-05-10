@@ -68,19 +68,36 @@ namespace BookCave.Repositories
             return review;
         }
         [HttpPost]
-        public bool Create(ReviewInputModel rv)
+        public bool Create(ReviewInputModel rev)
         {
             
-            var reviewToAdd = new Review
+            var reviewToAdd = (from rv in _db.Reviews
+                                where rev.UserId == rv.UserId && rv.BookId == rev.BookId && rv.Id == rev.Id
+                                select new Review
+                                {
+                                    Id = rv.Id,
+                                    UserId= rv.UserId,
+                                    BookId = rv.BookId,
+                                    ActualReview = rv.ActualReview,
+                                    Rating = rv.Rating
+                                }).FirstOrDefault();
+            if (reviewToAdd == null)
             {
-                UserId= rv.UserId,
-                BookId = rv.BookId,
-                ActualReview = rv.ActualReview,
-                Rating = rv.Rating
-            };
+                reviewToAdd = new Review
+                {
+                    UserId= rev.UserId,
+                    BookId = rev.BookId,
+                    ActualReview = rev.ActualReview,
+                    Rating = rev.Rating
+                };
+                if(reviewToAdd == null)
+                {
+                    return false;
+                }
+            }
             
-            _db.Add(reviewToAdd);
-            _db.SaveChanges();
+   //         _db.Add(reviewToAdd);
+    //        _db.SaveChanges();
 
             return true;
         }

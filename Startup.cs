@@ -10,6 +10,7 @@ using BookCave.Data;
 using BookCave.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using BookCave.Services;
 
 namespace BookCave
 {
@@ -51,7 +52,7 @@ namespace BookCave
                 options.SlidingExpiration = true;
             });
 
-
+            services.AddTransient<ErrorService, OrderService>();
             services.AddMvc();
         }
 

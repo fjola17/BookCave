@@ -32,36 +32,20 @@ namespace BookCave.Repositories
                          where rv.BookId == bookId
                          select new ReviewViewModel
                         {
-<<<<<<< HEAD
-                            Id = rv.Id,
                             UserId = rv.UserId,
                             BookId = rv.BookId,
-=======
->>>>>>> ReviewFunc
                             ActualReview = rv.ActualReview,
-                            Rating = rv.Rating
                         }).ToList();
-            
             return bookReviews;
         }
-<<<<<<< HEAD
-        public List<ReviewViewModel> GetByOwnerId(string user) //Nær í review tengd þessum notanda
-        {
-            var ownerReviews = (from rv in _db.Reviews
-                         where rv.UserId == user
-                         select new ReviewViewModel
-                        {
-                            Id = rv.Id,
-                            UserId = rv.UserId,
-                            BookId = rv.BookId,
-=======
+
         public List<ReviewViewModel> GetByOwnerId(string ownerId) //Nær í review tengd þessum notanda
         {
             var ownerReviews = (from rv in _db.Reviews
                          where rv.UserId == ownerId
                          select new ReviewViewModel
                         {
->>>>>>> ReviewFunc
+
                             ActualReview = rv.ActualReview,
                             Rating = rv.Rating
                         }).ToList();
@@ -74,12 +58,9 @@ namespace BookCave.Repositories
                           where rv.Id == reviewId
                           select new ReviewViewModel
                           {
-<<<<<<< HEAD
                             Id = rv.Id,
                             UserId = rv.UserId,
                             BookId = rv.BookId,
-=======
->>>>>>> ReviewFunc
                             ActualReview = rv.ActualReview,
                             Rating = rv.Rating
                           }).SingleOrDefault();
@@ -92,11 +73,7 @@ namespace BookCave.Repositories
             
             var reviewToAdd = new Review
             {
-<<<<<<< HEAD
                 UserId= rv.UserId,
-=======
-                UserId = rv.UserId,
->>>>>>> ReviewFunc
                 BookId = rv.BookId,
                 ActualReview = rv.ActualReview,
                 Rating = rv.Rating

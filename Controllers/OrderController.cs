@@ -35,7 +35,7 @@ namespace BookCave.Controllers
          
         public IActionResult Details(int? id)
         { 
-            if(id == null)
+            if(ModelState.IsValid)
             {
                 return View("Error");
             }
@@ -53,11 +53,17 @@ namespace BookCave.Controllers
             //Þarf að útfæra betur
             if(!ModelState.IsValid)
             {
-                return Json("Book could not be deleted");
+                return View("NotFound");
             }
-            var itemToDelete = _orderServices.DeleteById(ISBN);
-            
-            return Json(itemToDelete);
+            var userId = _userManager.GetUserId(User);
+            var cart =_orderServices.GetCart(userId);
+            if(!_orderServices.DeleteById(ISBN, cart, userId))
+            {
+                ViewData["ErrorMessage"] ="Error";
+            }
+
+            return View("Cart");
+           // return Json(itemToDelete);
         }
         
         [HttpPost]

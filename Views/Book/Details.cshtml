@@ -10,8 +10,7 @@
 @{
     var id = Model.Id;
 }
-    <body class="background">
-    <div>
+    <div class="background">
     <div id="head-details" class="borderClass fitting">
         <div id="imageFloat">
             <h1>@Model.Title</h2>
@@ -36,9 +35,10 @@
     <div id="reviewPart">
         @if(SignInManager.IsSignedIn(User))
         {
+            var userId = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Id")?.Value;
             <!-- Ef notandi er skráður inn getur hann sett inn sitt review -->
             <div id="review-form">
-                <form asp-action="Create" asp-controller="Review">
+                <form >
                     <div class="form-group">
                         <label for="Rating">Rating: </label>
                         <input type="radio" asp-for="Rating" value="1">1
@@ -50,8 +50,14 @@
                     <div id="textPart" class="form-group">
                         <textarea class="form-control" rows="5" placeholder="enter your review here"></textarea>
                     </div>
+                    <div>
+                        <input id="BookId" type="hidden" value="@Model.Id">
+                    </div>
+                    <div>
+                    <input id="UserId" type="hidden" value="userId">
+                    </div>
                     <div class="form-group">
-                        <button class="btn" type="submit">Submit review</button>
+                        <button type="button" id="postReview" class="btn" >Submit review</button>
                     </div>
                 </form>
             </div>
@@ -72,4 +78,3 @@
         </div>
     </div>
     </div>
-</body>

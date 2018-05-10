@@ -1,5 +1,6 @@
 
 $("#postReview").click(function() {
+    debugger;
     var user = $.get("#UserId").val();
     var book = $.get("#BookId").val();
     var rating = $.get("input[name=Rating]:checked").val();

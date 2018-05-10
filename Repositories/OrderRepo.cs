@@ -55,6 +55,7 @@ namespace BookCave.Repositories
                                 }).ToList();
             if(aOrder == null)
             {
+                Console.WriteLine("OOPS");
                 return aOrder; //kasta villu??
             }
             aOrder.BooksInOrder = booksInorder;
@@ -72,13 +73,14 @@ namespace BookCave.Repositories
             cart = new Order
             {
                 OrderId = cart.OrderId,
-                Paid = false,
+                UserId = cart.UserId,
+                Paid = false
             };
             _db.Update(cart);
             _db.SaveChanges();
         }
         
-        public bool DeleteById(int? bookId)
+        public bool DeleteById(int? bookId, int cartId, string UserId)
         {
             if(bookId == null)
             {
@@ -86,7 +88,7 @@ namespace BookCave.Repositories
             }
             //leita af bókinni í gagnagrunninum
             var bookTodelete = (from bks in _db.BooksInCarts
-                                where bks.Id == bookId
+                                where bks.Id == bookId && UserId == bks.UserId && cartId == bks.OrderId
                                 select new BooksInCart
                                 {
                                     Id = bks.Id,
@@ -97,6 +99,7 @@ namespace BookCave.Repositories
                                 }).FirstOrDefault();
             if(bookTodelete == null)
             {
+                Console.WriteLine("Error");
                 return false;
             }
             _db.BooksInCarts.Remove(bookTodelete);
@@ -122,7 +125,9 @@ namespace BookCave.Repositories
                     where cartId == ord.Id && userId == bksc.UserId
                     select new BookCartViewModel
                     {
+                        Id = bksc.Id,
                         Title = bks.Title,
+                        BookId = bks.Id,
                         CoverImage = bks.CoverImage,
                         Price = bks.Price
                     }).ToList();

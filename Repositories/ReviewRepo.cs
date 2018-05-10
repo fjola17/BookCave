@@ -68,11 +68,11 @@ namespace BookCave.Repositories
             return review;
         }
         [HttpPost]
-        public bool Create(ReviewInputModel review, string userId)
+        public bool Create(Review review)
         {
             
             var reviewToAdd = (from rv in _db.Reviews
-                                where userId == rv.UserId && rv.BookId == review.BookId
+                                where review.UserId == rv.UserId && rv.BookId == review.BookId
                                 select new Review
                                 {
                                     Id = rv.Id,
@@ -85,7 +85,7 @@ namespace BookCave.Repositories
             {
                 reviewToAdd = new Review
                 {
-                    UserId= userId,
+                    UserId= review.UserId,
                     BookId = review.BookId,
                     ActualReview = review.ActualReview,
                     Rating = review.Rating

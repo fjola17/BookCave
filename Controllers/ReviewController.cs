@@ -9,6 +9,7 @@ using BookCave.Repositories;
 using BookCave.Models.InputModels;
 using Microsoft.AspNetCore.Identity;
 using BookCave.Models;
+using BookCave.Data.EntityModels;
 //using BookCave.Services
 
 namespace BookCave.Controllers
@@ -61,7 +62,9 @@ namespace BookCave.Controllers
                 return RedirectToAction("Details", "Book", review.BookId);
             }
             var userId = _userManager.GetUserId(User);
-            var newReview = _reviewServices.Create(review, userId);
+            var new_review = new Review() { UserId = userId, BookId = review.BookId, ActualReview = review.ActualReview};
+            
+            var newReview = _reviewServices.Create(new_review);
             ViewData["SucessMessage"] = "Review was created sucessfully!!";
             return RedirectToAction("Book","Details", new{id = review.BookId});
         }

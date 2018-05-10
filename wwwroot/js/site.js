@@ -7,7 +7,7 @@ $(document).ready(function(){
         var rating = $("input[name=Rating]:checked").val();
         var review = $("#textPart").val();
         var review = {BookId : book, Rating : rating, ActualReview : review };
-        $.post("Review/Create", review, function(data, status) {
+        $.post("../../Review/Create", review, function(data, status) {
             console.log("Success")
         }).fail(function(){
             alert("Something went wrong.");

@@ -1,17 +1,17 @@
 @model BookCave.Models.ViewModels.LoginViewModel
 
-<body class="background">
+<div class="background">
     <h1 class="loginTop">Login</h1>
     <div class="log margBottom borderClass">
         <form asp-action="Login" asp-controller="Account">
             <!--Username?-->
             <div class="form-group">
                 <input type="email" asp-for="Email" class="form-control" placeholder="Enter email"/>
-                <span asp-validation-for="Email"></span>
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="password" asp-for="Password" class="form-control" placeholder="Enter password"/>
-                <span asp-validation-for="Password"></span>
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Dont have an account? <a asp-action="Register" asp-controller="Account">Register here</a>
@@ -24,7 +24,7 @@
             </div>
         </form>
     </div>
-</body>
+</div>
 
 <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />

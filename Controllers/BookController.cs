@@ -33,6 +33,7 @@ namespace BookCave.Controllers
             //ef ekkert finnst
             if(booksFound.Count == 0)
             {
+                ViewBag.Search = searchString;
                 return View("NotFound");
             }
             return View(booksFound.ToList());

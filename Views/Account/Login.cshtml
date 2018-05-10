@@ -1,7 +1,7 @@
 @model BookCave.Models.ViewModels.LoginViewModel
 
 <body class="background">
-    <h1 class="loginTop">Login</h1>
+    <h1 class="loginTop background">Login</h1>
     <div class="log margBottom borderClass">
         <form asp-action="Login" asp-controller="Account">
             <!--Username?-->
@@ -25,14 +25,3 @@
         </form>
     </div>
 </body>
-
-<environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/base.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>

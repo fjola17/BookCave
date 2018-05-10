@@ -5,7 +5,12 @@ body {
 }
 #shopBtn
 {
-  padding-top: -59px;
+  padding-bottom: 69px;
+  margin-bottom: -100px;
+}
+#shopBtn a
+{
+  font-size: 20px;
 }
 .background
 {

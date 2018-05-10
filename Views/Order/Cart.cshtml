@@ -1,5 +1,6 @@
 @model BookCave.Models.ViewModels.OrderDetailsViewModel
 
+<div class="borderClass cartClass">
 <h1>Current items in cart</h2>
 <ul>
   
@@ -7,11 +8,16 @@
       <div class="container">
       
         <!--<h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4>-->
- 
+
     @foreach(var b in Model.BooksInOrder)
        {
-        <p> @b.Title @b.Price</p>
-        <button class="Something">Delete</button>
+        <li>
+          <p class="book-image"><img src="@b.CoverImage" alt="book image" height="300" width="210">
+          @b.Title @b.Price
+          <button class="Something">Delete</button></p>
+        </li>
+        
+        
         <!--<p><a href="#">Product 1</a> <span class="price">$15</span></p>
         <p><a href="#">Product 2</a> <span class="price">$5</span></p>
         <p><a href="#">Product 3</a> <span class="price">$8</span></p>
@@ -24,5 +30,7 @@
    
 
 <form asp-controller="Order" asp-action="Shipping">
-    <button type="submit">Process order</button>
+    <button class="btn" type="submit">Process order</button>
+    <button class="btn" type="back"><a asp-action="FrontPage" asp-controller="Home">Back</a></button>
 </form>
+</div>

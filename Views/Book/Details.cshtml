@@ -11,7 +11,7 @@
     var id = Model.Id;
 }
 
-<div>
+<div >
     <div id="head-details" class="borderClass fitting">
         <div id="imageFloat">
             <h1>@Model.Title</h2>
@@ -29,6 +29,7 @@
             <form asp-action="AddToCart" asp-controller="Order">
                 <input type="hidden" name="bookAdded" value="@id">
                 <button class="btn btn-default glyphicon glyphicon-shopping-cart">Add to Cart</button>
+                <button class="btn" type="back"><a asp-action="FrontPage" asp-controller="Home">Back</a></button>
             </form>
         </div>
     </div>

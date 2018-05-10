@@ -13,7 +13,11 @@ namespace BookCave.Controllers
 {
     public class ReviewController : Controller
     {
+<<<<<<< HEAD
         private ReviewRepo _reviewServices;
+=======
+        public ReviewRepo _reviewServices;
+>>>>>>> ReviewFunc
         public ReviewController()
         {
             _reviewServices = new ReviewRepo();
@@ -58,7 +62,11 @@ namespace BookCave.Controllers
             }
             var newReview = _reviewServices.Create(review);
             ViewData["SucessMessage"] = "Review was created sucessfully!!";
+<<<<<<< HEAD
             return RedirectToAction("Details", "Book");
+=======
+            return RedirectToAction("Book","Details", new{id = review.BookId});
+>>>>>>> ReviewFunc
         }
     }
 }

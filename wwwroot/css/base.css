@@ -141,6 +141,11 @@ body {
 {
   padding-bottom: 8px;
 }
+.margEdit
+{
+  margin-left: 400px;
+  margin-right: 400px;
+}
 .content h2
 {
   text-align: center;
@@ -161,6 +166,10 @@ body {
 #Front
 {
   margin-left: 80px;
+}
+#Front h1
+{
+  margin-left: 770px;
 }
 #Front li
 {
@@ -295,9 +304,18 @@ h1
   padding-left: 20px;
 
 }
+.cartClass
+{
+  padding-bottom: 400px;
+  margin-left: 400px;
+  margin-right: 400px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
 /*Footer*/
 #footer-Section
 {
+  margin-left: -100px;
   margin-top: 80px;
 }
 .footer-top-layout {

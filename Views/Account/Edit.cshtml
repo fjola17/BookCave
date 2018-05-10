@@ -5,7 +5,7 @@
 </head>
 
 
-<div id="Edit">
+<div class="borderClass margEdit">
     <form class="border border-dark"  asp-action="Edit" asp-controller="Account" class="form-horizontal">
         <fieldset>
             <legend>Edit user info</legend>
@@ -29,6 +29,7 @@
 
             <div class="form-group">
                 <button class="btn btn-primary" type="submit">Submit</button>
+                <button class="btn" type="back"><a asp-action="Profile" asp-controller="Account">Back</a></button>
             </div>
         </fieldset>
     </form>

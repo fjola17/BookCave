@@ -1,12 +1,4 @@
-body {
-  color: #1a4db9;
-  font-family: Helvetica;
-  line-height: 24px;
-}
-#shopBtn a
-{
-  font-size: 20px;
-}
+/* Class elements begin here */
 .background
 {
   background-color: rgba(99, 99, 235, 0.6);
@@ -18,14 +10,6 @@ body {
   border-width: 5px;
   background-color: rgb(199, 194, 194, 0.6);
 }
-.copyright-tag
-{
-  color: white;
-}
-#registerUp
-{
-  padding-bottom: 20px;
-}
 .margBottom
 {
   margin-bottom: 350px;
@@ -36,11 +20,12 @@ body {
 {
   margin-left: 50px;
 }
-.information
+.Information
 {
+  margin-top: 60px;
   margin-left: 400px;
   margin-right: 400px;
-  margin-bottom: 200px;
+  margin-bottom: 150px;
 }
 .genreItem
 {
@@ -59,48 +44,21 @@ body {
   margin-left: 80px;
   margin-right: 80px;
 }
-
-#newBooks
+.bookTitle
 {
-  margin-top: 30px;
-  padding-bottom: 50px;
-}
-#booklist
-{
-  overflow: hidden;
-}
-#profileInfo
-{
-  margin-left: 280px;
-  padding-right: 120px;
-  
-}
-.bookTitle{
   max-width: 160px;
 }
 .profile
 {
   float: left;
-  margin-left: 150px;
-  padding: 20px 70px 175px 40px ;
-  
-}
-#profileIMG
-{
-  margin-right: 100px;
-  margin-bottom: 100px;
-}
-#Floating
-{
-  padding-right: 30px;
-}
-.content
-{
-  display: inline-block;
+  margin-left: 50px;
+  padding: 20px 70px 131px 40px ;
 }
 .profile img
 {
   float: left;
+  height: 350px;
+  width: auto;
 }
 .input-group-btn button
 {
@@ -119,71 +77,13 @@ body {
   margin-left: 400px;
   margin-right: 400px;
 }
-#head-details
-{
-  padding: 30px;
-  padding-left: 40px;
-  padding-bottom: 200px;
-}
-#reviewPart
-{
-  margin-left: 700px;
-}
-#textPart
-{
-  margin-right: 800px;
-}
-#imageFloat
-{
-  float: left;
-  margin-bottom: -100px;
-  
-}
-
-#res
-{
-  padding-bottom: 2px;
-}
 .margEdit
 {
   margin: 80px 400px 150px 400px;
   padding: 40px 40px 30px 40px;
 }
-.content h2
-{
-  text-align: center;
-  position: relative;
-}
-.content ul
-{
-  display: inline-block;
-}
-.content li
-{
-  display: inline-block;
-  padding-top: 20px;
-  padding-left: 60px;
-  list-style-type: none;
-  font-size: 18px;
-}
-#Front
-{
-  margin-left: 80px;
-}
-#Front h1
-{
-  margin-left: 770px;
-}
-#Front li
-{
-  border-left: 1px solid whitesmoke;
-  margin-bottom: 30px;
-}
 .searchItem
 {
-  border-style: ridge;
-  border-color: blue;
-  border-width: 5px;
   background-color: rgb(199, 194, 194);
   margin-left: 30px;
   margin-right: 91px;
@@ -198,33 +98,36 @@ body {
   margin-left: 180px;
   margin-right: 190px;
 }
-.TOPP h1
-{
-  margin-left: 850px;
-}
 .addressInfo1
 {
-  display: grid;
-  margin-left: 700px;
-  padding-right: 400px;
-
+  margin-left: 270px;
+  margin-right: 200px;
+  margin-bottom: 175px;
+  padding-left: 50px;
+  padding-bottom: 180px;
+}
+.addressInfo1 form
+{
+  float: left;
+}
+.addressInfo1 address
+{
+  margin-right: 50px;
+}
+.contacClass
+{
+  margin-left: 800px;
 }
 .aboutSite
 {
-  margin-left: 40px;
-  margin-right: 40px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 .contactInfo
 {
   margin-bottom: 200px;
   padding-left: 100px;
   padding-right: 1000px;
-}
-#Message
-{
-  margin-right: 300px;
-  width: 350px;
-  height: 300px;
 }
 .searchItem h1
 {
@@ -237,10 +140,6 @@ body {
   margin-bottom: 30px;
   list-style-type: none;
   padding: 30px;
-}
-#description
-{
-  padding-left: 940px;
 }
 .notFoundClass
 {
@@ -260,6 +159,72 @@ body {
   width: auto;
   margin-left: 300px;
 }
+/* Class elements begin here */
+/* ID elements begin here */
+#shopBtn a
+{
+  font-size: 20px;
+}
+#profileInfo
+{
+  margin-left: 280px;
+  padding-right: 120px;
+}
+#profileIMG
+{
+  margin-right: 100px;
+  margin-bottom: 100px;
+}
+#Floating
+{
+  padding-right: 30px;
+}
+#head-details
+{
+  padding: 30px;
+  padding-left: 40px;
+  padding-bottom: 200px;
+}
+#reviewPart
+{
+  margin-left: 700px;
+}
+#textPart
+{
+  margin-right: 800px;
+}
+#imageFloat
+{
+  float: left;
+  margin-bottom: -100px;
+}
+#res
+{
+  padding-bottom: 2px;
+}
+#Front
+{
+  margin-left: 80px;
+}
+#Front h1
+{
+  margin-left: 770px;
+}
+#Front li
+{
+  border-left: 1px solid whitesmoke;
+  margin-bottom: 30px;
+}
+#Message
+{
+  margin-right: 300px;
+  width: 350px;
+  height: 300px;
+}
+#description
+{
+  padding-left: 940px;
+}
 #terms-of-service
 {
   padding: 20px 40px 20px 20px;
@@ -272,64 +237,12 @@ body {
   margin-right: 100px;
   padding-left: 50px;
 }
-.search-container button {
-  float: right;
-  padding: 6px 10px;
-  margin-top: 8px;
-  margin-right: 16px;
-  background: #ddd;
-  font-size: 17px;
-  border: none;
-  cursor: pointer;
-}
 #footCon:hover, #footAbo:hover, #footAgg:hover
 {
   color: red;
 }
-th
-{
-  margin-right: 800px;
-}
-td
-{
-  clear: both;
-  padding-bottom: 100px;
-  padding-top: 100px;
-}
-h1
-{
-  margin-left: 15px;
-}
-/* Header */
-.nav 
-{
-  font-size: 20px;
-}
-.header
-{
-  left: 0;
-  top: 0;
-  right: 0;
-  background-color: rgba(5, 190, 5, 0.26);
-  padding-bottom: 20px;
-  border-bottom: 1px solid black;
-}
-
-.header ul
-{
-  padding-bottom: -125px;
-  padding-left: 20px;
-
-}
-.cartClass
-{
-  padding-bottom: 400px;
-  margin-left: 400px;
-  margin-right: 400px;
-  margin-top: 100px;
-  margin-bottom: 100px;
-}
-/*Footer*/
+/* ID elements ends here */
+/*Footer exclusive parts*/
 #footer-Section
 {
   margin-left: -100px;
@@ -418,42 +331,46 @@ h1
   font-size: 18px;
   margin-bottom: 21px;
 }
-.signUpNewsletter {
-  position: relative;
-}
-.signUpNewsletter .gt-email {
-  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border: 1px solid #666666;
-  border-radius: 0;
-  color: #ffffff;
-  height: 52px;
-}
-.signUpNewsletter .btn-go {
-  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border-color: #666666;
-  border-style: solid;
-  border-width: 0 0 0 1px;
-  bottom: 0;
-  color: #ffffff;
-  font-size: 16px;
-  position: absolute;
-  right: 0;
-  text-transform: uppercase;
-  top: 0;
-  width: 52px;
-}
 .footer-bottom-layout {
   background: #222222 none repeat scroll 0 0;
   padding: 20px 0;
   text-align: center;
 }
-.socialMedia-footer {
-  margin-bottom: 20px;
-}
-.socialMedia-footer > a {
-  display: inline-block;
-  margin: 0 8px;
-}
 .footer-bottom-layout {
   text-align: center;
 }
+.copyright-tag
+{
+  color: white;
+}
+/* Footer ends here */
+/* Header */
+.nav 
+{
+  font-size: 20px;
+}
+.header
+{
+  left: 0;
+  top: 0;
+  right: 0;
+  background-color: rgba(5, 190, 5, 0.26);
+  padding-bottom: 20px;
+  border-bottom: 1px solid black;
+}
+
+.header ul
+{
+  padding-bottom: -125px;
+  padding-left: 20px;
+
+}
+.cartClass
+{
+  padding-bottom: 400px;
+  margin-left: 400px;
+  margin-right: 400px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+/*Header ends here*/

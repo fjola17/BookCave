@@ -13,8 +13,12 @@
        {
         <li>
           <p class="book-image"><img src="@b.CoverImage" alt="book image" height="300" width="210">
-          @b.Title @b.Price
-          <button class="Something">Delete</button></p>
+         <a asp-controller="Book" asp-action="Index" asp-route-id="@b.Id">@b.Title</a>
+          @b.Price
+          <form asp-controller="Order" method="POST" asp-action="Delete">
+          <input type="hidden" name="ISBN" value="@b.Id"><br>
+          <button class="Something" type="submit">Delete</button>
+          </form>
         </li>
         
         

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using BookCave.Models.ViewModels;
 using BookCave.Repositories;
 using BookCave.Models.InputModels;
+using Microsoft.AspNetCore.Identity;
+using BookCave.Models;
 //using BookCave.Services
 
 namespace BookCave.Controllers
@@ -18,6 +20,8 @@ namespace BookCave.Controllers
         {
             _reviewServices = new ReviewRepo();
         }
+    
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public IActionResult BookReviews(int bookId) //Nær í reviews fyrir bók
         {
@@ -51,12 +55,13 @@ namespace BookCave.Controllers
         [HttpPost]
         public IActionResult Create(ReviewInputModel review) //Býr til review
         {
-            if(!ModelState.IsValid)
+            if(review.Rating == 0)
             {
                 ViewData["ErrorMessage"] = "Failed to create review";
-                return RedirectToAction("Details", "Book");
+                return RedirectToAction("Details", "Book", review.BookId);
             }
-            var newReview = _reviewServices.Create(review);
+            var userId = _userManager.GetUserId(User);
+            var newReview = _reviewServices.Create(review, userId);
             ViewData["SucessMessage"] = "Review was created sucessfully!!";
             return RedirectToAction("Book","Details", new{id = review.BookId});
         }

@@ -37,7 +37,7 @@
     <div id="reviewPart">
         @if(SignInManager.IsSignedIn(User))
         {
-            var userId = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Id")?.Value;
+
             <!-- Ef notandi er skráður inn getur hann sett inn sitt review -->
             <div id="review-form"> 
                 <form >
@@ -49,12 +49,11 @@
                         <input type="radio" asp-for="Rating" value="4">4
                         <input type="radio" asp-for="Rating" value="5">5
                     </div>
-                    <div id="textPart" class="form-group">
-                        <textarea class="form-control" rows="5" placeholder="enter your review here"></textarea>
+                    <div  class="form-group">
+                        <textarea id="textPart" class="form-control" rows="5" placeholder="enter your review here"></textarea>
                     </div>
                     <div> <!--Sendir gögn um bók og notanda-->
                         <input id="BookId" type="hidden" value="@Model.Id">
-                        <input id="UserId" type="hidden" value="@userId">
                     </div>
                     <div class="form-group">
                         <button type="button" id="postReview" class="btn" >Submit review</button>

@@ -26,13 +26,12 @@ namespace BookCave.Controllers
             //ef ekkert er slegið inn
             if(searchString == null)
             {
-                ViewBag.Title ="All books";
-                var books = _bookServices.GetBookIndex();
-                return View(books);
+                return View("NotFound");
             }
             ViewBag.Title = "searchString";
             var booksFound = _bookServices.GetBySearchString(searchString); //filterar bækur
-            if(booksFound == null)
+            //ef ekkert finnst
+            if(booksFound.Count == 0)
             {
                 return View("NotFound");
             }
@@ -53,7 +52,7 @@ namespace BookCave.Controllers
         }
         
         [HttpGet]
-        public IActionResult Top10()
+        public IActionResult Top10() //Nær í Top 10
         {
             var top10 = _bookServices.TopRatedBooks();
             return View(top10);

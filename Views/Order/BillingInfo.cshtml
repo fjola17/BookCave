@@ -1,0 +1,18 @@
+@model BookCave.Models.InputModels.BillingInputModel
+<h2>Please enter your billing information here</h2>
+
+<form asp-controller="Order" asp-action="BillingInfo">
+    <label asp-for="PaymentMethod">PaymentMethod</label>
+    <select asp-for="PaymentMethod">>
+        <option value="">(Please select option)</option>
+        <option value="Debit">Debit card</option>
+        <option value="Credit">Credit card</option>
+        <option value="Gift">Gift card</option>
+    </select>
+<span asp-validation-for="PaymentMethod"></span>
+<label asp-for="CardNumber">Card Number</label>
+<input type="number" asp-for="CardNumber">
+<span asp-validation-for="CardNumber"></span>
+<button class="btn">Confirm</button>
+</form>
+<a asp-controller="Order" asp-action="Shipping" class="btn"><button>Go back</button></a>

@@ -108,7 +108,6 @@ namespace BookCave.Repositories
             
         }
        
-
         public OrderDetailsViewModel Cart(string userId, int cartId)
         {
             var cart = (from ca in _db.Orders
@@ -234,10 +233,8 @@ namespace BookCave.Repositories
             //Ef order details er þegar til fyrir þessa pöntun
             if(userInfo != null)
             {
-                return true;
-            }
-            userInfo = new ShippingInfo
-            {
+                userInfo = new ShippingInfo
+                {
                 Id = shipping.Id,
                 UserId = user,
                 OrderId = cartId,
@@ -247,12 +244,30 @@ namespace BookCave.Repositories
                 City = shipping.City,
                 Adress = shipping.Adress,
                 PhoneNumber = shipping.PhoneNumber
-            };
-            if(userInfo == null)
-            {
-                return false;
+                };
+                _db.ShippingInfos.Update(userInfo);
+            } 
+            else{
+                userInfo = new ShippingInfo
+                {
+                    Id = shipping.Id,
+                    UserId = user,
+                    OrderId = cartId,
+                    FullName = shipping.FullName,
+                    Country = shipping.Country,
+                    Zipcode = shipping.Zipcode,
+                    City = shipping.City,
+                    Adress = shipping.Adress,
+                    PhoneNumber = shipping.PhoneNumber
+                };
+                if(userInfo == null)
+                {
+                    return false;
+                }
+                _db.ShippingInfos.Add(userInfo);    
             }
-            return true;
+            _db.SaveChanges();
+                return true;
         }
         public bool Buy(string userId, int cartId)
         {

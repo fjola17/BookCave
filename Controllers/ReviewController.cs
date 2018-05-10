@@ -64,7 +64,7 @@ namespace BookCave.Controllers
             var userId = _userManager.GetUserId(User);
             var new_review = new Review() { UserId = userId, BookId = review.BookId, ActualReview = review.ActualReview};
             
-            var newReview = _reviewServices.Create(new_review);
+         //   var newReview = _reviewServices.Create(new_review);
             ViewData["SucessMessage"] = "Review was created sucessfully!!";
             return RedirectToAction("Book","Details", new{id = review.BookId});
         }

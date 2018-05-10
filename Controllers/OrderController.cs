@@ -138,5 +138,19 @@ namespace BookCave.Controllers
             var bla = _orderServices.Buy(user, cartId);
             return View();
         }
+        [HttpGet]
+        public IActionResult BillingInfo()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult BillingInfo(BillingInputModel billing)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View();
+            }
+            return View("ReviewOrder");
+        }
     }
 }

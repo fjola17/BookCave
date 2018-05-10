@@ -3,10 +3,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] BookCave</title>
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MovieApp</title>
-
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/base.css" />
@@ -50,9 +46,11 @@
         </div>
       </li>
       <li>
-        <button asp-controller="Order" asp-action="Cart" id="shopbtn" type="button" class="btn btn-default btn-dark">
-          <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
-        </button>
+        <form id="shopBtn" class="navbar-form" method="GET" asp-controller="Order" asp-action="Cart">
+          <button id="shopbtn" type="button" class="btn btn-default btn-dark">
+            <i class="glyphicon glyphicon-cart"></i>Shopping Cart
+          </button>
+        </form>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">

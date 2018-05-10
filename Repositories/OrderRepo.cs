@@ -19,42 +19,46 @@ namespace BookCave.Repositories
         {
             _db = new DataContext();
         }
-        public List<OrderViewModel> GetByOwnerId()
+        public List<OrderViewModel> GetByOwnerId(string userId)
         {
             //Ath hvernig á að birta bækur??
             var ordersFromOwner = (from ord in _db.Orders
-                                   orderby ord.OrderId
+                                   orderby ord.OrderId descending
                                    select new OrderViewModel
                                    {
-                                    //  OwnerId = ord.OwnerId,
                                       Paid = ord.Paid,
                                       TotalPrice = ord.TotalPrice
                                     }).ToList();
             return ordersFromOwner;
         }
          
-         public OrderDetailsViewModel GetById(int? id)
+         public OrderDetailsViewModel GetById(int? id, string userId)
         {
             var aOrder = (from ord in _db.Orders
-                        where ord.OrderId == id 
-                        //líkleg join hér sem á eftir að útfæra
-                        
-                        select new OrderDetailsViewModel() //Hér eiga allar bækurnar að koma upp
+                        where ord.OrderId == id && ord.Paid == true && ord.UserId == userId
+                       select new OrderDetailsViewModel() //Hér eiga allar bækurnar að koma upp
                         {
-                            UserId = ord.UserId,
-                            OrderId = ord.OrderId,
                             Paid = ord.Paid,
                             TotalPrice = ord.TotalPrice
                         }).FirstOrDefault();
             var booksInorder = (from bks in _db.Books
                                 join cob in _db.BooksInCarts on bks.Id equals cob.BookId
                         join bk in _db.Orders on cob.OrderId equals bk.Id
+                                join ord in _db.Orders on cob.OrderId equals ord.Id
+                                where cob.OrderId == id && ord.Paid == true
                                 select new BookCartViewModel
                                 {
                                     Title = bks.Title,
-                                    CoverImage = bks.CoverImage
+                                    CoverImage = bks.CoverImage,
+                                    Price = bks.Price,
+                                    Quantity = cob.Quantity
                                 }).ToList();
-           
+            if(aOrder == null)
+            {
+                return aOrder; //kasta villu??
+            }
+            aOrder.BooksInOrder = booksInorder;
+            
             return aOrder;
         }
         
@@ -101,10 +105,7 @@ namespace BookCave.Repositories
             
         }
        
-        public bool Buy(OrderViewModel owm)
-        {
-            return true;
-        }
+
         public OrderDetailsViewModel Cart(string userId, int cartId)
         {
             var cart = (from ca in _db.Orders
@@ -112,8 +113,6 @@ namespace BookCave.Repositories
                         select new OrderDetailsViewModel
                         {
                             Id = ca.Id,
-                            UserId = ca.UserId,
-                            OrderId = ca.OrderId,
                             Paid = ca.Paid,
                             TotalPrice = ca.TotalPrice
                         }).FirstOrDefault();
@@ -121,7 +120,7 @@ namespace BookCave.Repositories
                     join bksc in _db.BooksInCarts on bks.Id equals bksc.BookId
                     join ord in _db.Orders on bksc.OrderId equals ord.Id
                     where cartId == ord.Id && userId == bksc.UserId
-                    select new BookViewModel
+                    select new BookCartViewModel
                     {
                         Title = bks.Title,
                         CoverImage = bks.CoverImage,
@@ -205,10 +204,12 @@ namespace BookCave.Repositories
 
         }
         
-        public bool ShippingInfo(ShippingInfoInputModel shipping)
+        public bool ShippingInfo(ShippingInfoInputModel shipping, string user, int cartId)
         {
              int id = 1; 
            var userInfo = (from it in _db.ShippingInfos
+                           join ord in _db.Orders on it.OrderId equals ord.Id
+                            where it.OrderId == cartId && user == ord.UserId
                             where it.OrderId == id
                             select new ShippingInfo
                             {
@@ -245,6 +246,25 @@ namespace BookCave.Repositories
                 return false;
             }
             return true;
-        } 
+        }
+        public bool Buy(string userId, int cartId)
+        {
+            var userInfo = (from or in _db.Orders
+                            where cartId == or.OrderId && userId == or.UserId
+                     select new Order
+                            {
+                                Id = or.Id,
+                                UserId = or.UserId,
+                                Paid = or.Paid
+                            }).FirstOrDefault();
+            //ef þessi klasi er ekki til
+            if(userInfo == null)
+            {
+                return false;
+            }
+            userInfo.Paid = true;
+            _db.Orders.Update(userInfo);
+            return true;
+        }
     }
 }

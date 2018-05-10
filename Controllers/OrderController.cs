@@ -13,6 +13,7 @@ using BookCave.Models.InputModels;
 
 namespace BookCave.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         public OrderRepo _orderServices;
@@ -26,25 +27,26 @@ namespace BookCave.Controllers
         }
         public IActionResult Index() //Displays all orders for a logged in user
         { 
-            var allOrderFromusers = _orderServices.GetByOwnerId();
+            var userId = _userManager.GetUserId(User);
+            var allOrderFromusers = _orderServices.GetByOwnerId(userId);
             
             return View(allOrderFromusers.ToList());
         }
-        /* 
+         
         public IActionResult Details(int? id)
         { 
             if(id == null)
             {
                 return View("Error");
             }
-            var orders = _orderServices.GetById(id);
+            var userId = _userManager.GetUserId(User);
+            var orders = _orderServices.GetById(id, userId);
             if(orders == null)
             {
                 return View("NotFound");
             }
             return View(orders);
         }
-*/
         
         public IActionResult Delete(int? ISBN)
         {
@@ -57,14 +59,7 @@ namespace BookCave.Controllers
             
             return Json(itemToDelete);
         }
-        [HttpGet]
-        public IActionResult Buy(OrderViewModel bookTobuy)
-        {
-            //Þarf að útfæra betur
-            var buybooks = _orderServices.Buy(bookTobuy);
-            return View();
-        }
-        [Authorize]
+        
         [HttpPost]
         public IActionResult AddToCart(int bookAdded)
         {
@@ -84,7 +79,6 @@ namespace BookCave.Controllers
             return RedirectToAction("Cart", "Order");
 
         }
-        [Authorize]
         public IActionResult Cart()
         {
                      //er bara að skoða körfu
@@ -115,13 +109,29 @@ namespace BookCave.Controllers
         {
             if(!ModelState.IsValid)
             {
-                return View();
+                return RedirectToAction("AccessDenied", "Account");
             }
-            if(!_orderServices.ShippingInfo(shipping))
+            var user = _userManager.GetUserId(User);
+            var cartId = _orderServices.GetCart(user);
+            //if ()
+            if(!_orderServices.ShippingInfo(shipping, user, cartId))
             {
-                RedirectToAction("AccessDenied", "Account");
+                return RedirectToAction("AccessDenied", "Account");
             }
-            return RedirectToAction("Details");
+            return RedirectToAction("Confirm");
+        }
+        public IActionResult Confirm()
+        {
+            var user = _userManager.GetUserId(User);
+            var cartId = _orderServices.GetCart(user);
+            return View();            
+        }
+        public IActionResult Buy()
+        {
+            var user = _userManager.GetUserId(User);
+            var cartId = _orderServices.GetCart(user);
+            var bla = _orderServices.Buy(user, cartId);
+            return View();
         }
     }
 }

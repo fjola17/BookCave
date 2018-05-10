@@ -8,7 +8,10 @@
                 <p class="book-image"><img src="@books.CoverImage" alt="book image" height="300" width="210"><br>
                 <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">@books.Title</a><br>
                 Price: $@books.Price</p>
-                <button class="btn cart">Add to cart</button>
+                <form asp-action="AddToCart" asp-controller="Order">
+                <input type="hidden" name="bookAdded" value="@books.Id">
+                <button class="btn btn-default ">Add to Cart</button>
+                </form>
             </li>
     }
     </div>

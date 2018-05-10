@@ -115,11 +115,10 @@ namespace BookCave.Controllers
         {
             if(!ModelState.IsValid)
             {
-                return RedirectToAction("AccessDenied", "Account");
+                return View();
             }
             var user = _userManager.GetUserId(User);
             var cartId = _orderServices.GetCart(user);
-            //if ()
             if(!_orderServices.ShippingInfo(shipping, user, cartId))
             {
                 return RedirectToAction("AccessDenied", "Account");

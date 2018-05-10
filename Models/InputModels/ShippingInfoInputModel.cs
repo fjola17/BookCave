@@ -11,7 +11,7 @@ namespace BookCave.Models.InputModels
         public string FullName { get; set; }
         [Required(ErrorMessage = "You need to select a country")]
         public string Country { get; set; }
-        [Required(ErrorMessage = "You need to enter your zipcode")]
+        [Required(ErrorMessage = "You need to enter your Zipcode")]
         public string Zipcode { get; set; }
         [Required(ErrorMessage="You need to enter your city")]
         public string City { get; set; }

@@ -211,11 +211,13 @@ namespace BookCave.Repositories
         
         public bool ShippingInfo(ShippingInfoInputModel shipping, string user, int cartId)
         {
-             int id = 1; 
+             if(cartId == 0)
+             {
+                return false;
+             } 
            var userInfo = (from it in _db.ShippingInfos
                            join ord in _db.Orders on it.OrderId equals ord.Id
                             where it.OrderId == cartId && user == ord.UserId
-                            where it.OrderId == id
                             select new ShippingInfo
                             {
                                 Id = it.Id,
@@ -232,13 +234,13 @@ namespace BookCave.Repositories
             //Ef order details er þegar til fyrir þessa pöntun
             if(userInfo != null)
             {
-                return false;
+                return true;
             }
             userInfo = new ShippingInfo
             {
                 Id = shipping.Id,
-                UserId = shipping.UserId,
-                OrderId = shipping.OrderId,
+                UserId = user,
+                OrderId = cartId,
                 FullName = shipping.FullName,
                 Country = shipping.Country,
                 Zipcode = shipping.Zipcode,

@@ -1,34 +1,65 @@
+@model BookCave.Models.InputModels.ShippingInfoInputModel
 <h2>Please enter your shipping inormation here</h2>
 
-<form method="GET">
+<form method="POST" asp-action="Shipping" asp-controller="Order">
     <div>
-        <label>Full name</label>
-        <input type="text" placeholder="Please enter your full name" class="form-control">
+        <label asp-for="FullName">Full name</label>
+        <input asp-for="FullName" type="text" placeholder="Please enter your full name" class="form-control">
+        <span asp-validation-for="FullName"></span>
     </div>
 
     <div>
-    <select class="form-control">
-        <option value="Country1">Country1</option>
+        <label asp-for="Country">country</label> 
+    <select  asp-for="Country" class="dropdown form-control country-list">
+        <option value="" >Select a country</option>
+        <option value="Australia" >Australia</option>
+        <option asp-value="Austria" >Austria</option>
+        <option value="Belgium" >Belgium</option>
+        <option value="Canada" >Canada</option>
+        <option value="Denmark" >Denmark</option>
+        <option value="Estonia" >Estonia</option>
+        <option value="Finland" >Finland</option>
+        <option value="France" >France</option>
+        <option value="Greece" >Greece</option>
+        <option value="Latvia" >Latvia</option>
+        <option value="Lux" >Luxemborg</option>
+        <option value="Lithuania" >Lithuania</option>
+        <option value="Japan" >Japan</option>
+        <option value="NZ" >New Zealand</option>
+        <option value="Norway" >Norway</option>
+        <option value="Poland" >Poland</option>
+        <option value="Russia" >Russia</option>
+        <option value="Turkey" >Turkey</option>
+        <option value="SKorea" >South Korea</option>
+        <option value="Sp" >Spain</option>
+        <option value="Sw" >Switzerland</option>
+        <option value="UK">United Kingdom</option>
+        <option value="USA">United states</option>
     </select>
+    <span asp-validation-for="Country"></span>
     </div>
 
     <div>
-        <label>City</label>
-        <input type="text" placeholder="City"class="form-control">
+        <label asp-for="City">City</label>
+        <input type="text" placeholder="City"class="form-control" asp-for="City">
+        <span asp-validation-for="City"></span>
     </div>
     
     <div>
-        <label>Adress</label>
-        <input type="text" placeholder="Adres"class="form-control">
+        <label asp-for="Adress">Address</label>
+        <input type="text" placeholder="Adress"class="form-control" asp-for="Adress">
+        <span asp-validation-for="Adress"></span>
     </div>
         <div>
-        <label>Zip code</label>
-        <input type="text" placeholder="Zip code"class="form-control">
+        <label asp-for="Zipcode">Zip code</label>
+        <input type="text" placeholder="Zip code"class="form-control" asp-for="Zipcode">
+        <span asp-validation-for="Zipcode"></span>
     </div>
         <div>
         <label>Phone number</label>
-        <input type="number" placeholder="Please enter your phone number"class="form-control">
+        <input type="number" placeholder="Please enter your phone number"class="form-control" asp-for="PhoneNumber">
+        <span asp-validation-for="PhoneNumber"></span>
     </div>
-    <button class="btn btn-danger">Confirm</button>
+    <button class="btn" type="submit">Confirm</button>
 </form>
-<a asp-controller="Order" asp-action="Cart">Go back</a>
+<a asp-controller="Order" asp-action="Cart"><button>Go back</button></a>

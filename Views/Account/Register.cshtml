@@ -1,8 +1,5 @@
 @model BookCave.Models.ViewModels.RegisterViewModel
-
-<link href="@Url.Content("~/css/base.css")" rel="stylesheet" type="text/css" />
-<body class="background">
-    <div class="regInfo borderClass">
+    <div class="regInfo borderClass" id="background">
         <h1>Register</h1>
 
             <div id="Register">
@@ -13,17 +10,17 @@
                         <div class="form-group">
                             <label for="fName">First name: </label>
                             <input id="fName" type="text" asp-for="FirstName" class="form-control" placeholder="Enter first name"/>
-                            <span asp-validation-for="FirstName"></span>
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label for="lName">Last Name: </label>
                             <input id="lName" type="text" asp-for="LastName" class="form-control" placeholder="Enter last name"/>
-                            <span asp-validation-for="LastName"></span>
+                            <span asp-validation-for="LastName" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label for="input-Email">Email: </label>
                             <input id="input-Email" type="email" asp-for="Email" class="form-control" placeholder="Enter email"/>
-                            <span asp-validation-for="Email"></span>
+                            <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label for="input-Address">Address: </label>
@@ -46,7 +43,7 @@
                         <div class="form-group">
                             <label for="Password">Password: </label>
                             <input id="Password" type="password" asp-for="Password" class="form-control" placeholder="Enter password"/>
-                            <span asp-validation-for="Password"></span>
+                            <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
                         <!--<div class="form-group">
                             <label for="confirm-password">Confirm password: </label>
@@ -101,6 +98,10 @@
                         -->
                         <div class="form-group">
                             <p>By creating an account you agree to our <strong>Terms of service</strong>.</p>
+                            <input type="checkbox" id="TermsAndAgreement" asp-for="TermsAndAgreement" class="form-control">
+                            <span asp-validation-for="TermsAndAgreement" class="text-warning" ></span>
+                        </div>
+                        <div class="form-group">
                             <button class="btn btn-default" type="submit">Register</button>
                             <button class="btn" type="back"><a asp-action="FrontPage" asp-controller="Home">Back</a></button>
                         </div>
@@ -122,14 +123,3 @@
         </p>
     </fieldset>
 </div>
-</body>
-
-<environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/base.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-    </environment>

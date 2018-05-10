@@ -6,29 +6,12 @@
 
 @inject SignInManager<ApplicationUser> SignInManager
 
-<!-- Þarf að útfæra klasa og virkni hér -->
-<head>
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/base.css" />
-        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    </environment>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    </environment>
-</head>
+
 @{
     var id = Model.Id;
 }
-    <body class="background">
-    <div>
+
+<div>
     <div id="head-details" class="borderClass fitting">
         <div id="imageFloat">
             <h1>@Model.Title</h2>
@@ -54,9 +37,10 @@
     <div id="reviewPart">
         @if(SignInManager.IsSignedIn(User))
         {
+            var userId = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Id")?.Value;
             <!-- Ef notandi er skráður inn getur hann sett inn sitt review -->
             <div id="review-form">
-                <form asp-action="Create" asp-controller="Review">
+                <form >
                     <div class="form-group">
                         <label for="Rating">Rating: </label>
                         <input type="radio" asp-for="Rating" value="1">1
@@ -68,8 +52,14 @@
                     <div id="textPart" class="form-group">
                         <textarea class="form-control" rows="5" placeholder="enter your review here"></textarea>
                     </div>
+                    <div>
+                        <input id="BookId" type="hidden" value="@Model.Id">
+                    </div>
+                    <div>
+                    <input id="UserId" type="hidden" value="userId">
+                    </div>
                     <div class="form-group">
-                        <button class="btn" type="submit">Submit review</button>
+                        <button type="button" id="postReview" class="btn" >Submit review</button>
                     </div>
                 </form>
             </div>
@@ -89,5 +79,4 @@
             </ul>
         </div>
     </div>
-    </div>
-</body>
+</div>

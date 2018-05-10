@@ -5,12 +5,23 @@ using System.Diagnostics;
 using BookCave.Data;
 using BookCave.Models.ViewModels;
 using BookCave.Models.InputModels;
+using Microsoft.AspNetCore.Identity;
+using BookCave.Models;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookCave.Repositories
 {
     public class ReviewRepo
     {
         private DataContext _db;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signinManager;
+        public ReviewRepo(SignInManager<ApplicationUser> signinManager, UserManager<ApplicationUser> userManager)
+        {
+            _signinManager = signinManager;
+            _userManager = userManager;
+        }
         public ReviewRepo() 
         {
             _db = new DataContext();
@@ -21,24 +32,20 @@ namespace BookCave.Repositories
                          where rv.BookId == bookId
                          select new ReviewViewModel
                         {
-                            Id = rv.Id,
                             UserId = rv.UserId,
                             BookId = rv.BookId,
                             ActualReview = rv.ActualReview,
-                            Rating = rv.Rating
                         }).ToList();
-            
             return bookReviews;
         }
-        public List<ReviewViewModel> GetByOwnerId(string user) //Nær í review tengd þessum notanda
+
+        public List<ReviewViewModel> GetByOwnerId(string ownerId) //Nær í review tengd þessum notanda
         {
             var ownerReviews = (from rv in _db.Reviews
-                         where rv.UserId == user
+                         where rv.UserId == ownerId
                          select new ReviewViewModel
                         {
-                            Id = rv.Id,
-                            UserId = rv.UserId,
-                            BookId = rv.BookId,
+
                             ActualReview = rv.ActualReview,
                             Rating = rv.Rating
                         }).ToList();
@@ -60,6 +67,7 @@ namespace BookCave.Repositories
             
             return review;
         }
+        [HttpPost]
         public bool Create(ReviewInputModel rv)
         {
             
@@ -70,6 +78,7 @@ namespace BookCave.Repositories
                 ActualReview = rv.ActualReview,
                 Rating = rv.Rating
             };
+            
             _db.Add(reviewToAdd);
             _db.SaveChanges();
 

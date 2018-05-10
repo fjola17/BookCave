@@ -1,25 +1,25 @@
 ﻿@{
     ViewData["Title"] = "Contact Information";
 }
-<div class="borderClass aboutSite">
-    <div class="addressInfo1">
+<div class="aboutSite">
+    <h1 class="contacClass">Contact Us</h1>
+    <div class="addressInfo1 borderClass">
         
         <h3>If you need to contact an admin directly <br>about any problems you have with this website</h3>
 
         <form asp-action="Contact" asp-controller="Home">
-            <textarea id="Message" placeholder="Enter your message here" class="form-control"></textarea>
+            <textarea id="Message" placeholder="Enter your message here" class="form-control"></textarea><br>
             <button class="btn" type="submit">Submit</button>
         </form>
         <address>
-            Book Cave<br />
+            <h3>Book Cave<br />
             Menntavegur 1<br />
             <abbr title="Phone">P:</abbr>
-            456.7890
-        </address>
-        <address>
-            <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
+            456.7890<br>
+             <strong>Support:</strong><br>
+            <a href="mailto:Support@example.com">Support@example.com</a><br />
             <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+            </h3>
         </address>
     </div>
-    
 </div>

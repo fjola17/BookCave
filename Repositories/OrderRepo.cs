@@ -183,17 +183,19 @@ namespace BookCave.Repositories
                         }).FirstOrDefault();
             if(cart == null)
             {
-                Console.WriteLine("Error");
-                return 0;
-            }
-            else if(cart.Id == 0)
-            {
+            
                 cart = new Order
                 {
                     UserId = id,
                     TotalPrice = 0,
                     Paid = false
                 };
+                if(cart == null)
+                {
+                    Console.WriteLine("Error");
+                   return 0;
+                }
+                
                 _db.Orders.Add(cart);
                 _db.SaveChanges();
             }                
@@ -203,20 +205,20 @@ namespace BookCave.Repositories
         
         public bool ShippingInfo(ShippingInfoInputModel shipping)
         {
-            /* int id == 1;
+             int id = 1; 
            var userInfo = (from it in _db.ShippingInfos
-                            where in.OrderId == id
+                            where it.OrderId == id
                             select new ShippingInfo
                             {
-                                Id = in.Id,
-                                UserId = in.UserId,
-                                OrderId = in.OrderId,
-                                FullName = in.FullName,
-                                Country = in.Country,
-                                Zipcode = in.Zipcode,
-                                City = in.City,
-                                Adress = in.Adress
-                                PhoneNumber = in.PhoneNumber
+                                Id = it.Id,
+                                UserId = it.UserId,
+                                OrderId = it.OrderId,
+                                FullName = it.FullName,
+                                Country = it.Country,
+                                Zipcode = it.Zipcode,
+                                City = it.City,
+                                Adress = it.Adress,
+                                PhoneNumber = it.PhoneNumber
 
                             }).FirstOrDefault();
             //Ef order details er þegar til fyrir þessa pöntun
@@ -226,15 +228,20 @@ namespace BookCave.Repositories
             }
             userInfo = new ShippingInfo
             {
+                Id = shipping.Id,
                 UserId = shipping.UserId,
                 OrderId = shipping.OrderId,
                 FullName = shipping.FullName,
                 Country = shipping.Country,
                 Zipcode = shipping.Zipcode,
                 City = shipping.City,
-                Adress = shipping.Adress
+                Adress = shipping.Adress,
                 PhoneNumber = shipping.PhoneNumber
-            };*/
+            };
+            if(userInfo == null)
+            {
+                return false;
+            }
             return true;
         } 
     }

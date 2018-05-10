@@ -8,7 +8,10 @@
                 <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id"><strong>@books.Title</strong></a><br>
                 Price: $@books.Price<br>
                 Ratings: @books.Rating</p>
-                <button class="btn cart">Add to cart</button>
+                <form asp-action="AddToCart" asp-controller="Order">
+                <input type="hidden" name="bookAdded" value="@books.Id">
+                <button class="btn btn-default ">Add to Cart</button>
+                </form>
             </li>
         }
     </div>

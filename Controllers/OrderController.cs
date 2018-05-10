@@ -9,6 +9,7 @@ using BookCave.Repositories;
 using BookCave.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using BookCave.Models.InputModels;
 
 namespace BookCave.Controllers
 {
@@ -68,36 +69,59 @@ namespace BookCave.Controllers
         public IActionResult AddToCart(int bookAdded)
         {
             var userId = _userManager.GetUserId(User);
-            if(userId == null)
+            var cart =_orderServices.GetCart(userId);
+            //Ef karfan finnst ekki einhverra hluta vegna
+            if(cart == 0)
             {
                 return RedirectToAction("AccessDenied", "Account");
             }
-            var cart =_orderServices.GetCart(userId);
-            _orderServices.AddToCart(bookAdded, userId, cart);
+            if(!_orderServices.AddToCart(bookAdded, userId, cart))
+            {
+                ViewBag.Title = "Error";
+                return RedirectToAction("Error");
+            }
+            ViewBag.Title = "Sucess!";
             return RedirectToAction("Cart", "Order");
 
         }
         [Authorize]
         public IActionResult Cart()
         {
-            if(!_SignInManager.IsSignedIn(User))
-            {
-                RedirectToAction("AccessDenied", "Account");
-            }         //er bara að skoða körfu
+                     //er bara að skoða körfu
             var userId = _userManager.GetUserId(User);
             var cart = _orderServices.GetCart(userId); //finn / bý til cart áður en ég fer inn
-            if(cart == null)
+            //karfa finnst ekki
+            if(cart == 0)
             {
+                ViewBag.Title = "Error";
                 return View();
             }
             var books = _orderServices.Cart(userId, cart);
+            //bækur í körfu finnast ekki
+            if(books == null)
+            {
+                return View("Error");
+            }
             return View(books);
         }
 
-
-        public IActionResult Error()
+        [HttpGet]
+        public IActionResult Shipping()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Shipping(ShippingInfoInputModel shipping)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View();
+            }
+            if(!_orderServices.ShippingInfo(shipping))
+            {
+                RedirectToAction("AccessDenied", "Account");
+            }
+            return RedirectToAction("Details");
         }
     }
 }

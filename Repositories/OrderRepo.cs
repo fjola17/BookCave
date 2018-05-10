@@ -120,7 +120,9 @@ namespace BookCave.Repositories
             var booksInCart = (from bks in _db.Books
                     join bksc in _db.BooksInCarts on bks.Id equals bksc.BookId
                     join ord in _db.Orders on bksc.OrderId equals ord.Id
-                    select new BookViewModel{
+                    where cartId == ord.Id && userId == bksc.UserId
+                    select new BookViewModel
+                    {
                         Title = bks.Title,
                         CoverImage = bks.CoverImage,
                         Price = bks.Price

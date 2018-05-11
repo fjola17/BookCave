@@ -137,19 +137,29 @@ namespace BookCave.Controllers
         {
             if(!ModelState.IsValid)
             {
-                 var user = _userManager.GetUserId(User);
+                return View();
+            }
+            var user = _userManager.GetUserId(User);
             var cartId = _orderServices.GetCart(user);
             if(!_orderServices.BillingInfo(billing, user, cartId))
-                return View();
+            {
+                return View("Error");
             }
             return RedirectToAction("ReviewOrder");
         }
-        public IActionResult Confirm()
+        public IActionResult ReviewOrder()
         {
+            if(!ModelState.IsValid)
+            {
+                return View()
+            }
             var user = _userManager.GetUserId(User);
             var cartId = _orderServices.GetCart(user);
+            var
             return View();            
         }
+        public IActionResult
+
         public IActionResult Buy()
         {
             var user = _userManager.GetUserId(User);

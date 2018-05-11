@@ -231,14 +231,18 @@ namespace BookCave.Repositories
                 {
                     return false;
                 }
-                _db.ShippingInfos.Add(userInfo);
+            //    _db.ShippingInfos.Add(userInfo);
             
-            _db.SaveChanges();
+          //  _db.SaveChanges();
                 return true;
             }
         
         public bool BillingInfo(BillingInputModel info, string userId, int cartId)
         {
+            if(userId == null)
+            {
+                return false;
+            }
             
             var userInfo = new BillingInfo
             {

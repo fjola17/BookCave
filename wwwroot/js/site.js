@@ -5,10 +5,14 @@ $(document).ready(function(){
         debugger;
         var book = $("#BookId").val();
         var rating = $("input[name=Rating]:checked").val();
-        var review = $("#textPart").val();
-        var review = {BookId : book, Rating : rating, ActualReview : review };
+        var actualReview = $("#textPart").val();
+        var review = {BookId : book, Rating : rating, ActualReview : actualReview };
         $.post("../../Review/Create", review, function(data, status) {
+            var newReview = "<li><h2>" + rating + "</h2><h2>" + actualReview + "</h2></li>";
+            $("#insertNewReview").append(newReview);
+            $("#textPart").val("");
             console.log("Success")
+
         }).fail(function(){
             alert("Something went wrong.");
         });

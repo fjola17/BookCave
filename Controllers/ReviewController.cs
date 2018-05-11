@@ -70,7 +70,6 @@ namespace BookCave.Controllers
             _reviewServices.Create(new_review);
             ViewData["SucessMessage"] = "Review was created sucessfully!!";
             return Ok();
-            //return RedirectToAction("Book","Details", review.BookId);
         }
     }
 }

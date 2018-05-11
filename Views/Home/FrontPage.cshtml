@@ -7,8 +7,7 @@
             <li> 
                 <p class="book-image"><a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id"><img src="@books.CoverImage" alt="book image" height="300" width="210"></a><br>
                 <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">@books.Title</a><br>
-                Price: $@books.Price<br>
-                Ratings: @books.Rating</p>
+                Price: $@books.Price</p>
             </li>
     }
   </div>

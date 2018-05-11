@@ -6,7 +6,6 @@
 
 @inject SignInManager<ApplicationUser> SignInManager
 
-
 @{
     var id = Model.Id;
 }
@@ -18,7 +17,7 @@
             <p class="book-details-image"><img src="@Model.CoverImage" alt="Book Image" height="400" width="auto"></p>
         </div>
         <div id="description">
-            <h3>Author: <a href="#">@Model.Author</a> </h3>
+            <h3>Author: @Model.Author </h3>
             <h3>Realase year: @Model.PublishingYear</h3>
             <h3>Genre: @Model.Genre</h3>
             <h3>Description: @Model.Description</h3>

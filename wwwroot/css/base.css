@@ -6,12 +6,12 @@ li
 /* Class elements begin here */
 .background
 {
-  background-color: rgba(99, 99, 235, 0.6);
+  background-color: rgba(198, 198, 214, 0.6);
 }
 .borderClass
 {
   border-style: ridge;
-  border-color: blue;
+  border-color: rgba(24, 24, 26, 0.37);
   border-width: 5px;
   background-color: rgb(199, 194, 194, 0.6);
 }
@@ -215,11 +215,25 @@ li
 {
   margin-left: 290px;
 }
+.reviewClass
+{
+  margin-right: 700px;
+  margin-left: 700px;
+}
+.bookReviews
+{
+  margin-left: 400px;
+  margin-right: 400px;
+}
 /* Class elements begin here */
 /* ID elements begin here */
 #shopBtn a
 {
   font-size: 20px;
+}
+#tool
+{
+  margin-bottom: -60px;
 }
 #profileInfo
 {
@@ -240,10 +254,6 @@ li
   padding: 30px;
   padding-left: 40px;
   padding-bottom: 200px;
-}
-#reviewPart
-{
-  margin-left: 700px;
 }
 #textPart
 {

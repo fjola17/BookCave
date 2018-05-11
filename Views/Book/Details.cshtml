@@ -28,19 +28,19 @@
             <h3>Price: $@Model.Price</h3>
             <form asp-action="AddToCart" asp-controller="Order">
                 <input type="hidden" name="bookAdded" value="@id">
-                <button class="btn btn-default glyphicon glyphicon-shopping-cart">Add to Cart</button>
+                <button class="btn">Add to Cart</button>
                 <button class="btn" type="back"><a asp-action="FrontPage" asp-controller="Home">Back</a></button>
             </form>
         </div>
     </div>
     
-    <div id="reviewPart">
+    <div>
         @if(SignInManager.IsSignedIn(User))
         {
 
             <!-- Ef notandi er skráður inn getur hann sett inn sitt review -->
-            <div id="review-form"> 
-                <form >
+            <div> 
+                <form class="reviewClass" >
                     <div class="form-group">
                         <label for="Rating">Rating: </label>
                         <input type="radio" asp-for="Rating" value="1">1
@@ -63,7 +63,7 @@
         }
 <!-- TODO: Bæta við Review einhverstaðar fyrir þessa bók -->
 
-        <div id="BookReviews">
+        <div class="bookReviews borderClass">
             <h2>Reviews</h2>
             <ul class="list-inline" id="insertNewReview">
                 @foreach(var b in Model.Reviews)

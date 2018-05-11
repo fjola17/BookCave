@@ -2,6 +2,10 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> SignInManager
 
+@{
+    ViewData["Title"] = "Register -";
+}
+
 @if(SignInManager.IsSignedIn(User))
 {
     <h1>You are already registered!</h1>

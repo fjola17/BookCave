@@ -4,6 +4,10 @@
 @using System.Security.Claims
 @using BookCave.Models
 
+@{
+    ViewData["Title"] = @Model.Title + " -";
+}
+
 @inject SignInManager<ApplicationUser> SignInManager
 
 @{

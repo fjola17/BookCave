@@ -1,5 +1,9 @@
 @model BookCave.Models.ViewModels.OderDetailsViewModel
 
+@{
+    ViewData["Title"] = "Cart Details -";
+}
+
 <h2 class="head-color background">Order number: @Model.OrderId</h2>
 @foreach(var books in Model.Books)
 {

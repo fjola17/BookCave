@@ -14,7 +14,7 @@ $(document).ready(function(){
             console.log("Success")
 
         }).fail(function(){
-            alert("Something went wrong.");
+            alert("You can only post one review.");
         });
     });
 });

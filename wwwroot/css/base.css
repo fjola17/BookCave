@@ -201,6 +201,7 @@ li
 .cartSubmit
 {
   margin-left: 442px;
+  margin-bottom: 400px;
 }
 .cartMarg
 {
@@ -261,7 +262,7 @@ li
 {
   margin-bottom: 50px;
   margin-left: 440px;
-  margin-right: 400px;;
+  margin-right: 400px;
 }
 .paymentHeader
 {
@@ -270,6 +271,45 @@ li
 .confirmBtn
 {
   margin-top: 20px;
+}
+.receiptClass
+{
+  margin-left: 500px;
+  margin-right: 700px;
+  margin-bottom: 20px;
+}
+.Informa
+{
+  margin-left: -250px;
+}
+.infClass
+{
+  margin-left: 500px;
+  margin-right: 500px;
+  padding-bottom: 40px;
+}
+.reviewMargin
+{
+  margin-left: 700px;
+}
+.pad 
+{
+  margin-right: 600px;
+}
+.reviewList
+{
+  padding-left: 50px;
+  margin-left: 410px;
+  margin-right: 150px;
+  margin-bottom: 30px;
+}
+.reviewTotalClass
+{
+  margin-left: 500px;
+}
+.infoPadding
+{
+  padding-left: 60px;
 }
 /* Class elements end here */
 /* ID elements begin here */
@@ -458,7 +498,6 @@ li
 .footer-bottom-layout {
   text-align: center;
 }
-
 .copyright-tag
 {
   color: white;

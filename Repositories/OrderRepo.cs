@@ -311,8 +311,8 @@ namespace BookCave.Repositories
             return false;            
             }
             book.Paid = true;
-   //         _db.Orders.Update(book);
-  //          _db.SaveChanges();
+            _db.Orders.Update(book);
+            _db.SaveChanges();
             return true;
             //Status á paid breytist yfir í true
             

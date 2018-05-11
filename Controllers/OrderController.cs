@@ -62,8 +62,8 @@ namespace BookCave.Controllers
                 ViewBag.Title = "Error";
                 return View("Error");
             }
-
-            return View("Cart");
+            var displaycart = _orderServices.Cart(userId, cart);
+            return View("Cart", displaycart);
         }
         
         [HttpPost]
@@ -151,14 +151,13 @@ namespace BookCave.Controllers
         {
             if(!ModelState.IsValid)
             {
-                return View()
+                return View();
             }
             var user = _userManager.GetUserId(User);
             var cartId = _orderServices.GetCart(user);
-            var
+         //   var order = displayOrder(user, cartId);
             return View();            
         }
-        public IActionResult
 
         public IActionResult Buy()
         {

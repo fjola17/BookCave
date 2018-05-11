@@ -5,7 +5,6 @@
 <ul>
     @foreach(var b in Model.BooksInOrder)
        {
-<<<<<<< HEAD
         <li class="borderClass cartClass">
           <p class="book-image"><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id"><img src="@b.CoverImage" alt="book image" height="300" width="210"></a>
           <div class="cartFlot">
@@ -16,16 +15,6 @@
               <button class="btn" type="submit">Delete</button>
             </form>
           </div>
-=======
-        <li>
-          <p class="book-image"><a asp-controller="Book" asp-action="Details" asp-route-id="@b.BookId"><img src="@b.CoverImage" alt="book image" height="300" width="210"></a>
-          <a asp-controller="Book" asp-action="Details" asp-route-id="@b.BookId">@b.Title</a>
-          @b.Price
-          <form asp-controller="Order" method="POST" asp-action="Delete">
-            <input type="hidden" name="ISBN" value="@b.Id"><br>
-            <button class="btn" type="submit">Delete</button>
-          </form>
->>>>>>> 4c4ce047d779d7bab920cd2fcb4630cc442a8f6e
         </li>
       }
   </ul>    

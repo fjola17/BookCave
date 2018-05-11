@@ -304,6 +304,7 @@ namespace BookCave.Repositories
             order.Books = books;
             return order;
         }
+
         public bool Buy(string userId, int cartId)
         {
             var userInfo = (from or in _db.Orders
@@ -312,14 +313,13 @@ namespace BookCave.Repositories
                             {
                                 Id = or.Id,
                                 UserId = or.UserId,
-                                Paid = or.Paid
+                                Paid = true
                             }).FirstOrDefault();
             //ef ekkert er til staðar
             if(userInfo == null)
             {
                 return false;
             }
-            userInfo.Paid = true;
             _db.Orders.Update(userInfo);
             return true;
         }

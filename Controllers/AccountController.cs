@@ -27,6 +27,9 @@ namespace BookCave.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            if(_signinManager.IsSignedIn(User)){
+                    return View("Profile");
+            }
             return View();
         }
 
@@ -65,6 +68,9 @@ namespace BookCave.Controllers
 
         public IActionResult Login()
         {
+            if(_signinManager.IsSignedIn(User)){
+                    return View("Profile");
+            }
             return View();
         }
 

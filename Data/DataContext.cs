@@ -11,6 +11,8 @@ namespace BookCave.Data
         public DbSet<Order> Orders{ get; set; }
         public DbSet<BooksInCart> BooksInCarts{ get; set; }
         public DbSet<ShippingInfo> ShippingInfos { get; set; }
+        public DbSet<BillingInfo> BillingInfos { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
       
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -11,20 +11,7 @@ namespace BookCave.Controllers
 {
     public class AdminController : Controller
     {
-        public IActionResult Index()
-        {
-            //Þarf að útfæra betur
-            return View();
-        }
-        public IActionResult CreateBook(BookViewModel newBook)
-        {
-            //Þarf að útfæra betur
-            return View();
-        }
-        public IActionResult UpdateBook(BookViewModel updatedBook)
-        {
-            //Þarf að útfæra betur
-            return View();
-        }
+        
+
     }
 }

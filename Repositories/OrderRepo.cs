@@ -96,12 +96,12 @@ namespace BookCave.Repositories
                                     Quantity = bks.Quantity,
                                     OrderId = bks.Id,
                                     UserId = bks.UserId
-                                }).SingleOrDefault();
+                                }).FirstOrDefault();
             if(bookTodelete == null)
             {
                 return false;
             }
-            _db.BooksInCarts.Remove(bookTodelete);         
+            _db.BooksInCarts.Remove(bookTodelete);     
             _db.SaveChanges();
             return false;
             
@@ -212,27 +212,9 @@ namespace BookCave.Repositories
              if(cartId == 0)
              {
                 return false;
-             } 
-           var userInfo = (from it in _db.ShippingInfos
-                           join ord in _db.Orders on it.OrderId equals ord.Id
-                            where it.OrderId == cartId && user == ord.UserId
-                            select new ShippingInfo
-                            {
-                                Id = it.Id,
-                                UserId = it.UserId,
-                                OrderId = it.OrderId,
-                                FullName = it.FullName,
-                                Country = it.Country,
-                                Zipcode = it.Zipcode,
-                                City = it.City,
-                                Adress = it.Adress,
-                                PhoneNumber = it.PhoneNumber
-
-                            }).FirstOrDefault();
-            //Ef order details eru ekki til
-            if(userInfo == null)
-            {
-                userInfo = new ShippingInfo
+             }
+            
+                var userInfo = new ShippingInfo
                 {
                 Id = shipping.Id,
                 UserId = user,
@@ -249,34 +231,29 @@ namespace BookCave.Repositories
                 {
                     return false;
                 }
-                _db.ShippingInfos.Add(userInfo);
-            } 
-            else
+            //    _db.ShippingInfos.Add(userInfo);
+            
+          //  _db.SaveChanges();
+                return true;
+            }
+        
+        public bool BillingInfo(BillingInputModel info, string userId, int cartId)
+        {
+            if(userId == null)
             {
                 return false;
             }
-                
-            _db.SaveChanges();
-                return true;
-        }
-        public bool BillingInfo(BillingInputModel info, string userId, int cartId)
-        {
-            /* 
-            var userInfo = (from or in _db.BillingInfo
-                                where userId == or.UserId && userId == or.UserId
-                                select new BillingInfo
-                                {
-                                    Id = or.Id,
-                                    OrderId = or.OrderId
-                            }).FirstOrDefault();
-            if(userInfo == null)
+            
+            var userInfo = new BillingInfo
             {
-                userInfo = new BillingInfo
-                {
-                    UserId = userId
-                };
-            }
-            */
+                UserId = userId,
+                OrderId = cartId,
+                PaymentMethod = info.PaymentMethod,
+                CardNumber = info.CardNumber
+
+            };
+            _db.BillingInfos.Add(userInfo);
+            _db.SaveChanges();
             return true;
         }
         public bool Buy(string userId, int cartId)

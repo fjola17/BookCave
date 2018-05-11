@@ -145,12 +145,13 @@ namespace BookCave.Repositories
 
         /*public void SendFeedback(FeedbackInputModel feedback)
         {
-         //   var currentUser = 
             var feed = new Feedback
             {
                 UserName = feedback.UserName,
                 Message = feedback.Message
             };
+            _db.Feedbacks.Add(feed);
+            _db.SaveChanges();
         }*/
 
         public bool Update(int bookId)

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BookCave.Data.EntityModels;
 using BookCave.Repositories;
+using BookCave.Models;
 
 namespace BookCave.Controllers
 {
@@ -64,6 +65,9 @@ namespace BookCave.Controllers
             var filteredByGenre = _bookServices.GetByGenre(genre);
             return View(filteredByGenre);
         }
-
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }

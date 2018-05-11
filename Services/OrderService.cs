@@ -1,4 +1,5 @@
 ﻿using BookCave.Models.InputModels;
+using BookCave.Repositories;
 using BookCave.Services;
 using System;
 
@@ -6,6 +7,11 @@ namespace BookCave.Services
 {
     public class OrderService : ErrorService
     {
+        public OrderRepo _orderRepo { get; set; }
+        public OrderService()
+        {
+            _orderRepo = new OrderRepo();
+        }
         public void Shipping(ShippingInfoInputModel shipping)
         {
             if(string.IsNullOrEmpty(shipping.FullName))
@@ -32,7 +38,7 @@ namespace BookCave.Services
             {
                 throw new Exception("Please enter a valid phone number");
             }
-            //else if()
+           // if(_orderRepo.G)
 
         }
         public void BillingInfo(BillingInputModel billing)

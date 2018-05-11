@@ -89,21 +89,18 @@ namespace BookCave.Repositories
             //leita af bókinni í gagnagrunninum
             var bookTodelete = (from bks in _db.BooksInCarts
                                 where bks.Id == bookId && UserId == bks.UserId && cartId == bks.OrderId
-                                select new BooksInCart
-                                {
-                                    Id = bks.Id,
-                                    BookId = bks.Id,
-                                    Quantity = bks.Quantity,
-                                    OrderId = bks.Id,
-                                    UserId = bks.UserId
-                                }).FirstOrDefault();
-            if(bookTodelete == null)
+                               select bks).SingleOrDefault();
+            
+            if(bookTodelete != null)
             {
-                return false;
-            }
-            _db.BooksInCarts.Remove(bookTodelete);     
+                _db.BooksInCarts.Remove(bookTodelete);     
             _db.SaveChanges();
             return false;
+            }
+            return true;
+        }
+        private void UpdateDataBase(int OrderId)
+        {
             
         }
        

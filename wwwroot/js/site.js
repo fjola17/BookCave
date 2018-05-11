@@ -8,11 +8,7 @@ $(document).ready(function(){
         var actualReview = $("#textPart").val();
         var review = {BookId : book, Rating : rating, ActualReview : actualReview };
         $.post("../../Review/Create", review, function(data, status) {
-            var newReview = "<li class=&quotbookReviews list-inline&quot><h2>" + rating + "</h2><h2>" + actualReview + "</h2></li>";
-            $("#insertNewReview").append(newReview);
-            $("#textPart").val("");
-            console.log("Success")
-
+            location.reload();
         }).fail(function(){
             alert("You can only post one review.");
         });

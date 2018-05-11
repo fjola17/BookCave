@@ -17,7 +17,7 @@
             <p class="book-details-image"><img src="@Model.CoverImage" alt="Book Image" height="400" width="auto"></p>
         </div>
         <div id="description">
-            <h3>Author: @Model.Author </h3>
+            <h3>Author: <a asp-controller="Book" asp-action="BookIndex" asp-route-searchString="@Model.Author">@Model.Author</a> </h3>
             <h3>Realase year: @Model.PublishingYear</h3>
             <h3>Genre: @Model.Genre</h3>
             <h3>Description: @Model.Description</h3>
@@ -60,22 +60,20 @@
                 </form>
             </div>
         }
-<!-- TODO: Bæta við Review einhverstaðar fyrir þessa bók -->
+<!-- Hér birtast reviews-->
 
         <div class="bookReviews borderClass">
             <h2>Reviews</h2>
             <ul id="insertNewReview">
                 @foreach(var b in Model.Reviews)
-                {
-                    @if(b.ActualReview != null)
+                {<!-- Enginn ummæli eru gefin birtast þau ekki-->
+                    @if(b.ActualReview != null) 
                     {
                         <li class="list-inline">   
                         <h2>Rating: @b.Rating</h2>
                         <h2>Review description: @b.ActualReview</h2>
                         </li><br>
                     }
-                    
-                    
                 } 
             </ul>
         </div>

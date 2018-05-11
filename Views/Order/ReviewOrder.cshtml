@@ -5,34 +5,39 @@
     ViewData["Title"] = "Review Order -";
 }
 
-<h2>Reviewing your order</h2>
+<h2 class="reviewMargin">Reviewing your order</h2>
 <div>
-<h3>Books</h3>
+<h3 class="reviewMargin">Books</h3>
+<div class="receiptClass">
+<ul class="Informa">    
 @foreach(var books in Model.Books)
-{
-    @books.Title
-    @books.CoverImage
-    @books.Price
-    @books.Quantity
+{   
+    <li class="reviewList borderClass">
+    <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id"><h3>@books.Title</h3></a>
+    <img src="@books.CoverImage" alt="book image" height="300" width="210">
+    <h3>Price: $@books.Price</h3>
+    <h3>@books.Quantity unit(s)</h3>
+    </li>
 }
-@Model.TotalPrice
+<div class="reviewTotalClass">
+    <h3>Total: $@Model.TotalPrice</h3>
+  </div>
 </div>
-<div>
+</div>
+<div class="borderClass infClass pad">
+<div class="infoPadding">
 <h2>Shipping Information</h2>
-@Model.FullName
-@Model.Country
-@Model.City
-@Model.Adress
-@Model.PhoneNumber
+<h3>Name: @Model.FullName</h3>
+<h3>Country: @Model.Country</h3>
+<h3>City: @Model.City</h3>
+<h3>Address: @Model.Adress</h3>
+<h3>PhoneNumber: @Model.PhoneNumber</h3>
 </div>
-<div>
+<div class="infoPadding">
 
 <h2>Billing information</h2>
-@Model.BillingName
-@Model.BillingCountry
-@Model.Zip
-@Model.PaymentMethod
-
-Card number: xxxx-xxxx-xxxx
+<h3>@Model.PaymentMethod Card number: xxxx-xxxx-xxxx-xxxx</h3>
+<a asp-action="Buy" asp-controller="Order"><button class="btn btn-default" id="orderbutton">Buy</button></a>
 </div>
-<a asp-action="Buy" asp-controller="Order"><button class="btn" id="orderbutton">Buy</button></a>
+
+</div>

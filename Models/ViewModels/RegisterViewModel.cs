@@ -7,10 +7,8 @@ namespace BookCave.Models.ViewModels
         [EmailAddress]
         public string Email { get; set; }
         public string UserName { get; set; }
-        [Required(ErrorMessage = "First name is required.")]
-        public string FirstName { get; set; }
-        [Required(ErrorMessage = "Last name is required.")]
-        public string LastName { get; set; }
+        [Required(ErrorMessage = "Name is required.")]
+        public string Name { get; set; }
         [Required(ErrorMessage = "Invalid password.")]
         public string Password { get; set; }
         public string Image { get; set; }

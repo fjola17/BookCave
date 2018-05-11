@@ -151,12 +151,18 @@ namespace BookCave.Controllers
         {
             if(!ModelState.IsValid)
             {
-                return View();
+                return View("Error");
             }
             var user = _userManager.GetUserId(User);
             var cartId = _orderServices.GetCart(user);
-            //var order = displayOrder(user, cartId);
-            return View();            
+            //birtir bara það sem er í körfunni
+            var order = _orderServices.Cart(cartId, user);
+            //var order = _orderServices.ViewOrder(cartId, user);
+            if(order == null)
+            {
+                return View("Error");
+            }
+            return View(order);            
         }
 
         public IActionResult Buy()

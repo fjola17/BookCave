@@ -26,47 +26,6 @@ namespace BookCave.Repositories
         {
             _db = new DataContext();
         }
-        public List<ReviewViewModel> GetByBookId(int bookId) //Nær í review tengd þessarri bók
-        {
-            var bookReviews = (from rv in _db.Reviews
-                         where rv.BookId == bookId
-                         select new ReviewViewModel
-                        {
-                            UserId = rv.UserId,
-                            BookId = rv.BookId,
-                            ActualReview = rv.ActualReview,
-                        }).ToList();
-            return bookReviews;
-        }
-
-        public List<ReviewViewModel> GetByOwnerId(string ownerId) //Nær í review tengd þessum notanda
-        {
-            var ownerReviews = (from rv in _db.Reviews
-                         where rv.UserId == ownerId
-                         select new ReviewViewModel
-                        {
-
-                            ActualReview = rv.ActualReview,
-                            Rating = rv.Rating
-                        }).ToList();
-            
-            return ownerReviews;
-        }
-        public ReviewViewModel GetByReviewId(int reviewId) //Nær í ákveðið review
-        {
-            var review = (from rv in _db.Reviews
-                          where rv.Id == reviewId
-                          select new ReviewViewModel
-                          {
-                            Id = rv.Id,
-                            UserId = rv.UserId,
-                            BookId = rv.BookId,
-                            ActualReview = rv.ActualReview,
-                            Rating = rv.Rating
-                          }).SingleOrDefault();
-            
-            return review;
-        }
         [HttpPost]
         public bool Create(Review review)
         {

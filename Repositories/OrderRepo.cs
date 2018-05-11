@@ -123,7 +123,8 @@ namespace BookCave.Repositories
                         Title = bks.Title,
                         BookId = bks.Id,
                         CoverImage = bks.CoverImage,
-                        Price = bks.Price
+                        Price = bks.Price,
+                        Quantity = bksc.Quantity
                     }).ToList();
             if(cart == null)
             {

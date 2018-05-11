@@ -156,7 +156,7 @@ namespace BookCave.Controllers
             var user = _userManager.GetUserId(User);
             var cartId = _orderServices.GetCart(user);
             //birtir bara það sem er í körfunni
-//            var order = _orderServices.Cart(cartId, user);
+
             var order = _orderServices.ViewOrder(cartId, user);
             if(order == null)
             {
@@ -167,10 +167,17 @@ namespace BookCave.Controllers
 
         public IActionResult Buy()
         {
+            if(!ModelState.IsValid)
+            {
+                return RedirectToAction("Cart")
+            }
             var user = _userManager.GetUserId(User);
             var cartId = _orderServices.GetCart(user);
-            var bla = _orderServices.Buy(user, cartId);
-            return View();
+            if(!_orderServices.Buy(user, cartId))
+            {
+                return View("Error");
+            }
+            return View("FrontPage","Home");
         }
         public IActionResult Error()
         {

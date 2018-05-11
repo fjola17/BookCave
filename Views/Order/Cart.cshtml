@@ -6,8 +6,8 @@
     @foreach(var b in Model.BooksInOrder)
        {
         <li>
-          <p class="book-image"><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id"><img src="@b.CoverImage" alt="book image" height="300" width="210"></a>
-          <a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id">@b.Title</a>
+          <p class="book-image"><a asp-controller="Book" asp-action="Details" asp-route-id="@b.BookId"><img src="@b.CoverImage" alt="book image" height="300" width="210"></a>
+          <a asp-controller="Book" asp-action="Details" asp-route-id="@b.BookId">@b.Title</a>
           @b.Price
           <form asp-controller="Order" method="POST" asp-action="Delete">
             <input type="hidden" name="ISBN" value="@b.Id"><br>

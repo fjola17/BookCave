@@ -21,7 +21,10 @@
           </div>
         </li>
       }
-  </ul>    
+  </ul>
+  <div class="borderClass totalCart">
+    <h3>Total: $@Model.TotalPrice</h3>
+  </div>
 <div class="cartSubmit">
   <a asp-controller="Order" asp-action="Shipping">
     <button class="btn" type="submit">Process order</button>

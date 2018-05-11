@@ -43,9 +43,10 @@ namespace BookCave.Repositories
                             Paid = ord.Paid,
                             TotalPrice = ord.TotalPrice
                         }).FirstOrDefault();
+            //finnur allar bækurnar í pöntunninni
             var booksInorder = (from bks in _db.Books
                                 join cob in _db.BooksInCarts on bks.Id equals cob.BookId
-                        join bk in _db.Orders on cob.OrderId equals bk.Id
+                                join bk in _db.Orders on cob.OrderId equals bk.Id
                                 join ord in _db.Orders on cob.OrderId equals ord.Id
                                 where cob.OrderId == id && ord.Paid == true
                                 select new BookCartViewModel
@@ -63,24 +64,7 @@ namespace BookCave.Repositories
             
             return aOrder;
         }
-        
-        public void ClearCart(Order cart)
-        {
-            //hreynsar allt út úr körfunni
-            if(cart == null)
-            {
-                return;
-            }
-            cart = new Order
-            {
-                OrderId = cart.OrderId,
-                UserId = cart.UserId,
-                Paid = false
-            };
-            _db.Update(cart);
-            _db.SaveChanges();
-        }
-        
+                
         public bool DeleteById(int? bookId, int cartId, string UserId)
         {
             if(bookId == null)
@@ -94,9 +78,9 @@ namespace BookCave.Repositories
             
             if(bookTodelete != null)
             {
-            _db.BooksInCarts.Remove(bookTodelete);     
-            _db.SaveChanges();
-            return false;
+                _db.BooksInCarts.Remove(bookTodelete);     
+                _db.SaveChanges();
+                return false;
             }
             return true;
         }
@@ -126,18 +110,23 @@ namespace BookCave.Repositories
                         Price = bks.Price,
                         Quantity = bksc.Quantity
                     }).ToList();
+            //ef ekkert er í körfunni
             if(cart == null)
             {
                 return cart;
             }
             cart.BooksInOrder = booksInCart;
+            foreach(var books in booksInCart)
+            {
+                cart.TotalPrice += books.Price * books.Quantity;
+            }
 
             return cart;
 
         }
         public bool AddToCart(int id, string userId, int cartId)
         {  
-            var itemincart = (from it in _db.BooksInCarts              
+            var itemincart = (from it in _db.BooksInCarts            
                             where it.UserId == userId && id == it.BookId && cartId == it.OrderId
             select new BooksInCart
             {
@@ -145,7 +134,7 @@ namespace BookCave.Repositories
                 BookId = id,
                 Quantity = it.Quantity,
                 OrderId = it.Id,
-                UserId =it.UserId
+                UserId =it.UserId,
 
             }).FirstOrDefault();
 
@@ -167,6 +156,7 @@ namespace BookCave.Repositories
                 itemincart.Quantity++;
                 _db.BooksInCarts.Update(itemincart);
             }
+            //cartId.TotalPrice += itemincart.Price;
             _db.SaveChanges();
             return true;
         }
@@ -191,9 +181,9 @@ namespace BookCave.Repositories
                     TotalPrice = 0,
                     Paid = false
                 };
+                //ef karfan finnst ekki
                 if(cart == null)
                 {
-                    Console.WriteLine("Error");
                    return 0;
                 }
                 
@@ -227,9 +217,9 @@ namespace BookCave.Repositories
             {
                 return false;
             }
-        //    _db.ShippingInfos.Add(userInfo);
+            _db.ShippingInfos.Add(userInfo);
             
-          //  _db.SaveChanges();
+            _db.SaveChanges();
                 return true;
             }
         
@@ -302,26 +292,31 @@ namespace BookCave.Repositories
                 return order;
             }
             order.Books = books;
+            foreach(var book in books)
+            {
+                order.TotalPrice += book.Price * book.Quantity;
+            }
             return order;
         }
 
         public bool Buy(string userId, int cartId)
         {
-            var userInfo = (from or in _db.Orders
-                            where cartId == or.OrderId && userId == or.UserId
-                     select new Order
-                            {
-                                Id = or.Id,
-                                UserId = or.UserId,
-                                Paid = true
-                            }).FirstOrDefault();
+            var book = (from or in _db.Orders
+            where userId == or.UserId && or.Paid == false && cartId == or.Id
+            select or).FirstOrDefault();
+
             //ef ekkert er til staðar
-            if(userInfo == null)
+            if(book == null)
             {
-                return false;
+            return false;            
             }
-            _db.Orders.Update(userInfo);
+            book.Paid = true;
+   //         _db.Orders.Update(book);
+  //          _db.SaveChanges();
             return true;
+            //Status á paid breytist yfir í true
+            
+
         }
     }
 }

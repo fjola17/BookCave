@@ -169,15 +169,15 @@ namespace BookCave.Controllers
         {
             if(!ModelState.IsValid)
             {
-                return RedirectToAction("Cart")
+                return RedirectToAction("Cart");
             }
             var user = _userManager.GetUserId(User);
             var cartId = _orderServices.GetCart(user);
             if(!_orderServices.Buy(user, cartId))
             {
-                return View("Error");
+                return RedirectToAction("FrontPage", "Home");
             }
-            return View("FrontPage","Home");
+            return RedirectToAction("FrontPage","Home");
         }
         public IActionResult Error()
         {

@@ -68,10 +68,15 @@
             <ul id="insertNewReview">
                 @foreach(var b in Model.Reviews)
                 {
-                    <li class="list-inline">   
+                    @if(b.ActualReview != null)
+                    {
+                        <li class="list-inline">   
                         <h2>Rating: @b.Rating</h2>
                         <h2>Review description: @b.ActualReview</h2>
-                    </li><br>
+                        </li><br>
+                    }
+                    
+                    
                 } 
             </ul>
         </div>

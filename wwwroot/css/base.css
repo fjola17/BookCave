@@ -1,3 +1,8 @@
+li
+{
+  list-style-type: none;
+  padding-bottom: 30px;
+}
 /* Class elements begin here */
 .background
 {
@@ -161,16 +166,54 @@
 }
 .cartClass
 {
-  padding-bottom: 400px;
+  padding-bottom: 350px;
+  padding-top: 50px;
+  padding-left: 50px;
+  margin: 100px 400px 100px 400px;
+
+}
+.cartClass img
+{
+  float: left;
+}
+
+.cartFlot
+{
+  float: right;
+  padding: 0 auto;
+  margin-right: 100px;
+}
+.cartSubmit
+{
+  margin-left: 442px;
+}
+.cartMarg
+{
+  margin-left: 800px;
+  padding-top: 10px;
+}
+.shipMargin
+{
   margin-left: 400px;
   margin-right: 400px;
-  margin-top: 100px;
-  margin-bottom: 100px;
+  padding: 60px 70px 50px 70px;
 }
-.cartClass li
+.shipMargin form div
 {
-  list-style-type: none;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
+}
+.shipMargH2
+{
+  margin-left: 600px;
+}
+.accessDenied
+{
+  margin-left: 400px;
+  margin-right: 400px;
+}
+.accessHtag
+{
+  margin-left: 290px;
 }
 /* Class elements begin here */
 /* ID elements begin here */
@@ -249,6 +292,10 @@
 {
   margin-right: 100px;
   padding-left: 50px;
+}
+#stopImage
+{
+  margin-left: 80px;
 }
 #footCon:hover, #footAbo:hover, #footAgg:hover
 {

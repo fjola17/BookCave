@@ -17,11 +17,7 @@ namespace BookCave.Controllers
         {
             _bookServices = new BookRepo();
         }
-        public IActionResult FrontPage()
-        {
-            var books = _bookServices.GetBookIndex();
-            return View(books);
-        }  
+        
         public IActionResult BookIndex(string searchString) //Nær í lista af öllum bókum.
         {
             //ef ekkert er slegið inn
@@ -53,7 +49,6 @@ namespace BookCave.Controllers
             return View(book);
         }
         
-        [HttpGet]
         public IActionResult Top10() //Nær í Top 10
         {
             var top10 = _bookServices.TopRatedBooks();

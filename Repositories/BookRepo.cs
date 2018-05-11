@@ -119,6 +119,18 @@ namespace BookCave.Repositories
                        return book;
                    }
             book.Reviews = reviews;
+            if(book.Reviews == null)
+            {
+                book.Rating = 3;
+            }
+            double aggregatedRating = 0;
+            int revCount = 0;
+            foreach(var rev in reviews)
+            {
+                revCount++;
+                aggregatedRating += rev.Rating;
+            }
+            book.Rating = aggregatedRating / revCount;
 
             return book;
         }

@@ -18,7 +18,7 @@ namespace BookCave.Controllers
     {
         public OrderRepo _orderServices;
          private readonly UserManager<ApplicationUser> _userManager;
-         private readonly SignInManager<ApplicationUser> _SignInManager;
+         
         public OrderController(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;

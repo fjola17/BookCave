@@ -6,14 +6,14 @@ li
 /* Class elements begin here */
 .background
 {
-  background-color: rgba(198, 198, 214, 0.6);
+  background-color: rgba(204, 99, 14, 0.6);
 }
 .borderClass
 {
   border-style: ridge;
   border-color: rgba(24, 24, 26, 0.37);
   border-width: 5px;
-  background-color: rgb(199, 194, 194, 0.6);
+  background-color: rgba(160, 46, 46, 0.6);
 }
 .margBottom
 {
@@ -222,8 +222,16 @@ li
 }
 .bookReviews
 {
+  padding: 50px 50px 50px 50px;
   margin-left: 400px;
   margin-right: 400px;
+}
+.list-inline
+{
+  border-style: ridge;
+  border-color: rgba(24, 24, 26, 0.37);
+  border-width: 5px;
+  background-color: rgba(138, 138, 173, 0.774);
 }
 /* Class elements begin here */
 /* ID elements begin here */
@@ -418,22 +426,6 @@ li
 .nav 
 {
   font-size: 20px;
-}
-.header
-{
-  left: 0;
-  top: 0;
-  right: 0;
-  background-color: rgba(5, 190, 5, 0.26);
-  padding-bottom: 20px;
-  border-bottom: 1px solid black;
-}
-
-.header ul
-{
-  padding-bottom: -125px;
-  padding-left: 20px;
-
 }
 
 /*Header ends here*/

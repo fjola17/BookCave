@@ -21,7 +21,7 @@
             <h3>Author: <a href="#">@Model.Author</a> </h3>
             <h3>Realase year: @Model.PublishingYear</h3>
             <h3>Genre: @Model.Genre</h3>
-            <h3>Discritption: @Model.Description</h3>
+            <h3>Description: @Model.Description</h3>
             <h3>Rating: @Model.Rating</h3>
             <h3>Formats: @Model.Formats</h3> <!--öðruvísi format-->
             <h3>AudioSample: @Model.AudioSample</h3>
@@ -65,13 +65,13 @@
 
         <div class="bookReviews borderClass">
             <h2>Reviews</h2>
-            <ul class="list-inline" id="insertNewReview">
+            <ul id="insertNewReview">
                 @foreach(var b in Model.Reviews)
                 {
-                    <li>   
-                        <h2>@b.Rating</h2>
-                        <h2>@b.ActualReview</h2>
-                    </li>
+                    <li class="list-inline">   
+                        <h2>Rating: @b.Rating</h2>
+                        <h2>Review description: @b.ActualReview</h2>
+                    </li><br>
                 } 
             </ul>
         </div>

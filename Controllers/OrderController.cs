@@ -60,7 +60,7 @@ namespace BookCave.Controllers
             if(!_orderServices.DeleteById(ISBN, cart, userId))
             {
                 ViewBag.Title = "Error";
-                return RedirectToAction("Error");
+                return View("Error");
             }
 
             return View("Cart");
@@ -76,10 +76,11 @@ namespace BookCave.Controllers
             {
                 return RedirectToAction("AccessDenied", "Account");
             }
+            b
             if(!_orderServices.AddToCart(bookAdded, userId, cart))
             {
                 ViewBag.Title = "Error";
-                return RedirectToAction("Error");
+                return View("Error");
             }
             ViewBag.Title = "Sucess!";
             return RedirectToAction("Cart", "Order");

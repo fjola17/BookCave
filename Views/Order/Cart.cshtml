@@ -1,40 +1,39 @@
 @model BookCave.Models.ViewModels.OrderDetailsViewModel
 
-<div class="borderClass cartClass">
-<h1>Current items in cart</h2>
+<div>
+<h1 class ="cartMarg">Current items in cart</h1>
 <ul>
-  
-  <!--<div class="col-25">
-      <div class="container">
-      
-        <!--<h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4>-->
-
     @foreach(var b in Model.BooksInOrder)
        {
+<<<<<<< HEAD
+        <li class="borderClass cartClass">
+          <p class="book-image"><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id"><img src="@b.CoverImage" alt="book image" height="300" width="210"></a>
+          <div class="cartFlot">
+            <a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id"><h3>@b.Title</h3></a>
+            <h3>Price: $@b.Price</h3>
+            <form asp-controller="Order" method="POST" asp-action="Delete">
+              <input type="hidden" name="ISBN" value="@b.Id"><br>
+              <button class="btn" type="submit">Delete</button>
+            </form>
+          </div>
+=======
         <li>
-          <p class="book-image"><img src="@b.CoverImage" alt="book image" height="300" width="210">
-         <a asp-controller="Book" asp-action="Index" asp-route-id="@b.Id">@b.Title</a>
+          <p class="book-image"><a asp-controller="Book" asp-action="Details" asp-route-id="@b.BookId"><img src="@b.CoverImage" alt="book image" height="300" width="210"></a>
+          <a asp-controller="Book" asp-action="Details" asp-route-id="@b.BookId">@b.Title</a>
           @b.Price
           <form asp-controller="Order" method="POST" asp-action="Delete">
-          <input type="hidden" name="ISBN" value="@b.Id"><br>
-          <button class="Something" type="submit">Delete</button>
+            <input type="hidden" name="ISBN" value="@b.Id"><br>
+            <button class="btn" type="submit">Delete</button>
           </form>
+>>>>>>> 4c4ce047d779d7bab920cd2fcb4630cc442a8f6e
         </li>
-        
-        
-        <!--<p><a href="#">Product 1</a> <span class="price">$15</span></p>
-        <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-        <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-        <p><a href="#">Product 4</a> <span class="price">$2</span></p>
-        <hr>-->
       }
-        <!--<p>Total <span class="price" style="color:black"><b>$30</b></span></p>
-      </div>
-    </div>-->
-   
-
-<a asp-controller="Order" asp-action="Shipping">
+  </ul>    
+<div class="cartSubmit">
+  <a asp-controller="Order" asp-action="Shipping">
     <button class="btn" type="submit">Process order</button>
     </a>
     <button class="btn" type="back"><a asp-action="FrontPage" asp-controller="Home">Back</a></button>
+</div>
+
 </div>

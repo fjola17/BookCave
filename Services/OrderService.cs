@@ -6,7 +6,7 @@ namespace BookCave.Services
 {
     public class OrderService : ErrorService
     {
-        public void ProcessOrder(ShippingInfoInputModel shipping)
+        public void Shipping(ShippingInfoInputModel shipping)
         {
             if(string.IsNullOrEmpty(shipping.FullName))
             {
@@ -33,6 +33,40 @@ namespace BookCave.Services
                 throw new Exception("Please enter a valid phone number");
             }
             //else if()
+
+        }
+        public void BillingInfo(BillingInputModel billing)
+        {
+            if(string.IsNullOrEmpty(billing.PaymentMethod))
+            {
+                throw new Exception("Please enter a payment method");
+            }
+            else if(string.IsNullOrEmpty(billing.CardNumber))
+            {
+                throw new Exception("Please enter a valid cardnumber");
+            }
+
+        }
+
+        public void DeleteById(int? bookId, string user)
+        {
+            if(string.IsNullOrEmpty(bookId.ToString()))
+            {
+                throw new Exception("Book not found");
+            }
+
+        }
+       /* public OrderDetailsViewModel Cart(string userid)
+        {
+            
+           // var cart = _orderrepo.Cart(userid, cartId)
+        }*/
+        public void AddToCart(int id, string userid)
+        {
+
+        }
+        public void Buy(string userid)
+        {
 
         }
     }

@@ -7,13 +7,17 @@ namespace BookCave.Services
 {
     public class ErrorService
     {
-        public void ProcessOrder()
+        public void Shipping()
         {
             throw new NullReferenceException();
         }
-        public void Bla()
+        public void BillingInfo()
         {
-            throw new ArgumentNullException();
+            throw new NullReferenceException();
+        }
+        public void Feedback()
+        {
+            throw new NullReferenceException();
         }
     }
 }

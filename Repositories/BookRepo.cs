@@ -119,19 +119,22 @@ namespace BookCave.Repositories
                        return book;
                    }
             book.Reviews = reviews;
-            if(book.Reviews == null)
+            if(book.Reviews.Count == 0)
             {
                 book.Rating = 3;
             }
-            double aggregatedRating = 0;
-            int revCount = 0;
-            foreach(var rev in reviews)
+            else
             {
-                revCount++;
-                aggregatedRating += rev.Rating;
+                double aggregatedRating = 0;
+                int revCount = 0;
+                foreach(var rev in reviews)
+                {
+                    revCount++;
+                    aggregatedRating += rev.Rating;
+                }
+                book.Rating = aggregatedRating / revCount;
             }
-            book.Rating = aggregatedRating / revCount;
-
+            
             return book;
         }
         public List<BookViewModel> TopRatedBooks()

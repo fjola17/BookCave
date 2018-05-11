@@ -301,18 +301,22 @@ namespace BookCave.Repositories
 
         public bool Buy(string userId, int cartId)
         {
-            var userInfo = (from or in _db.Orders
-                            where userId == or.UserId && or.Paid == false
-                            select or).FirstOrDefault();
+            var book = (from or in _db.Orders
+            where userId == or.UserId && or.Paid == false && cartId == or.Id
+            select or).FirstOrDefault();
+
             //ef ekkert er til staðar
-            if(userInfo == null)
+            if(book == null)
             {
-                return false;
+            return false;            
             }
-            //Status á paid breytist yfir í true
-            userInfo.Paid = true;
-            _db.Orders.Update(userInfo);
+            book.Paid = true;
+   //         _db.Orders.Update(book);
+  //          _db.SaveChanges();
             return true;
+            //Status á paid breytist yfir í true
+            
+
         }
     }
 }

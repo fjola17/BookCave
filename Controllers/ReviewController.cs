@@ -26,17 +26,6 @@ namespace BookCave.Controllers
             _userManager = userManager;
             _reviewServices = new ReviewRepo();
         }
-    
-        
-        public IActionResult BookReviews(int bookId) //Nær í reviews fyrir bók
-        {
-            var reviewsByBookId = _reviewServices.GetByBookId(bookId);
-            if(reviewsByBookId == null)
-            {
-                return View();
-            }
-            return View(reviewsByBookId);
-        }
 
         [Authorize]
         [HttpPost]

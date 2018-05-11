@@ -14,16 +14,14 @@ $(document).ready(function(){
         });
     });
 
-    var check = function() {
-        if (document.getElementById("password").value ==
-        document.getElementById("confirm_password").value) {
-            document.getElementById("message").style.color = "green";
-            document.getElementById("message").innerHTML = "matching";
+    $('#Password, #ConfirmPassword').on('keyup', function () {
+        if ($('#Password').val() == $('#ConfirmPassword').val()) {
+            $('#message').html('Matching').css('color', 'green');
         } 
         else {
-        document.getElementById("message").style.color = "red";
-        document.getElementById("message").innerHTML = "not matching";
+            $('#message').html('Not Matching').css('color', 'red');
         }
+    });
 
-    }
+    
 });

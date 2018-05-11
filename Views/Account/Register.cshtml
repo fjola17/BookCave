@@ -1,4 +1,14 @@
 @model BookCave.Models.ViewModels.RegisterViewModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+
+@if(SignInManager.IsSignedIn(User))
+{
+    <h1>You are already registered!</h1>
+    <h2>Click <a asp-controller="Home" asp-action="FrontPage">here</a> to look at some great books!</h2>
+}
+else
+{
     <div class="regInfo borderClass" id="background">
         <h1>Register</h1>
 
@@ -102,3 +112,4 @@
 <p><a href="https://termsofservicegenerator.net">These Terms and Conditions have been created at World's Free Terms Of Service Generator.</a></p>
     </fieldset>
 </div>
+}

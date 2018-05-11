@@ -1,5 +1,14 @@
 @model BookCave.Models.ViewModels.LoginViewModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
 
+@if(SignInManager.IsSignedIn(User))
+{
+    <h1>You are already signed in!</h1>
+    <h2>Click <a asp-controller="Home" asp-action="FrontPage">here</a> to look at some great books!</h2>
+}
+else
+{
 <div>
     <h1 class="loginTop">Login</h1>
     <div class="log borderClass">
@@ -14,7 +23,7 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                Dont have an account? <a asp-action="Register" asp-controller="Account">Register here</a>
+                <p>Dont have an account? <a asp-action="Register" asp-controller="Account">Register here</a></p>
             </div>
             <div class="form-group">
             <input type="checkbox" asp-for="RememberMe"> Remember me?
@@ -26,3 +35,4 @@
         </form>
     </div>
 </div>
+}

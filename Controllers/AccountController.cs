@@ -50,7 +50,7 @@ namespace BookCave.Controllers
             if(results.Succeeded)
             {
                 //Notandi er nýskráður
-                await _userManager.AddClaimAsync(user, new Claim("Name", $"{register.FirstName} {register.LastName}"));
+                await _userManager.AddClaimAsync(user, new Claim("Name", $"{register.Name}"));
                 await _userManager.AddClaimAsync(user, new Claim("Address", $"{register.Address}"));
                 await _userManager.AddClaimAsync(user, new Claim("Email", $"{register.Email}"));
                 await _userManager.AddClaimAsync(user, new Claim("Image", $"{register.Image}"));

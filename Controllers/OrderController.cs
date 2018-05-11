@@ -57,7 +57,7 @@ namespace BookCave.Controllers
             }
             var userId = _userManager.GetUserId(User);
             var cart =_orderServices.GetCart(userId);
-            if(!_orderServices.DeleteById(ISBN, cart, userId))
+            if(_orderServices.DeleteById(ISBN, cart, userId))
             {
                 ViewBag.Title = "Error";
                 return View("Error");
@@ -76,7 +76,7 @@ namespace BookCave.Controllers
             {
                 return RedirectToAction("AccessDenied", "Account");
             }
-            b
+
             if(!_orderServices.AddToCart(bookAdded, userId, cart))
             {
                 ViewBag.Title = "Error";
@@ -125,7 +125,24 @@ namespace BookCave.Controllers
             {
                 return RedirectToAction("AccessDenied", "Account");
             }
-            return RedirectToAction("Confirm");
+            return RedirectToAction("BillingInfo");
+        }
+        [HttpGet]
+        public IActionResult BillingInfo()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult BillingInfo(BillingInputModel billing)
+        {
+            if(!ModelState.IsValid)
+            {
+                 var user = _userManager.GetUserId(User);
+            var cartId = _orderServices.GetCart(user);
+            if(!_orderServices.BillingInfo(billing, user, cartId))
+                return View();
+            }
+            return RedirectToAction("ReviewOrder");
         }
         public IActionResult Confirm()
         {
@@ -140,5 +157,10 @@ namespace BookCave.Controllers
             var bla = _orderServices.Buy(user, cartId);
             return View();
         }
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        
     }
 }

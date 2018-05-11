@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace BookCave.Models.ViewModels
+namespace BookCave.Models.InputModels
 {
     public class LoginViewModel
     {   [Required (ErrorMessage="Please insert your account email address.")]

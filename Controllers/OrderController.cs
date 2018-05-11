@@ -62,8 +62,8 @@ namespace BookCave.Controllers
                 ViewBag.Title = "Error";
                 return View("Error");
             }
-
-            return View("Cart");
+           // var displaycart = _orderServices.Cart(userId, cart);
+            return RedirectToAction("Cart");
         }
         
         [HttpPost]
@@ -132,7 +132,7 @@ namespace BookCave.Controllers
         {
             return View();
         }
-        /*[HttpPost]
+        [HttpPost]
         public IActionResult BillingInfo(BillingInputModel billing)
         {
             if(!ModelState.IsValid)
@@ -141,12 +141,12 @@ namespace BookCave.Controllers
             }
             var user = _userManager.GetUserId(User);
             var cartId = _orderServices.GetCart(user);
-            /*if(!_orderServices.BillingInfo(billing, user, cartId))
+            if(!_orderServices.BillingInfo(billing, user, cartId))
             {
                 return View("Error");
             }
             return RedirectToAction("ReviewOrder");
-    }*/
+        }
         public IActionResult ReviewOrder()
         {
             if(!ModelState.IsValid)
@@ -155,6 +155,7 @@ namespace BookCave.Controllers
             }
             var user = _userManager.GetUserId(User);
             var cartId = _orderServices.GetCart(user);
+         //   var order = displayOrder(user, cartId);
             return View();            
         }
 

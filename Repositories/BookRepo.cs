@@ -105,10 +105,10 @@ namespace BookCave.Repositories
                         CoverImage = bo.CoverImage
                     }).SingleOrDefault();
                     var reviews = (from rw in _db.Reviews
-                   join bks in _db.Books on rw.BookId equals bks.Id
+                   where rw.BookId == bookId
                    select new ReviewViewModel
                    {
-                       UserId = rw.UserId, //current user
+                       UserId = rw.UserId, //Notandi sem á review
                        BookId = rw.BookId, //current bók
                        ActualReview = rw.ActualReview,
                        Rating = rw.Rating

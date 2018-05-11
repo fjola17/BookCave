@@ -1,23 +1,28 @@
 @model BookCave.Models.ViewModels.OrderDetailsViewModel
 
-<div class="borderClass cartClass">
-<h1>Current items in cart</h2>
+<div>
+<h1 class ="cartMarg">Current items in cart</h1>
 <ul>
     @foreach(var b in Model.BooksInOrder)
        {
-        <li>
-          <p class="book-image"><a asp-controller="Book" asp-action="Details" asp-route-id="@b.BookId"><img src="@b.CoverImage" alt="book image" height="300" width="210"></a>
-          <a asp-controller="Book" asp-action="Details" asp-route-id="@b.BookId">@b.Title</a>
-          @b.Price
-          <form asp-controller="Order" method="POST" asp-action="Delete">
-            <input type="hidden" name="ISBN" value="@b.Id"><br>
-            <button class="btn" type="submit">Delete</button>
-          </form>
+        <li class="borderClass cartClass">
+          <p class="book-image"><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id"><img src="@b.CoverImage" alt="book image" height="300" width="210"></a>
+          <div class="cartFlot">
+            <a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id"><h3>@b.Title</h3></a>
+            <h3>Price: $@b.Price</h3>
+            <form asp-controller="Order" method="POST" asp-action="Delete">
+              <input type="hidden" name="ISBN" value="@b.Id"><br>
+              <button class="btn" type="submit">Delete</button>
+            </form>
+          </div>
         </li>
       }
-
-<a asp-controller="Order" asp-action="Shipping">
+  </ul>    
+<div class="cartSubmit">
+  <a asp-controller="Order" asp-action="Shipping">
     <button class="btn" type="submit">Process order</button>
     </a>
     <button class="btn" type="back"><a asp-action="FrontPage" asp-controller="Home">Back</a></button>
+</div>
+
 </div>

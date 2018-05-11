@@ -80,7 +80,7 @@ namespace BookCave.Repositories
                                     BookId = rv.BookId,
                                     ActualReview = rv.ActualReview,
                                     Rating = rv.Rating
-                                }).FirstOrDefault();
+                                }).SingleOrDefault();
             if (reviewToAdd == null)
             {
                 reviewToAdd = new Review

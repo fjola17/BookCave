@@ -248,7 +248,10 @@ li
   border-width: 5px;
   background-color: rgba(138, 138, 173, 0.774);
 }
-/* Class elements begin here */
+.inline {
+  display: inline-block;
+}
+/* Class elements end here */
 /* ID elements begin here */
 #shopBtn a
 {
@@ -435,6 +438,7 @@ li
 .footer-bottom-layout {
   text-align: center;
 }
+
 .copyright-tag
 {
   color: white;

@@ -184,7 +184,7 @@ li
   padding-bottom: 350px;
   padding-top: 50px;
   padding-left: 50px;
-  margin: 100px 400px 100px 400px;
+  margin: 100px 400px 50px 400px;
 
 }
 .cartClass img
@@ -257,6 +257,12 @@ li
   margin-right: 400px;
   padding: 40px 40px 40px 40px;
 } 
+.totalCart
+{
+  margin-bottom: 50px;
+  margin-left: 440px;
+  margin-right: 400px;;
+}
 .paymentHeader
 {
   margin-left: 400px;

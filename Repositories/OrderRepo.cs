@@ -19,9 +19,10 @@ namespace BookCave.Repositories
         {
             _db = new DataContext();
         }
+        //Finnur pantanir út frá innskráðum notanda
         public List<OrderViewModel> GetByOwnerId(string userId)
         {
-            //Finnur allar
+            //Finnur allar pantanir sem notandi hefur gert
             var ordersFromOwner = (from ord in _db.Orders
                                    where userId == ord.UserId && ord.Paid == true
                                    orderby ord.OrderId descending
@@ -87,7 +88,7 @@ namespace BookCave.Repositories
 
         public OrderDetailsViewModel Cart(string userId, int cartId)
         {
-            //finn körfunna og byrti vörurnar inn í þeim
+            //finn körfunna og birti vörurnar inn í þeim
             var cart = (from ca in _db.Orders
                         where ca.Id == cartId && userId == ca.UserId
                         select new OrderDetailsViewModel
@@ -120,10 +121,9 @@ namespace BookCave.Repositories
             {
                 cart.TotalPrice += books.Price * books.Quantity;
             }
-
             return cart;
-
         }
+        //bæti við í körfu
         public bool AddToCart(int id, string userId, int cartId)
         {  
             var itemincart = (from it in _db.BooksInCarts            
@@ -140,7 +140,7 @@ namespace BookCave.Repositories
 
             if(itemincart == null)
             {
-               //býr til nýjan tengistreng ef bókin er ekki í körfu
+               //býr til nýjan hlut  ef bókin er ekki í körfu
                itemincart = new BooksInCart
                {
                    BookId = id,
@@ -160,6 +160,7 @@ namespace BookCave.Repositories
             _db.SaveChanges();
             return true;
         }
+        //finnur númer á pöntun
         public int GetCart(string id)
         {
             var cart = (from or in _db.Orders
@@ -172,6 +173,7 @@ namespace BookCave.Repositories
                             TotalPrice = or.TotalPrice,
                             Paid = or.Paid
                         }).FirstOrDefault();
+            //Ef karfan er ekki til
             if(cart == null)
             {
             
@@ -193,14 +195,16 @@ namespace BookCave.Repositories
             return cart.Id; 
 
         }
-        
+        //Upplisingar sendingarupplýsingar
         public bool ShippingInfo(ShippingInfoInputModel shipping, string user, int cartId)
         {
             if(cartId == 0)
             {
                 return false;
             }
-            
+            //Bý til nýjar sendinarupplýsingar
+            //Á eftir að útfæra ef notandi hefur þegar gert pöntun og hann vill breyta
+            //Get séð út frá nýjasta ID með pöntuninni hvað á að nota
             var userInfo = new ShippingInfo
             {
                 UserId = user,
@@ -217,19 +221,21 @@ namespace BookCave.Repositories
             {
                 return false;
             }
-            _db.ShippingInfos.Add(userInfo);
-            
+            //bæti við í gangagrunninn
+            _db.ShippingInfos.Add(userInfo);  
             _db.SaveChanges();
-                return true;
-            }
-        
+            return true;
+        }
+        //Borgunin
         public bool BillingInfo(BillingInputModel info, string userId, int cartId)
         {
             if(userId == null)
             {
                 return false;
             }
-            
+            //bætir við nýrri borgunarleið
+            //Á eftir að útfæra ef notandi hefur þegar gert pöntun og hann vill breyta
+            //Get séð út frá nýjasta ID með pöntuninni hvað á að nota
             var userInfo = new BillingInfo
             {
                 UserId = userId,
@@ -241,16 +247,18 @@ namespace BookCave.Repositories
                 OrderId = cartId,
                 PaymentMethod = info.PaymentMethod,
                 CardNumber = info.CardNumber
-
             };
+            //ef ekkert kemur inn
             if(userInfo == null)
             {
                 return false;
             }
+            //bætir við í gagnagrunninn
             _db.BillingInfos.Add(userInfo);
             _db.SaveChanges();
             return true;
         }
+        //
         public ProcessOrderViewModel ViewOrder(int cartId, string userId)
         {
             var order = (from ord in _db.Orders
@@ -311,8 +319,8 @@ namespace BookCave.Repositories
             return false;            
             }
             book.Paid = true;
-   //         _db.Orders.Update(book);
-  //          _db.SaveChanges();
+            _db.Orders.Update(book);
+            _db.SaveChanges();
             return true;
             //Status á paid breytist yfir í true
             

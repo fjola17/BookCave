@@ -62,8 +62,8 @@ namespace BookCave.Controllers
                 ViewBag.Title = "Error";
                 return View("Error");
             }
-            var displaycart = _orderServices.Cart(userId, cart);
-            return View("Cart", displaycart);
+           // var displaycart = _orderServices.Cart(userId, cart);
+            return RedirectToAction("Cart");
         }
         
         [HttpPost]

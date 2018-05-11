@@ -5,6 +5,7 @@ using System.Diagnostics;
 using BookCave.Data;
 using BookCave.Models.ViewModels;
 using System;
+using BookCave.Models.InputModels;
 
 namespace BookCave.Repositories
 {
@@ -158,31 +159,15 @@ namespace BookCave.Repositories
             return bookList;
         }
 
-        /*public void SendFeedback(FeedbackInputModel feedback)
+        public void SendFeedback(FeedbackInputModel feedback, string userId)
         {
             var feed = new Feedback
             {
-                UserName = feedback.UserName,
+                UserId = userId,
                 Message = feedback.Message
             };
             _db.Feedbacks.Add(feed);
             _db.SaveChanges();
-        }*/
-
-        public bool Update(int bookId)
-        {
-            //útfæra
-            return true;
-        }
-        public bool Delete(int bookId)
-        {
-            //útfæra
-            return false;
-        }
-        public bool Create(int bookId)
-        {
-            //útfæra
-            return true;
         }
 
     }

@@ -89,7 +89,7 @@ namespace BookCave.Repositories
             //leita af bókinni í gagnagrunninum
             var bookTodelete = (from bks in _db.BooksInCarts
                                 where bks.Id == bookId && UserId == bks.UserId && cartId == bks.OrderId
-                               select bks).SingleOrDefault();
+                               select bks).FirstOrDefault();
             
             if(bookTodelete != null)
             {
@@ -99,11 +99,7 @@ namespace BookCave.Repositories
             }
             return true;
         }
-        private void UpdateDataBase(int OrderId)
-        {
-            
-        }
-       
+
         public OrderDetailsViewModel Cart(string userId, int cartId)
         {
             var cart = (from ca in _db.Orders

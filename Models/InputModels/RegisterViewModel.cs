@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-namespace BookCave.Models.ViewModels
+namespace BookCave.Models.InputModels
 {
     public class RegisterViewModel
     {

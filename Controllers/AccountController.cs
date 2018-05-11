@@ -7,7 +7,7 @@ using BookCave.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using BookCave.Models;
-using BookCave.Models.ViewModels;
+using BookCave.Models.InputModels;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 

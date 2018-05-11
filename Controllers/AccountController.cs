@@ -10,6 +10,7 @@ using BookCave.Models;
 using BookCave.Models.InputModels;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using BookCave.Models.ViewModels;
 
 namespace BookCave.Controllers
 {

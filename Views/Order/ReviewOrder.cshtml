@@ -1,1 +1,27 @@
+@model BookCave.Models.ViewModels.ProcessOrderViewModel
+
 <h2>Reviewing your order</h2>
+@{
+    var totalprice = 0;
+}
+<h3>Books</h3>
+@foreach(var books in Model.Book)
+{
+    @book.Title
+    @book.Price
+    @book.Quantity
+    totalprice += book.Quantity;
+}
+
+<h3>Total price<span>@totalprice</span></h3>
+
+<h2>Shipping Information</h2>
+@model.FullName
+@model.Country
+@model.Zipcode
+@model.PhoneNumber
+
+<h2>Billing information</h2>
+@model.PaymentMethod
+
+<button>Buy</button>

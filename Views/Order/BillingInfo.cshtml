@@ -1,6 +1,60 @@
 @model BookCave.Models.InputModels.BillingInputModel
 <h2>Please enter your billing information here</h2>
 
+        <div>
+            <label asp-for="FullName">Full name</label>
+            <input asp-for="FullName" type="text" placeholder="Please enter your full name" class="form-control">
+            <span asp-validation-for="FullName"></span>
+        </div>
+
+        <div>
+            <label asp-for="Country">country</label> 
+        <select  asp-for="Country" class="dropdown form-control country-list">
+            <option value="" >Select a country</option>
+            <option value="Australia" >Australia</option>
+            <option asp-value="Austria" >Austria</option>
+            <option value="Belgium" >Belgium</option>
+            <option value="Canada" >Canada</option>
+            <option value="Denmark" >Denmark</option>
+            <option value="Estonia" >Estonia</option>
+            <option value="Finland" >Finland</option>
+            <option value="France" >France</option>
+            <option value="Greece" >Greece</option>
+            <option value="Latvia" >Latvia</option>
+            <option value="Lux" >Luxemborg</option>
+            <option value="Lithuania" >Lithuania</option>
+            <option value="Japan" >Japan</option>
+            <option value="NZ" >New Zealand</option>
+            <option value="Norway" >Norway</option>
+            <option value="Poland" >Poland</option>
+            <option value="Russia" >Russia</option>
+            <option value="Turkey" >Turkey</option>
+            <option value="SKorea" >South Korea</option>
+            <option value="Sp" >Spain</option>
+            <option value="Sw" >Switzerland</option>
+            <option value="UK">United Kingdom</option>
+            <option value="USA">United states</option>
+        </select>
+        <span asp-validation-for="Country"></span>
+        </div>
+
+        <div>
+            <label asp-for="City">City</label>
+            <input type="text" placeholder="City"class="form-control" asp-for="City">
+            <span asp-validation-for="City"></span>
+        </div>
+        
+        <div>
+            <label asp-for="Adress">Address</label>
+            <input type="text" placeholder="Adress"class="form-control" asp-for="Adress">
+            <span asp-validation-for="Adress"></span>
+        </div>
+            <div>
+            <label asp-for="Zipcode">Zip code</label>
+            <input type="text" placeholder="Zip code"class="form-control" asp-for="Zipcode">
+            <span asp-validation-for="Zipcode"></span>
+        </div>
+
 <form asp-controller="Order" asp-action="BillingInfo">
     <label asp-for="PaymentMethod">PaymentMethod</label>
     <select asp-for="PaymentMethod">>

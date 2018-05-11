@@ -37,25 +37,7 @@ namespace BookCave.Controllers
             }
             return View(reviewsByBookId);
         }
-        public IActionResult UserReviews(string ownerId) //Nær í review eftir notanda
-        {
 
-            var reviewsByOwnerId = _reviewServices.GetByOwnerId(ownerId);
-            if(reviewsByOwnerId == null)
-            {
-                return View();
-            }
-            return View(reviewsByOwnerId);
-        }
-        public IActionResult SingleReview(int reviewID) //Nær í ákveðið review(nánari upplýsingar)
-        {
-            var reviewsById = _reviewServices.GetByReviewId(reviewID);
-            if(reviewID == 0)
-            {
-                return View();
-            }
-            return View(reviewsById);
-        }
         [Authorize]
         [HttpPost]
         public IActionResult Create(ReviewInputModel review) //Býr til review

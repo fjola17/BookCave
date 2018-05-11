@@ -1,17 +1,21 @@
 @model List<BookCave.Models.ViewModels.BookViewModel>
 
-    <h1 class="filterHead">@Model[0].Genre</h1><!--Nær í heiti á genre-->
-    <div class="searchItem borderClass Moving">
-    @foreach (var books in Model)
-    {
-        <li> 
-                <p class="book-image"><a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id"><img src="@books.CoverImage" alt="book image" height="300" width="210"></a><br>
-                <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">@books.Title</a><br>
-                Price: $@books.Price</p>
-                <form asp-action="AddToCart" asp-controller="Order">
-                <input type="hidden" name="bookAdded" value="@books.Id">
-                <button class="btn btn-default ">Add to Cart</button>
-                </form>
-            </li>
-    }
-    </div>
+<h1 class="filterHead">@Model[0].Genre</h1><!--Nær í heiti á genre-->
+
+@{
+    ViewData["Title"] = Model[0].Genre + " -";
+}
+<div class="searchItem borderClass Moving">
+@foreach (var books in Model)
+{
+    <li> 
+            <p class="book-image"><a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id"><img src="@books.CoverImage" alt="book image" height="300" width="210"></a><br>
+            <a asp-controller="Book" asp-action="Details" asp-route-id="@books.Id">@books.Title</a><br>
+            Price: $@books.Price</p>
+            <form asp-action="AddToCart" asp-controller="Order">
+            <input type="hidden" name="bookAdded" value="@books.Id">
+            <button class="btn btn-default ">Add to Cart</button>
+            </form>
+        </li>
+}
+</div>

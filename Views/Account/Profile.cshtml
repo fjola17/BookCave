@@ -4,6 +4,10 @@
 @using System.Security.Claims
 @using BookCave.Models
 
+@{
+    ViewData["Title"] = "Profile -";
+}
+
 @inject SignInManager<ApplicationUser> SignInManager
 <div>
 @if(SignInManager.IsSignedIn(User))

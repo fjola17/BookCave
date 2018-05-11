@@ -1,32 +1,38 @@
 @model BookCave.Models.ViewModels.ProcessOrderViewModel
+<!-- Model sem á að nota er  -->
+
+@{
+    ViewData["Title"] = "Review Order -";
+}
 
 <h2>Reviewing your order</h2>
-@{
-    var totalprice = 0;
-}
+<div>
 <h3>Books</h3>
-@foreach(var books in Model.Book)
+@foreach(var books in Model.Books)
 {
-    @book.Title
-    @book.Price
-    @book.Quantity
-    totalprice += book.Quantity;
+    @books.Title
+    @books.CoverImage
+    @books.Price
+    @books.Quantity
 }
-
-<h3>Total price<span>@totalprice</span></h3>
-
+@Model.TotalPrice
+</div>
+<div>
 <h2>Shipping Information</h2>
-@model.FullName
-@model.Country
-@model.Adress
-@model.Zipcode
-@model.PhoneNumber
+@Model.FullName
+@Model.Country
+@Model.City
+@Model.Adress
+@Model.PhoneNumber
+</div>
+<div>
 
 <h2>Billing information</h2>
-@model.BillingName
-@model.BillingCountry
-@model.Billing
-@model.PaymentMethod
-Card number: xxxx-xxxx-xxxx
+@Model.BillingName
+@Model.BillingCountry
+@Model.Zip
+@Model.PaymentMethod
 
-<button>Buy</button>
+Card number: xxxx-xxxx-xxxx
+</div>
+<a asp-action="Buy" asp-controller="Order"><button class="btn" id="orderbutton">Buy</button></a>

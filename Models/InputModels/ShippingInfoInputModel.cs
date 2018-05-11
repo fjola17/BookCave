@@ -4,7 +4,6 @@ namespace BookCave.Models.InputModels
 {
     public class ShippingInfoInputModel
     {
-         public int Id { get; set; }
         public string UserId { get; set; }
         public int OrderId { get; set; }
         [Required(ErrorMessage= "You need to put your name here")]

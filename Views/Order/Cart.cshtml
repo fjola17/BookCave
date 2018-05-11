@@ -21,7 +21,8 @@
           </div>
         </li>
       }
-  </ul>    
+  </ul>
+  @Model.TotalPrice
 <div class="cartSubmit">
   <a asp-controller="Order" asp-action="Shipping">
     <button class="btn" type="submit">Process order</button>

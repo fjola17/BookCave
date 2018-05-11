@@ -62,7 +62,6 @@ namespace BookCave.Controllers
                 ViewBag.Title = "Error";
                 return View("Error");
             }
-           // var displaycart = _orderServices.Cart(userId, cart);
             return RedirectToAction("Cart");
         }
         
@@ -72,10 +71,6 @@ namespace BookCave.Controllers
             var userId = _userManager.GetUserId(User);
             var cart =_orderServices.GetCart(userId);
             //Ef karfan finnst ekki einhverra hluta vegna
-            if(cart == 0)
-            {
-                return RedirectToAction("AccessDenied", "Account");
-            }
 
             if(!_orderServices.AddToCart(bookAdded, userId, cart))
             {
@@ -169,7 +164,7 @@ namespace BookCave.Controllers
         {
             if(!ModelState.IsValid)
             {
-                return RedirectToAction("Cart")
+                return RedirectToAction("Cart");
             }
             var user = _userManager.GetUserId(User);
             var cartId = _orderServices.GetCart(user);

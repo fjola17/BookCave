@@ -7,14 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 using BookCave.Models;
 using BookCave.Repositories;
 using BookCave.Models.InputModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace BookCave.Controllers
 {
     public class HomeController : Controller
     {
         private BookRepo _bookServices;
-        public HomeController()
+        private readonly UserManager<ApplicationUser> _userManager;
+        public HomeController(UserManager<ApplicationUser> userManager)
         {
+            _userManager = userManager;
             _bookServices = new BookRepo();
         }
         public IActionResult FrontPage()
@@ -27,13 +31,14 @@ namespace BookCave.Controllers
         {
             return View();
         }
-       /* [HttpPost]
+        [HttpPost]
         public IActionResult Contact(FeedbackInputModel feedback)
         {
-           // _bookServices.SendFeedback(feedback);
+            string userId= _userManager.GetUserId(User);
+            _bookServices.SendFeedback(feedback, userId);
             return RedirectToAction("FrontPage");
         }
-        */
+        
         public IActionResult About()
         {
             return View();

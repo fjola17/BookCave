@@ -15,7 +15,6 @@
     var address = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Address")?.Value;
     var image = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Image")?.Value;
     var favoriteBook = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "FavoriteBook")?.Value;
-    <!--var favoriteAuthor = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "FavoriteAuthor")?.Value;-->
 
     <div class="profile borderClass">
         <h1>@name&#39s Profile</h1><br>

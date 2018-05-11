@@ -18,7 +18,8 @@ namespace BookCave.Models.ViewModels
         public string FavoriteBook { get; set; }
         
         public string Address { get; set; }
-        [Required(ErrorMessage = "You need to agree to our terms to be able to use Bookcave.")]
+        public bool IAgree { get{return true;} }
+        [Compare("IAgree",ErrorMessage ="You need to agree to our terms to be able to use Bookcave.")]
         public bool TermsAndAgreement { get; set; }
     }
 }

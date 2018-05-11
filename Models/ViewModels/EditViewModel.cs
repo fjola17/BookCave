@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-namespace BookCave.Models.InputModels
+namespace BookCave.Models.ViewModels
 {
     public class EditViewModel
     {

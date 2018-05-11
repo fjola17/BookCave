@@ -21,12 +21,13 @@ namespace BookCave.Repositories
         }
         public List<OrderViewModel> GetByOwnerId(string userId)
         {
-            //Ath hvernig á að birta bækur??
+            //Finnur allar
             var ordersFromOwner = (from ord in _db.Orders
+                                   where userId == ord.UserId && ord.Paid == true
                                    orderby ord.OrderId descending
                                    select new OrderViewModel
                                    {
-                                      Paid = ord.Paid,
+                                      
                                       TotalPrice = ord.TotalPrice
                                     }).ToList();
             return ordersFromOwner;
@@ -34,6 +35,7 @@ namespace BookCave.Repositories
          
          public OrderDetailsViewModel GetById(int? id, string userId)
         {
+            //finnur ákvena pöntun og skilar upplýsingum um hana
             var aOrder = (from ord in _db.Orders
                         where ord.OrderId == id && ord.Paid == true && ord.UserId == userId
                        select new OrderDetailsViewModel() //Hér eiga allar bækurnar að koma upp
@@ -55,8 +57,7 @@ namespace BookCave.Repositories
                                 }).ToList();
             if(aOrder == null)
             {
-                Console.WriteLine("OOPS");
-                return aOrder; //kasta villu??
+                return aOrder;
             }
             aOrder.BooksInOrder = booksInorder;
             
@@ -93,7 +94,7 @@ namespace BookCave.Repositories
             
             if(bookTodelete != null)
             {
-                _db.BooksInCarts.Remove(bookTodelete);     
+            _db.BooksInCarts.Remove(bookTodelete);     
             _db.SaveChanges();
             return false;
             }
@@ -102,6 +103,7 @@ namespace BookCave.Repositories
 
         public OrderDetailsViewModel Cart(string userId, int cartId)
         {
+            //finn körfunna og byrti vörurnar inn í þeim
             var cart = (from ca in _db.Orders
                         where ca.Id == cartId && userId == ca.UserId
                         select new OrderDetailsViewModel
@@ -110,6 +112,7 @@ namespace BookCave.Repositories
                             Paid = ca.Paid,
                             TotalPrice = ca.TotalPrice
                         }).FirstOrDefault();
+            //bækurnar í körfunni
             var booksInCart = (from bks in _db.Books
                     join bksc in _db.BooksInCarts on bks.Id equals bksc.BookId
                     join ord in _db.Orders on bksc.OrderId equals ord.Id
@@ -134,7 +137,6 @@ namespace BookCave.Repositories
         public bool AddToCart(int id, string userId, int cartId)
         {  
             var itemincart = (from it in _db.BooksInCarts              
-                           // join ord in _db.Orders on it.OrderId equals ord.Id
                             where it.UserId == userId && id == it.BookId && cartId == it.OrderId
             select new BooksInCart
             {
@@ -145,6 +147,7 @@ namespace BookCave.Repositories
                 UserId =it.UserId
 
             }).FirstOrDefault();
+
             if(itemincart == null)
             {
                //býr til nýjan tengistreng ef bókin er ekki í körfu
@@ -202,14 +205,13 @@ namespace BookCave.Repositories
         
         public bool ShippingInfo(ShippingInfoInputModel shipping, string user, int cartId)
         {
-             if(cartId == 0)
-             {
+            if(cartId == 0)
+            {
                 return false;
-             }
+            }
             
-                var userInfo = new ShippingInfo
-                {
-                Id = shipping.Id,
+            var userInfo = new ShippingInfo
+            {
                 UserId = user,
                 OrderId = cartId,
                 FullName = shipping.FullName,
@@ -218,13 +220,13 @@ namespace BookCave.Repositories
                 City = shipping.City,
                 Adress = shipping.Adress,
                 PhoneNumber = shipping.PhoneNumber
-                };
-                //ef næst ekki í notanda
-                if(userInfo == null)
-                {
-                    return false;
-                }
-            //    _db.ShippingInfos.Add(userInfo);
+            };
+            //ef næst ekki í notanda
+            if(userInfo == null)
+            {
+                return false;
+            }
+        //    _db.ShippingInfos.Add(userInfo);
             
           //  _db.SaveChanges();
                 return true;
@@ -240,14 +242,66 @@ namespace BookCave.Repositories
             var userInfo = new BillingInfo
             {
                 UserId = userId,
+                Name = info.Name,
+                Country = info.Country,
+                Zipcode = info.Zipcode,
+                City = info.City,
+                Adress = info.Address,
                 OrderId = cartId,
                 PaymentMethod = info.PaymentMethod,
                 CardNumber = info.CardNumber
 
             };
+            if(userInfo == null)
+            {
+                return false;
+            }
             _db.BillingInfos.Add(userInfo);
             _db.SaveChanges();
             return true;
+        }
+        public ProcessOrderViewModel ViewOrder(int cartId, string userId)
+        {
+            var order = (from ord in _db.Orders
+            join shi in _db.ShippingInfos on ord.Id equals shi.OrderId
+            join bil in _db.BillingInfos on shi.OrderId equals bil.OrderId
+                        where ord.Id == cartId && ord.UserId == userId
+                        select new ProcessOrderViewModel
+                        {
+                            OrderId = ord.Id,                           
+                            FullName = shi.FullName,
+                            Country = shi.Country,
+                            Zipcode = shi.Zipcode,
+                            City = shi.City,
+                            Adress = shi.Adress,
+                            PhoneNumber = shi.PhoneNumber,
+                            BillingName = bil.Name,
+                            BillingCountry = bil.Country,
+                            BillingCity = bil.City,
+                            BillingAdress = bil.Adress,
+                            Zip = bil.Zipcode,
+                            PaymentMethod = bil.PaymentMethod,
+                            TotalPrice = ord.TotalPrice
+                        }).FirstOrDefault();
+                var books = (from bks in _db.Books
+                join bksc in _db.BooksInCarts on bks.Id equals bksc.BookId
+                    join ord in _db.Orders on bksc.OrderId equals ord.Id
+                    where ord.Id == cartId && userId == ord.UserId
+                    select new BookCartViewModel
+                    {
+                        Id = bksc.Id,
+                        Title = bks.Title,
+                        BookId = bks.Id,
+                        CoverImage = bks.CoverImage,                        
+                        Price = bks.Price,
+                        Quantity = bksc.Quantity
+                    }).ToList();
+            if(order == null)
+            {
+                return order;
+            }
+            order.Books = books;
+            return order;
         }
         public bool Buy(string userId, int cartId)
         {
@@ -259,7 +313,7 @@ namespace BookCave.Repositories
                                 UserId = or.UserId,
                                 Paid = or.Paid
                             }).FirstOrDefault();
-            //ef þessi klasi er ekki til
+            //ef ekkert er til staðar
             if(userInfo == null)
             {
                 return false;

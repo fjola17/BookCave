@@ -156,8 +156,8 @@ namespace BookCave.Controllers
             var user = _userManager.GetUserId(User);
             var cartId = _orderServices.GetCart(user);
             //birtir bara það sem er í körfunni
-            var order = _orderServices.Cart(cartId, user);
-            //var order = _orderServices.ViewOrder(cartId, user);
+//            var order = _orderServices.Cart(cartId, user);
+            var order = _orderServices.ViewOrder(cartId, user);
             if(order == null)
             {
                 return View("Error");

@@ -1,19 +1,34 @@
-@model BookCave.Models.ViewModels.OrderDetailsViewModel
+@model BookCave.Models.ViewModels.ProcessOrderViewModel
 <!-- Model sem á að nota er  -->
 
 <h2>Reviewing your order</h2>
-
+<div>
 <h3>Books</h3>
 @foreach(var books in Model.Books)
 {
-    @book.Title
-    @book.Image
+    @books.Title
+    @books.CoverImage
+    @books.Price
+    @books.Quantity
 }
+@Model.TotalPrice
+</div>
+<div>
 <h2>Shipping Information</h2>
-<!-- Náðum ekki að tengja saman við View -->
+@Model.FullName
+@Model.Country
+@Model.City
+@Model.Adress
+@Model.PhoneNumber
+</div>
+<div>
 
 <h2>Billing information</h2>
-<!-- Náðum ekki að tengja saman við View -->
-Card number: xxxx-xxxx-xxxx
+@Model.BillingName
+@Model.BillingCountry
+@Model.Zip
+@Model.PaymentMethod
 
-<a asp-action=""><button>Buy</button></a>
+Card number: xxxx-xxxx-xxxx
+</div>
+<a asp-action="Buy" asp-controller="Order"><button class="btn" id="orderbutton">Buy</button></a>

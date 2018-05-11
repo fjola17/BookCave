@@ -1,4 +1,9 @@
 @model BookCave.Models.InputModels.ShippingInfoInputModel
+
+@{
+    ViewData["Title"] = "Shipping Info -";
+}
+
 <h2 class="shipMargH2">Please enter your shipping information here</h2>
 <div class="borderClass shipMargin">
     <form method="POST" asp-action="Shipping" asp-controller="Order">

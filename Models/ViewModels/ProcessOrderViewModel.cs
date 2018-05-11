@@ -10,7 +10,12 @@ namespace BookCave.Models.ViewModels
         public string Zipcode { get; set; }
         public string City { get; set; }
         public string Adress{ get; set; }
-        public string PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }        
+        public string BillingName { get; set; }
+        public string BillingCountry { get; set; }
+        public string BillingCity { get; set; }
+        public string BillingAdress { get; set; }
+        public string Zip { get; set; }
         public string PaymentMethod { get; set; }
         public List<BookCartViewModel> Books { get; set; }
         public int TotalPrice { get; set; }

@@ -3,35 +3,18 @@
 <div class="borderClass cartClass">
 <h1>Current items in cart</h2>
 <ul>
-  
-  <!--<div class="col-25">
-      <div class="container">
-      
-        <!--<h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4>-->
-
     @foreach(var b in Model.BooksInOrder)
        {
         <li>
-          <p class="book-image"><img src="@b.CoverImage" alt="book image" height="300" width="210">
-         <a asp-controller="Book" asp-action="Index" asp-route-id="@b.Id">@b.Title</a>
+          <p class="book-image"><a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id"><img src="@b.CoverImage" alt="book image" height="300" width="210"></a>
+          <a asp-controller="Book" asp-action="Details" asp-route-id="@b.Id">@b.Title</a>
           @b.Price
           <form asp-controller="Order" method="POST" asp-action="Delete">
-          <input type="hidden" name="ISBN" value="@b.Id"><br>
-          <button class="Something" type="submit">Delete</button>
+            <input type="hidden" name="ISBN" value="@b.Id"><br>
+            <button class="btn" type="submit">Delete</button>
           </form>
         </li>
-        
-        
-        <!--<p><a href="#">Product 1</a> <span class="price">$15</span></p>
-        <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-        <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-        <p><a href="#">Product 4</a> <span class="price">$2</span></p>
-        <hr>-->
       }
-        <!--<p>Total <span class="price" style="color:black"><b>$30</b></span></p>
-      </div>
-    </div>-->
-   
 
 <a asp-controller="Order" asp-action="Shipping">
     <button class="btn" type="submit">Process order</button>

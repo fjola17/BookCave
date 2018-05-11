@@ -258,12 +258,13 @@ namespace BookCave.Repositories
             _db.SaveChanges();
             return true;
         }
-        //
+        //Skoðar pantanir sem notandi hefur gert
         public ProcessOrderViewModel ViewOrder(int cartId, string userId)
         {
+            //Finnur ákveðna pöntun
             var order = (from ord in _db.Orders
-            join shi in _db.ShippingInfos on ord.Id equals shi.OrderId
-            join bil in _db.BillingInfos on shi.OrderId equals bil.OrderId
+                        join shi in _db.ShippingInfos on ord.Id equals shi.OrderId
+                        join bil in _db.BillingInfos on shi.OrderId equals bil.OrderId
                         where ord.Id == cartId && ord.UserId == userId
                         select new ProcessOrderViewModel
                         {
@@ -282,31 +283,32 @@ namespace BookCave.Repositories
                             PaymentMethod = bil.PaymentMethod,
                             TotalPrice = ord.TotalPrice
                         }).FirstOrDefault();
-                var books = (from bks in _db.Books
-                join bksc in _db.BooksInCarts on bks.Id equals bksc.BookId
-                    join ord in _db.Orders on bksc.OrderId equals ord.Id
-                    where ord.Id == cartId && userId == ord.UserId
-                    select new BookCartViewModel
-                    {
-                        Id = bksc.Id,
-                        Title = bks.Title,
-                        BookId = bks.Id,
-                        CoverImage = bks.CoverImage,                        
-                        Price = bks.Price,
-                        Quantity = bksc.Quantity
-                    }).ToList();
-            if(order == null)
-            {
+            //Bækurnar í pöntuninni
+            var books = (from bks in _db.Books
+                        join bksc in _db.BooksInCarts on bks.Id equals bksc.BookId
+                        join ord in _db.Orders on bksc.OrderId equals ord.Id
+                        where ord.Id == cartId && userId == ord.UserId
+                        select new BookCartViewModel
+                        {
+                            Id = bksc.Id,
+                            Title = bks.Title,
+                            BookId = bks.Id,
+                            CoverImage = bks.CoverImage,                        
+                            Price = bks.Price,
+                            Quantity = bksc.Quantity
+                        }).ToList();
+                if(order == null)
+                {
+                    return order;
+                }
+                order.Books = books;
+                foreach(var book in books)
+                {
+                    order.TotalPrice += book.Price * book.Quantity;
+                }
                 return order;
-            }
-            order.Books = books;
-            foreach(var book in books)
-            {
-                order.TotalPrice += book.Price * book.Quantity;
-            }
-            return order;
         }
-
+        //Notandi kaupir pönntun sem hann hefur gert
         public bool Buy(string userId, int cartId)
         {
             var book = (from or in _db.Orders

@@ -19,20 +19,21 @@ namespace BookCave.Controllers
         public OrderRepo _orderServices;
          private readonly UserManager<ApplicationUser> _userManager;
          private readonly SignInManager<ApplicationUser> _SignInManager;
-        public OrderController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+        public OrderController(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
-            _SignInManager = signInManager;
             _orderServices = new OrderRepo();   
         }
-        public IActionResult Index() //Displays all orders for a logged in user
+        //Skoðar allar pantanir út frá tilteknum notanda
+        public IActionResult Index()
         { 
             var userId = _userManager.GetUserId(User);
             var allOrderFromusers = _orderServices.GetByOwnerId(userId);
             
             return View(allOrderFromusers.ToList());
         }
-         
+        //Fær upplýsingar um ákveðna pöntun
+        //Virkar ekki!!
         public IActionResult Details(int? id)
         { 
             if(ModelState.IsValid)
@@ -47,7 +48,7 @@ namespace BookCave.Controllers
             }
             return View(orders);
         }
-        
+        //Eyðir úr körfu
         public IActionResult Delete(int? ISBN)
         {
             //Þarf að útfæra betur
@@ -65,7 +66,7 @@ namespace BookCave.Controllers
            // var displaycart = _orderServices.Cart(userId, cart);
             return RedirectToAction("Cart");
         }
-        
+        //bætir við í körfuna
         [HttpPost]
         public IActionResult AddToCart(int bookAdded)
         {
@@ -86,6 +87,7 @@ namespace BookCave.Controllers
             return RedirectToAction("Cart", "Order");
 
         }
+        //karfan
         public IActionResult Cart()
         {
                      //er bara að skoða körfu

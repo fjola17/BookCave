@@ -18,11 +18,11 @@ namespace BookCave.Repositories
         {
             _db = new DataContext();
         }
-
+        //Nær í forsíðu
         public List<BookViewModel> GetBookIndex()
         {
             var rand = new Random();
-
+            //velur random bækur úr gagnagrunni
             var bookList = (from bo in _db.Books
                             orderby rand.Next()
                             select new BookViewModel
@@ -41,7 +41,7 @@ namespace BookCave.Repositories
                             }).Take(20).ToList();
             return bookList;
         }
-
+        //býr til lita af eftir 'Genre'
         public List<BookViewModel> GetByGenre(string genre)
         {
             var filteredbygenre = (from bo in _db.Books
@@ -158,16 +158,21 @@ namespace BookCave.Repositories
                             }).Take(10).ToList();
             return bookList;
         }
-
-        public void SendFeedback(FeedbackInputModel feedback, string userId)
+        //Sendi skilaboð á notanda síðunnar
+        public bool SendFeedback(FeedbackInputModel feedback, string userId)
         {
             var feed = new Feedback
             {
                 UserId = userId,
                 Message = feedback.Message
             };
+            if(feed == null)
+            {
+                return false;
+            }
             _db.Feedbacks.Add(feed);
             _db.SaveChanges();
+            return true;
         }
 
     }

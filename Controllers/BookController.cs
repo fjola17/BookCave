@@ -48,14 +48,14 @@ namespace BookCave.Controllers
             }
             return View(book);
         }
-        
-        public IActionResult Top10() //Nær í Top 10
+        //nær í topp 10
+        public IActionResult Top10()
         {
             var top10 = _bookServices.TopRatedBooks();
             return View(top10);
         }
-
-        public IActionResult Filter(string genre) //Filter-ar bækur eftir genre
+        //leita af bók eftir ákveðnum leitarstreng - genre
+        public IActionResult Filter(string genre)
         {
             var filteredByGenre = _bookServices.GetByGenre(genre);
             return View(filteredByGenre);

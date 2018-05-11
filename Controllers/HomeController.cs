@@ -21,11 +21,13 @@ namespace BookCave.Controllers
             _userManager = userManager;
             _bookServices = new BookRepo();
         }
+        //Forsíðan
         public IActionResult FrontPage()
         {
             var books = _bookServices.GetBookIndex();
             return View(books);
         }
+        //Hafa samband við stjórnendur síðunnar
         [HttpGet]
         public IActionResult Contact()
         {
@@ -38,7 +40,7 @@ namespace BookCave.Controllers
             _bookServices.SendFeedback(feedback, userId);
             return RedirectToAction("FrontPage");
         }
-        
+        //Um síðuna
         public IActionResult About()
         {
             return View();

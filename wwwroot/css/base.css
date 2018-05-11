@@ -251,6 +251,20 @@ li
 .inline {
   display: inline-block;
 }
+.paymentClass
+{
+  margin-left: 400px;
+  margin-right: 400px;
+  padding: 40px 40px 40px 40px;
+} 
+.paymentHeader
+{
+  margin-left: 400px;
+}
+.confirmBtn
+{
+  margin-top: 20px;
+}
 /* Class elements end here */
 /* ID elements begin here */
 #shopBtn a
